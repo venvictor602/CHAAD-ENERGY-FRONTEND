@@ -16,12 +16,12 @@ Smart energy management and sustainability solutions.
 
 ```
 src/
-├── app/api/proxy/     # API proxy route (avoids CORS, forwards to backend)
+├── pages/api/         # API routes (proxy at /api/proxy)
 ├── config/           # Axios instance with auth interceptors
 ├── components/       # UI components
 ├── data/             # Static data (states, options, etc.)
 ├── hooks/            # Custom React hooks
-├── lib/              # Utilities, proxy-handler, token-storage
+├── lib/              # Utilities, token-storage
 ├── pages/            # Next.js pages
 ├── services/         # API service layer (base, auth)
 ├── store/            # Zustand stores
