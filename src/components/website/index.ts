@@ -1,0 +1,11 @@
+export { Hero } from "./hero";
+export { AboutSection } from "./about-section";
+export { ExpertiseSection } from "./expertise-section";
+export { WhyTrustUsSection } from "./why-trust-us-section";
+export { TrustStatsSection } from "./trust-stats-section";
+export { DiagonalImageSlider } from "./diagonal-image-slider";
+export { CertificationsSection } from "./certifications-section";
+export { RecentWorkSection } from "./recent-work-section";
+export { ServiceCard } from "./service-card";
+export { ProjectCard } from "./project-card";
+export { LearnMoreLink } from "./learn-more-link";

@@ -1,8 +1,3 @@
-/**
- * Token Storage Utility
- * Handles secure storage and retrieval of authentication tokens
- */
-
 const ACCESS_TOKEN_KEY = "auth_access_token";
 const REFRESH_TOKEN_KEY = "auth_refresh_token";
 
