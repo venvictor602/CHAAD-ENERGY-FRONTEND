@@ -71,9 +71,9 @@ export function Navbar({
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors pb-1 border-b-2 border-transparent",
-                  isActive && "border-[#DE5943]",
+                  isActive && "border-[#485AAC]",
                   isActive && showLightText && "text-white",
-                  isActive && !showLightText && "text-[#28325F]",
+                  isActive && !showLightText && "text-[#485AAC]",
                   !isActive &&
                     showLightText &&
                     "text-white/95 hover:text-white",
@@ -149,8 +149,8 @@ export function Navbar({
                           className={cn(
                             "text-base font-medium transition-colors",
                             isActive
-                              ? "text-[#DE5943]"
-                              : "text-white hover:text-[#DE5943]",
+                              ? "text-[#485AAC]"
+                              : "text-white hover:text-[#485AAC]",
                           )}
                         >
                           {link.label}
