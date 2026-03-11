@@ -55,16 +55,9 @@ export function Navbar({
         <img
           src="/Logo.svg"
           alt="CHAAD Energy"
-          className="h-10 w-10 md:h-12 md:w-12 object-contain"
+          className="h-10 w-10 md:h-24 md:w-24 object-contain"
         />
-        <span
-          className={cn(
-            "text-xl font-semibold font-sans transition-colors",
-            showLightText ? "text-white" : "text-[#28325F]",
-          )}
-        >
-          CHAAD
-        </span>
+       
       </Link>
 
       <ul className="hidden md:flex items-center gap-8">

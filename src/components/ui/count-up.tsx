@@ -53,7 +53,7 @@ export function CountUp({
 
     const tick = (now: number) => {
       const t = Math.min(1, (now - t0) / durationMs);
-      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      const eased = 1 - Math.pow(1 - t, 3);
       setCurrent(target * eased);
       if (t < 1) raf = requestAnimationFrame(tick);
     };

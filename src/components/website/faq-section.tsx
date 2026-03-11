@@ -29,7 +29,7 @@ const FAQS: FaqItem[] = [
 
 export function FaqSection() {
   const baseId = useId();
-  const [openIndex, setOpenIndex] = useState<number>(1); // default open: middle (matches screenshot feel)
+  const [openIndex, setOpenIndex] = useState<number>(1);
 
   return (
     <section className="bg-white py-16 md:py-24">

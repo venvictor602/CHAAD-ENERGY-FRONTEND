@@ -133,11 +133,9 @@ export default async function handler(
   const { service, endpoint, responseType, _t, ...params } = req.query;
   const { method, headers } = req;
 
-  // Check if this is a blob request
   const isBlobRequest = responseType === "blob";
   const isFormData = isFormDataRequest(req);
 
-  // Validate service exists
   if (!service || !SERVICE_URLS[service as keyof typeof SERVICE_URLS]) {
     return res.status(400).json({
       error: "Invalid service",
@@ -151,13 +149,11 @@ export default async function handler(
   const targetURL = `${baseURL}${endpoint}`;
   console.log(baseURL);
 
-  // Add cache busting timestamp to params if not already present
   const cacheBustingParams = {
     ...params,
     _t: _t || Date.now().toString(),
   };
 
-  // Build query string from remaining params
   const queryString =
     Object.keys(cacheBustingParams).length > 0
       ? `?${new URLSearchParams(
@@ -168,7 +164,6 @@ export default async function handler(
   const finalURL = targetURL + queryString;
 
   try {
-    // Filter headers to avoid issues
     const allowedHeaders = [
       "authorization",
       "content-type",
@@ -188,10 +183,8 @@ export default async function handler(
     let requestData;
 
     if (isFormData) {
-      // For form data, stream the request directly
       requestData = req;
     } else {
-      // For JSON requests, we need to read the body
       requestData = await new Promise((resolve, reject) => {
         let body = "";
         req.on("data", (chunk) => {
@@ -214,18 +207,16 @@ export default async function handler(
       data: requestData,
       headers: {
         ...filteredHeaders,
-        // Add cache busting headers
         "Cache-Control": "no-cache, no-store, must-revalidate",
         Pragma: "no-cache",
         Expires: "0",
-        // Add unique request identifier
         "X-Request-ID": `${Date.now()}-${Math.random()
           .toString(36)
           .substr(2, 9)}`,
       },
       responseType: isBlobRequest ? "arraybuffer" : "json",
-      timeout: 30000, // 30 seconds timeout
-      maxContentLength: 50 * 1024 * 1024, // 50MB max
+      timeout: 30000,
+      maxContentLength: 50 * 1024 * 1024,
     });
 
     if (isBlobRequest) {
