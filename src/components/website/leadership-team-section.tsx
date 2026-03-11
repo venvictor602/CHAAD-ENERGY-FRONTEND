@@ -95,6 +95,8 @@ export function LeadershipTeamSection() {
                   width={600}
                   height={600}
                   className="w-full h-full object-cover grayscale"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
               </div>
               <div>

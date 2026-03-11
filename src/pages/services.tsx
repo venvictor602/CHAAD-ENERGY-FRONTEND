@@ -1,3 +1,4 @@
+import { SEO } from "@/components/seo";
 import { PageHero } from "@/components/website/page-hero";
 import { CoreCapabilitiesSection } from "@/components/website/core-capabilities-section";
 import { CaseStudySection } from "@/components/website/case-study-section";
@@ -7,6 +8,7 @@ import { Footer } from "@/components/layouts/footer";
 export default function ServicesPage() {
   return (
     <>
+      <SEO title="Services" />
       <PageHero
         subtitle="Our Services"
         title="Specialized Engineering Solutions"

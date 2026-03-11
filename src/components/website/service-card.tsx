@@ -25,6 +25,8 @@ export function ServiceCard({
           height={300}
           alt={imageAlt}
           className="w-full h-full object-cover transition-transform group-hover:scale-105 rounded-[8px]"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <div className="flex flex-col flex-1 space-y-[8px]">

@@ -81,7 +81,13 @@ export function TrustedBySection({
             </h2>
           </motion.div>
 
-          <div className="relative h-[260px] sm:h-[320px] md:h-[360px] lg:h-[380px]">
+          <motion.div
+            className="relative h-[260px] sm:h-[320px] md:h-[360px] lg:h-[380px]"
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <motion.div
               className="absolute inset-0 rotate-[-10deg] will-change-transform"
               animate={{ rotate: [-10, 350] }}
@@ -125,13 +131,14 @@ export function TrustedBySection({
                         width={128}
                         height={64}
                         className="w-full h-full object-contain opacity-90"
+                        loading="lazy"
                       />
                     </motion.div>
                   </motion.div>
                 );
               })}
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

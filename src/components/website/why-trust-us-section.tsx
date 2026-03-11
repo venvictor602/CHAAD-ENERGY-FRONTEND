@@ -96,11 +96,13 @@ export function WhyTrustUsSection() {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src="https://picsum.photos/seed/chaad-team/800/600"
+              src="/assets/Global%20Leaders.png"
               width={800}
               height={600}
               alt="Industrial team at work"
               className="w-full h-full object-cover"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 800px"
             />
             <div
               ref={badgeRef}

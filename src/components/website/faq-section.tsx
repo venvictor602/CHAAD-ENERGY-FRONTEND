@@ -1,8 +1,16 @@
 "use client";
 
 import { useId, useState } from "react";
+import { motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+const viewport = { once: true, margin: "-40px" };
+const t = { duration: 0.4 };
 
 type FaqItem = {
   question: string;
@@ -34,20 +42,38 @@ export function FaqSection() {
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 rounded-[28px] py-14 md:py-16">
-        <h2 className="text-center text-3xl md:text-4xl font-extrabold text-[#1A1A1A]">
+        <motion.h2
+          className="text-center text-3xl md:text-4xl font-extrabold text-[#1A1A1A]"
+          initial="initial"
+          whileInView="visible"
+          viewport={viewport}
+          variants={fadeUp}
+          transition={t}
+        >
           Frequently Ask Questions
-        </h2>
+        </motion.h2>
 
-        <div className="mt-10 md:mt-12 max-w-3xl mx-auto space-y-6">
+        <motion.div
+          className="mt-10 md:mt-12 max-w-3xl mx-auto space-y-6"
+          initial="initial"
+          whileInView="visible"
+          viewport={viewport}
+          variants={{
+            initial: {},
+            visible: { transition: { staggerChildren: 0.06 } },
+          }}
+        >
           {FAQS.map((faq, idx) => {
             const isOpen = openIndex === idx;
             const buttonId = `${baseId}-btn-${idx}`;
             const panelId = `${baseId}-panel-${idx}`;
 
             return (
-              <div
+              <motion.div
                 key={faq.question}
                 className="bg-white rounded-xl shadow-[0_14px_40px_rgba(15,23,42,0.10)] border border-black/5 overflow-hidden"
+                variants={fadeUp}
+                transition={t}
               >
                 <button
                   id={buttonId}
@@ -84,10 +110,10 @@ export function FaqSection() {
                     {faq.answer}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

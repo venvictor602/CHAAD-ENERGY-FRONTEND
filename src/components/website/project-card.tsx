@@ -26,6 +26,8 @@ export function ProjectCard({
           className="w-full h-full object-cover transition-transform group-hover:scale-105"
           width={406}
           height={228}
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 406px"
         />
       </div>
       <div className="p-6 flex flex-col flex-1 min-h-[186px] font-roboto text-[#000000]">

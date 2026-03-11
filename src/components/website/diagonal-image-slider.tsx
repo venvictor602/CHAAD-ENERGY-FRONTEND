@@ -77,6 +77,7 @@ export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
                       width={160}
                       height={imgHeight}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                 ))}

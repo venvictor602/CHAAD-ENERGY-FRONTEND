@@ -4,20 +4,19 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta charSet="utf-8" />
+        <meta name="theme-color" content="#28325F" />
+        <link rel="icon" href="/Logo.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/Logo.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <meta
           name="description"
-          content="CHAAD Energy - Delivering Engineering Excellence Across Energy & Industrial Landscapes"
+          content="CHAAD Energy - Delivering Engineering Excellence Across Energy & Industrial Landscapes. Expert EPC, commissioning, cathodic protection, and tank services."
         />
       </Head>
       <body className="antialiased">

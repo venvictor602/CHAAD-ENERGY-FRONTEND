@@ -7,9 +7,15 @@ import { Navbar } from "@/components/layouts/navbar";
 const DEFAULT_BG =
   "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=80";
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+};
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 export type PageHeroProps = {
@@ -43,14 +49,13 @@ export function PageHero({
       <div className="relative flex-1 flex flex-col justify-end mb-10">
         <div className="bg-[#000000B2]  px-6 lg:px-12 pt-28 pb-20">
           <div className="max-w-7xl mx-auto w-full ">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end">
-              <motion.div
-                className="space-y-4"
-                initial="hidden"
-                animate="visible"
-                variants={itemVariants}
-                transition={{ duration: 0.5 }}
-              >
+            <motion.div
+              className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end"
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+            >
+              <motion.div className="space-y-4" variants={itemVariants}>
                 <p className="text-sm md:text-[24px] font-bold text-white/90 border-b-2 border-[#485AAC] pb-1 w-fit">
                   {subtitle}
                 </p>
@@ -60,14 +65,11 @@ export function PageHero({
               </motion.div>
               <motion.p
                 className="text-base md:text-base font-medium text-white leading-relaxed max-w-xl"
-                initial="hidden"
-                animate="visible"
                 variants={itemVariants}
-                transition={{ duration: 0.5, delay: 0.1 }}
               >
                 {description}
               </motion.p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

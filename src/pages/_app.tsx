@@ -6,6 +6,7 @@ import { Inter, Montserrat, Roboto } from "next/font/google";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
+import { SEO } from "@/components/seo";
 import { Toaster } from "@/components/ui/toast";
 import { ScrollToTopButton } from "@/components/layouts/scroll-to-top-button";
 
@@ -82,6 +83,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Toaster>
+      <SEO />
       <main
         className={`${montserrat.variable} ${roboto.variable} ${inter.variable} font-sans`}
       >

@@ -121,6 +121,7 @@ export function PartnersSection() {
                       width={160}
                       height={80}
                       className="max-h-full w-auto object-contain"
+                      loading="lazy"
                     />
                   ) : (
                     <div

@@ -3,10 +3,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
+const fadeDown = {
+  hidden: { opacity: 0, y: -28 },
+  visible: { opacity: 1, y: 0 },
+};
+const fadeLeft = {
+  hidden: { opacity: 0, x: 48 },
   visible: { opacity: 1, x: 0 },
 };
+const t = { duration: 0.55, ease: [0.22, 1, 0.36, 1] };
 
 function ImageWithLogoOverlay({
   src,
@@ -27,6 +32,8 @@ function ImageWithLogoOverlay({
         height={height}
         alt={alt}
         className="w-full h-full object-cover"
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 628px"
       />
       <div
         className="absolute inset-0"
@@ -67,11 +74,11 @@ export function AboutSection() {
         <div className="relative grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
             className="relative z-10 lg:-mr-14"
-            variants={itemVariants}
+            variants={fadeDown}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5 }}
+            transition={t}
           >
             <div className="rounded-2xl border border-white/10 bg-black/35 backdrop-blur-md p-7 md:p-9 lg:p-10 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
               <p className="text-xs md:text-sm tracking-[0.28em] uppercase text-white/70 font-semibold">
@@ -92,11 +99,11 @@ export function AboutSection() {
 
           <motion.div
             className="relative h-[460px] sm:h-[520px] md:h-[600px] lg:h-[640px]"
-            variants={itemVariants}
+            variants={fadeLeft}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ ...t, delay: 0.08 }}
           >
             <div className="absolute top-0 right-0 w-[min(100%,628px)] aspect-628/565 rounded-2xl overflow-hidden shadow-2xl z-0 ring-1 ring-white/10">
               <ImageWithLogoOverlay

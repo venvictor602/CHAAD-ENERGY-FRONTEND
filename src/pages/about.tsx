@@ -1,3 +1,4 @@
+import { SEO } from "@/components/seo";
 import { PageHero } from "@/components/website/page-hero";
 import { AboutStorySection } from "@/components/website/about-story-section";
 import { CoreValuesSection } from "@/components/website/core-values-section";
@@ -11,6 +12,7 @@ import { Footer } from "@/components/layouts/footer";
 export default function AboutPage() {
   return (
     <>
+      <SEO title="About Us" />
       <PageHero
         subtitle="About Us"
         title="Our mission, vision & history"

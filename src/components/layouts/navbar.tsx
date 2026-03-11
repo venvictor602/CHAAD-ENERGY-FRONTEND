@@ -20,33 +20,36 @@ const NAV_LINKS = [
 export function Navbar({
   className,
   theme = "light",
+  solidBackground = false,
 }: {
   className?: string;
   theme?: "light" | "dark";
+  solidBackground?: boolean;
 }) {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (theme === "dark") return;
+    if (theme === "dark" || solidBackground) return;
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [theme]);
+  }, [theme, solidBackground]);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const isDark = theme === "dark";
-  const showLightText = isDark || !scrolled;
+  const isDark = theme === "dark" && !solidBackground;
+  const showLightText = solidBackground ? false : isDark || !scrolled;
+  const useLightBar = solidBackground || (theme === "light" && scrolled);
 
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-4 transition-colors duration-300",
         isDark && "bg-[#1A1A1A]/50 backdrop-blur-sm",
-        !isDark && scrolled && "bg-white/95 backdrop-blur-sm shadow-sm",
+        useLightBar && "bg-white/95 backdrop-blur-sm shadow-sm",
         className,
       )}
     >

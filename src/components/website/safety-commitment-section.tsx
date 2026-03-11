@@ -9,8 +9,7 @@ const BULLETS = [
   "Annual Safety Leadership Training",
 ];
 
-const DEFAULT_BACKGROUND =
-  "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1920&q=80";
+const DEFAULT_BACKGROUND = "/assets/Commitment.png";
 
 export function SafetyCommitmentSection({
   backgroundImage = DEFAULT_BACKGROUND,

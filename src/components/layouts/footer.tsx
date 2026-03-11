@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Facebook, Instagram, Linkedin, X, Youtube } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -58,11 +59,29 @@ const FOOTER_LINKS = [
   },
 ];
 
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export function Footer() {
   return (
     <footer className="bg-[#28325F] text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-8">
-        <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10">
+      <motion.div
+        className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-8"
+        initial="initial"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={{
+          initial: {},
+          visible: { transition: { staggerChildren: 0.06 } },
+        }}
+      >
+        <motion.div
+          className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10"
+          variants={fadeUp}
+          transition={{ duration: 0.4 }}
+        >
           <div className="flex-1">
             <p className="text-sm font-semibold">Stay in the loop</p>
             <p className="text-xs text-white mt-1">
@@ -98,11 +117,19 @@ export function Footer() {
               </Link>
             </p>
           </form>
-        </div>
+        </motion.div>
 
-        <div className="h-px bg-white/15 my-10 md:my-12" />
+        <motion.div
+          className="h-px bg-white/15 my-10 md:my-12"
+          variants={fadeUp}
+          transition={{ duration: 0.4 }}
+        />
 
-        <div className="grid gap-10 lg:gap-12 lg:grid-cols-[auto_1fr]">
+        <motion.div
+          className="grid gap-10 lg:gap-12 lg:grid-cols-[auto_1fr]"
+          variants={fadeUp}
+          transition={{ duration: 0.4 }}
+        >
           <div className="flex items-start">
             <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -135,11 +162,19 @@ export function Footer() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="h-px bg-white/15 my-10 md:my-12" />
+        <motion.div
+          className="h-px bg-white/15 my-10 md:my-12"
+          variants={fadeUp}
+          transition={{ duration: 0.4 }}
+        />
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <motion.div
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
+          variants={fadeUp}
+          transition={{ duration: 0.4 }}
+        >
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-white/70">
             <Link href="#tos" className="hover:text-white transition-colors">
               Terms of Service
@@ -189,8 +224,8 @@ export function Footer() {
               <Youtube className="h-4 w-4" />
             </Link>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 }

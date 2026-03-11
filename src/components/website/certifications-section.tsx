@@ -68,6 +68,7 @@ export function CertificationsSection() {
               width={170}
               height={170}
               className="object-contain"
+              loading="lazy"
             />
           </div>
         </motion.div>
