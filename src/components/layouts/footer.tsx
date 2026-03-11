@@ -9,11 +9,11 @@ const FOOTER_LINKS = [
   {
     title: "Company",
     links: [
-      { label: "About Us", href: "#about" },
-      { label: "Services", href: "#services" },
-      { label: "Projects", href: "#projects" },
-      { label: "Contact", href: "#contact" },
-      { label: "Resources", href: "#resources" },
+      { label: "About Us", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Projects", href: "/projects" },
+      { label: "Contact", href: "/contact" },
+      { label: "News", href: "/news" },
     ],
   },
   {
@@ -62,7 +62,6 @@ export function Footer() {
   return (
     <footer className="bg-[#28325F] text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-8">
-        {/* Newsletter row */}
         <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10">
           <div className="flex-1">
             <p className="text-sm font-semibold">Stay in the loop</p>
@@ -103,7 +102,6 @@ export function Footer() {
 
         <div className="h-px bg-white/15 my-10 md:my-12" />
 
-        {/* Main footer grid */}
         <div className="grid gap-10 lg:gap-12 lg:grid-cols-[auto_1fr]">
           <div className="flex items-start">
             <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
@@ -141,7 +139,6 @@ export function Footer() {
 
         <div className="h-px bg-white/15 my-10 md:my-12" />
 
-        {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-white/70">
             <Link href="#tos" className="hover:text-white transition-colors">

@@ -35,14 +35,12 @@ const SCROLL_KEY = "chaad_scroll_y";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  // ── Step 1: Disable browser's own scroll restoration, restore from sessionStorage ──
   useEffect(() => {
     history.scrollRestoration = "manual";
 
     const saved = sessionStorage.getItem(SCROLL_KEY);
     if (saved !== null) {
       const y = parseInt(saved, 10);
-      // Brief delay so the page fully renders before jumping
       const t = setTimeout(
         () => window.scrollTo({ top: y, behavior: "instant" }),
         80,
@@ -51,7 +49,6 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, []);
 
-  // ── Step 2: Track scroll position continuously (rAF-throttled) ──
   useEffect(() => {
     let rafId: number | null = null;
 
@@ -63,7 +60,6 @@ export default function App({ Component, pageProps }: AppProps) {
       });
     };
 
-    // Guaranteed save right before refresh/tab close
     const onBeforeUnload = () => {
       sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
     };
@@ -78,7 +74,6 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, []);
 
-  // ── Step 3: Clear saved position when navigating to a new route ──
   useEffect(() => {
     const clear = () => sessionStorage.removeItem(SCROLL_KEY);
     router.events.on("routeChangeStart", clear);

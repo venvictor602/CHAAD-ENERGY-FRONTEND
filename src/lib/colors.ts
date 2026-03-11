@@ -1,7 +1,3 @@
-/**
- * CHAAD Energy brand colors
- */
-
 export const colors = {
   primary: "#DE5943",
   primaryHover: "#c94d39",

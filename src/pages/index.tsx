@@ -6,6 +6,7 @@ import { TrustedBySection } from "@/components/website/trusted-by-section";
 import { TrustStatsSection } from "@/components/website/trust-stats-section";
 import { CertificationsSection } from "@/components/website/certifications-section";
 import { RecentWorkSection } from "@/components/website/recent-work-section";
+import { FaqSection } from "@/components/website/faq-section";
 import { Footer } from "@/components/layouts/footer";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <RecentWorkSection />
       <TrustStatsSection />
       <TrustedBySection />
+      <FaqSection />
       <Footer />
     </main>
   );

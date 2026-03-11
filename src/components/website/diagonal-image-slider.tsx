@@ -18,7 +18,6 @@ const COLUMN_CONFIG = [
 const IMAGE_ROTATIONS = [-2, 1.5, -1, 2, -0.5, 1, -1.5, 0.5, -2, 1];
 
 export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
-  // Ensure enough images by repeating the array
   const filled =
     images.length > 0
       ? images
@@ -27,7 +26,6 @@ export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
 
   return (
     <div className="relative w-full h-full overflow-hidden" aria-hidden>
-      {/* Rotate the whole grid diagonally */}
       <div
         className="absolute inset-0 flex gap-3"
         style={{
@@ -64,7 +62,6 @@ export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
                   },
                 }}
               >
-                {/* Duplicate for seamless loop */}
                 {[...colImages, ...colImages].map((src, imgIdx) => (
                   <div
                     key={imgIdx}

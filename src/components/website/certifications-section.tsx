@@ -3,73 +3,73 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-// Add more certifications here later: { src: "/assets/...", alt: "..." }
-const CERTIFICATIONS = [{ src: "/assets/iso.png", alt: "ISO 9001" }];
-
-const GAP = 48; // gap between items (px)
-const ITEM_WIDTH = 168;
-
 export function CertificationsSection() {
-  // Include the boundary GAP between repeated sets for a seamless loop.
-  // With `gap`, spacing exists between *all* adjacent items, including set boundaries.
-  const stepWidth = CERTIFICATIONS.length * (ITEM_WIDTH + GAP);
-  const duplicateCount = 12; // enough copies to fill viewport and loop seamlessly
-
   return (
-    <section
-      id="certifications"
-      className="relative bg-[#F9FAFB] py-16 md:py-24 overflow-hidden"
-    >
-      {/* <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='%2342529D' stroke-width='2'/%3E%3Ctext x='60' y='35' font-size='10' fill='%2342529D' text-anchor='middle'%3EISO 9001%3C/text%3E%3Ctext x='60' y='90' font-size='8' fill='%2342529D' text-anchor='middle'%3E certified%3C/text%3E%3Ctext x='60' y='60' font-size='28' font-weight='bold' fill='%2342529D' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "120px 120px",
-        }}
-        aria-hidden
-      /> */}
+    <section id="certifications" className="bg-white py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <motion.h2
+            className="text-3xl md:text-5xl font-extrabold text-[#1A1A1A] leading-tight"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.35 }}
+          >
+            We Are
+            <br />
+            Certified By
+          </motion.h2>
 
-      <div className="relative max-w-4xl mx-auto px-6 lg:px-12 text-center">
-        <motion.h2
-          className="text-3xl md:text-[40px] leading-[58px] font-bold text-[#1A1A1A] mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            className="text-sm md:text-base text-[#606060] leading-relaxed max-w-2xl"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.35, delay: 0.05 }}
+          >
+            We are a certified construction and engineering company committed to
+            delivering safe, reliable, and high-quality projects. Our
+            certifications reflect our dedication to industry standards,
+            professional excellence, and responsible operations, giving clients
+            confidence that every project we handle is executed with proven
+            expertise, strict safety practices, and trusted technical
+            capability.
+          </motion.p>
+        </div>
+
+        <motion.div
+          className="mt-10 md:mt-14 rounded-2xl bg-[#F3F4F6] overflow-hidden relative h-[170px] md:h-[200px]"
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.4 }}
         >
-          We Are Certified By
-        </motion.h2>
-      </div>
+          <div
+            className="absolute inset-0 opacity-50"
+            style={{
+              background:
+                "radial-gradient(280px 140px at 12% 45%, rgba(72,90,172,0.18), transparent 60%), radial-gradient(320px 180px at 88% 55%, rgba(72,90,172,0.16), transparent 60%)",
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute -left-10 top-4 h-44 w-44 md:h-56 md:w-56 rounded-[36px] bg-[#E7ECF9] rotate-12 opacity-70"
+            aria-hidden
+          />
+          <div
+            className="absolute -right-14 bottom-0 h-48 w-48 md:h-60 md:w-60 rounded-[44px] bg-[#E7ECF9] -rotate-6 opacity-70"
+            aria-hidden
+          />
 
-      {/* Full-width marquee track */}
-      <div className="w-full overflow-hidden">
-        <motion.div
-          className="flex items-center w-max will-change-transform"
-          style={{ gap: GAP }}
-          animate={{ x: [0, -stepWidth] }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 12,
-              ease: "linear",
-            },
-          }}
-        >
-          {Array.from({ length: duplicateCount }).map((_, setIndex) =>
-            CERTIFICATIONS.map((cert, i) => (
-              <div key={`${setIndex}-${i}`} className="flex shrink-0">
-                <Image
-                  src={cert.src}
-                  alt={setIndex === 0 && i === 0 ? cert.alt : ""}
-                  width={ITEM_WIDTH}
-                  height={ITEM_WIDTH}
-                  aria-hidden={setIndex !== 0 || i !== 0}
-                />
-              </div>
-            )),
-          )}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Image
+              src="/assets/iso.png"
+              alt="ISO 9001 certified"
+              width={170}
+              height={170}
+              className="object-contain"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

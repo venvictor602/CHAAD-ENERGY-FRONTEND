@@ -27,7 +27,6 @@ const DEFAULT_LOGOS: LogoItem[] = [
 ];
 
 const SLOTS: Slot[] = [
-  // Outer-ish ring
   { left: "10%", top: "18%", scale: 0.9, opacity: 0.9 },
   { left: "28%", top: "6%", scale: 0.95, opacity: 1 },
   { left: "52%", top: "4%", scale: 0.92, opacity: 0.95 },
@@ -38,11 +37,9 @@ const SLOTS: Slot[] = [
   { left: "40%", top: "82%", scale: 0.98, opacity: 1 },
   { left: "18%", top: "66%", scale: 0.92, opacity: 0.95 },
   { left: "10%", top: "44%", scale: 0.9, opacity: 0.9 },
-
-  // Inner + center fill
   { left: "34%", top: "28%", scale: 0.88, opacity: 0.95 },
   { left: "58%", top: "26%", scale: 0.9, opacity: 1 },
-  { left: "50%", top: "48%", scale: 0.92, opacity: 1 }, // center
+  { left: "50%", top: "48%", scale: 0.92, opacity: 1 },
   { left: "36%", top: "58%", scale: 0.88, opacity: 0.95 },
   { left: "60%", top: "62%", scale: 0.9, opacity: 1 },
 ];
@@ -67,7 +64,13 @@ export function TrustedBySection({
     <section className="bg-white py-16 md:py-24 overflow-hidden [font-family:var(--font-inter)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="space-y-6 lg:space-y-[42px]">
+          <motion.div
+            className="space-y-6 lg:space-y-[42px]"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.45 }}
+          >
             <p className="text-xs md:text-[24px] font-bold  tracking-[0.24em] text-[#1A1A1A]">
               TRUSTED BY
             </p>
@@ -76,7 +79,7 @@ export function TrustedBySection({
               <span className="  text-[#485AAC]">50 clients</span>{" "}
               <span className="  ">across the nation</span>
             </h2>
-          </div>
+          </motion.div>
 
           <div className="relative h-[260px] sm:h-[320px] md:h-[360px] lg:h-[380px]">
             <motion.div
@@ -109,7 +112,6 @@ export function TrustedBySection({
                   >
                     <motion.div
                       className="h-12 w-24 sm:h-14 sm:w-28 md:h-16 md:w-32 bg-white rounded-md flex items-center justify-center"
-                      // Counter-rotate so logos stay upright while the cloud rotates
                       animate={{ rotate: [10, -350] }}
                       transition={{
                         repeat: Infinity,

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -9,31 +10,43 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "#about", label: "About Us" },
-  { href: "#services", label: "Services" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
-  { href: "#news", label: "News" },
+  { href: "/about", label: "About Us" },
+  { href: "/services", label: "Services" },
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
+  { href: "/news", label: "News" },
 ];
 
-export function Navbar({ className }: { className?: string }) {
+export function Navbar({
+  className,
+  theme = "light",
+}: {
+  className?: string;
+  theme?: "light" | "dark";
+}) {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (theme === "dark") return;
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // initial check
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [theme]);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const isDark = theme === "dark";
+  const showLightText = isDark || !scrolled;
 
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-4 transition-colors duration-300",
-        scrolled && "bg-white/95 backdrop-blur-sm shadow-sm",
+        isDark && "bg-[#1A1A1A]/50 backdrop-blur-sm",
+        !isDark && scrolled && "bg-white/95 backdrop-blur-sm shadow-sm",
         className,
       )}
     >
@@ -47,7 +60,7 @@ export function Navbar({ className }: { className?: string }) {
         <span
           className={cn(
             "text-xl font-semibold font-sans transition-colors",
-            scrolled ? "text-[#28325F]" : "text-white",
+            showLightText ? "text-white" : "text-[#28325F]",
           )}
         >
           CHAAD
@@ -55,21 +68,30 @@ export function Navbar({ className }: { className?: string }) {
       </Link>
 
       <ul className="hidden md:flex items-center gap-8">
-        {NAV_LINKS.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors",
-                scrolled
-                  ? "text-[#28325F] hover:text-[#1A1A1A]"
-                  : "text-white/95 hover:text-white",
-              )}
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
+        {NAV_LINKS.map((link) => {
+          const isActive = router.pathname === link.href;
+          return (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors pb-1 border-b-2 border-transparent",
+                  isActive && "border-[#DE5943]",
+                  isActive && showLightText && "text-white",
+                  isActive && !showLightText && "text-[#28325F]",
+                  !isActive &&
+                    showLightText &&
+                    "text-white/95 hover:text-white",
+                  !isActive &&
+                    !showLightText &&
+                    "text-[#28325F] hover:text-[#1A1A1A]",
+                )}
+              >
+                {link.label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
 
       <div className="hidden md:block">
@@ -82,9 +104,9 @@ export function Navbar({ className }: { className?: string }) {
         type="button"
         className={cn(
           "md:hidden p-2 transition-colors rounded-lg",
-          scrolled
-            ? "text-[#28325F] hover:text-[#1A1A1A]"
-            : "text-white hover:text-white/80",
+          showLightText
+            ? "text-white hover:text-white/80"
+            : "text-[#28325F] hover:text-[#1A1A1A]",
         )}
         onClick={() => setMobileMenuOpen(true)}
         aria-label="Open menu"
@@ -105,7 +127,7 @@ export function Navbar({ className }: { className?: string }) {
               aria-hidden
             />
             <motion.div
-              className="fixed top-0 right-0 z-[60] w-full max-w-sm h-full bg-[#1A1A1A] shadow-xl md:hidden"
+              className="fixed top-0 right-0 z-60 w-full max-w-sm h-full bg-[#1A1A1A] shadow-xl md:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -122,17 +144,25 @@ export function Navbar({ className }: { className?: string }) {
                 </button>
 
                 <ul className="flex flex-col gap-6">
-                  {NAV_LINKS.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        onClick={closeMobileMenu}
-                        className="text-white text-base font-medium hover:text-[#DE5943] transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {NAV_LINKS.map((link) => {
+                    const isActive = router.pathname === link.href;
+                    return (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          onClick={closeMobileMenu}
+                          className={cn(
+                            "text-base font-medium transition-colors",
+                            isActive
+                              ? "text-[#DE5943]"
+                              : "text-white hover:text-[#DE5943]",
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
 
                 <div className="mt-auto pt-6">

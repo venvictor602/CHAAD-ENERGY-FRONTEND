@@ -4,7 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* CHAAD Energy Brand Colors */
   --color-primary: #de5943;
   --color-primary-hover: #c94d39;
   --color-dark: #1a1a1a;

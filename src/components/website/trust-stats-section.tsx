@@ -10,7 +10,6 @@ const STATS = [
   { value: "98%", label: "Client satisfaction" },
 ];
 
-// Construction / energy site images from picsum (seeded for consistency)
 const SLIDER_IMAGES = [
   "https://picsum.photos/seed/chaad-c1/300/400",
   "https://picsum.photos/seed/chaad-c2/300/400",

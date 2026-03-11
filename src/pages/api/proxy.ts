@@ -11,7 +11,6 @@ const SERVICE_URLS = {
   base: process.env.NEXT_PUBLIC_API_BASE_URL,
 };
 
-// Updated error extraction function
 function extractErrorMessage(err: unknown): string {
   const error = err as AxiosError<
     | string
@@ -32,7 +31,6 @@ function extractErrorMessage(err: unknown): string {
       return data;
     }
 
-    // Handle ASP.NET Core validation errors first
     if (data.errors && typeof data.errors === "object") {
       const errorMessages = [];
 
@@ -49,7 +47,6 @@ function extractErrorMessage(err: unknown): string {
       }
     }
 
-    // Handle RFC 7807 Problem Details format
     if (data.title && data.detail) {
       return `${data.title}: ${data.detail}`;
     }
@@ -58,7 +55,6 @@ function extractErrorMessage(err: unknown): string {
       return data.title;
     }
 
-    // Continue with other error formats...
     if (data.error) {
       return typeof data.error === "string"
         ? data.error

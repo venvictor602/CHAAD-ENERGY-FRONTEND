@@ -19,7 +19,6 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <article className="group flex flex-col border border-[#E8E8E8] bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow w-full md:max-w-[406px] md:mx-auto">
-      {/* Image: 405.33 × 228 */}
       <div className="h-[228px] overflow-hidden rounded-t-[16px] shrink-0">
         <Image
           src={imageSrc}
@@ -29,7 +28,6 @@ export function ProjectCard({
           height={228}
         />
       </div>
-      {/* Content area: total card 414px tall, image 228px → content ≈ 186px */}
       <div className="p-6 flex flex-col flex-1 min-h-[186px] font-roboto text-[#000000]">
         <h3 className="text-lg font-bold text-[#1A1A1A] mb-2">{title}</h3>
         <p className="font-normal text-sm leading-relaxed flex-1 mb-4">
