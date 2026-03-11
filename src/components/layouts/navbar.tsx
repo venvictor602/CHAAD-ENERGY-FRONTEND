@@ -57,7 +57,6 @@ export function Navbar({
           alt="CHAAD Energy"
           className="h-10 w-10 md:h-24 md:w-24 object-contain"
         />
-       
       </Link>
 
       <ul className="hidden md:flex items-center gap-8">
