@@ -16,6 +16,11 @@ export default function AboutPage() {
       <PageHero
         subtitle="About Us"
         title="Our mission, vision & history"
+        titlePhrases={[
+          "Our mission, vision & history",
+          "Engineering excellence since day one",
+          "Partner with CHAAD",
+        ]}
         description="Delivering Engineering Excellence Across Energy & Industrial Landscapes. Partner with a solutions-driven team that values safety, precision, and measurable results."
       />
       <AboutStorySection />

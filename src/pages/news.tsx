@@ -10,6 +10,11 @@ export default function NewsPage() {
       <PageHero
         subtitle="News"
         title="Get updated on what's happening"
+        titlePhrases={[
+          "Get updated on what's happening",
+          "Latest news & insights",
+          "Industry updates from CHAAD",
+        ]}
         description="From precision structural analysis to sustainable energy systems, our expert engineering team is ready to bring your next vision to life."
       />
       <LatestNewsSection />

@@ -12,6 +12,11 @@ export default function ServicesPage() {
       <PageHero
         subtitle="Our Services"
         title="Specialized Engineering Solutions"
+        titlePhrases={[
+          "Specialized Engineering Solutions",
+          "From concept to completion",
+          "EPC, Commissioning & more",
+        ]}
         description="From concept to completion, we provide end-to-end technical expertise for complex industrial infrastructure. Our commitment to safety and innovation drives every project forward."
       />
       <CoreCapabilitiesSection />

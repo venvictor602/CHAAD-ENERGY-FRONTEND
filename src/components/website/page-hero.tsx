@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 
 import { Navbar } from "@/components/layouts/navbar";
+import { TypewriterTitle } from "@/components/website/typewriter-title";
 
 const DEFAULT_BG =
   "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=80";
@@ -21,6 +22,7 @@ const itemVariants = {
 export type PageHeroProps = {
   subtitle: string;
   title: string;
+  titlePhrases?: string[];
   description: string;
   backgroundImage?: string;
 };
@@ -28,6 +30,7 @@ export type PageHeroProps = {
 export function PageHero({
   subtitle,
   title,
+  titlePhrases,
   description,
   backgroundImage = DEFAULT_BG,
 }: PageHeroProps) {
@@ -65,8 +68,19 @@ export function PageHero({
                 <p className="text-sm md:text-[24px] font-bold text-white/90 border-b-2 border-[#485AAC] pb-1 inline-block lg:w-fit">
                   {subtitle}
                 </p>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[64px] font-bold text-white leading-tight">
-                  {title}
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[64px] font-bold text-white leading-tight min-h-[1.2em]">
+                  <TypewriterTitle
+                    phrases={
+                      titlePhrases && titlePhrases.length > 0
+                        ? titlePhrases
+                        : [title]
+                    }
+                    speed={50}
+                    deleteSpeed={35}
+                    pauseDuration={2600}
+                    className="inline"
+                    as="span"
+                  />
                 </h1>
               </motion.div>
               <motion.p

@@ -11,6 +11,11 @@ export default function ProjectsPage() {
       <PageHero
         subtitle="Projects"
         title="Engineering Milestones"
+        titlePhrases={[
+          "Engineering Milestones",
+          "Global energy infrastructure",
+          "Offshore to onshore delivery",
+        ]}
         description="Exploring our specialized contributions to global energy infrastructure, from offshore North Sea assets to renewable grid integration."
       />
       <CaseStudyGrid />

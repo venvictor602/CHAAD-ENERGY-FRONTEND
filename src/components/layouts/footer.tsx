@@ -17,28 +17,27 @@ const FOOTER_LINKS = [
       { label: "News", href: "/news" },
     ],
   },
+  // {
+  //   title: "Blog",
+  //   links: [
+  //     { label: "Case Studies", href: "#case-studies" },
+  //     { label: "Guides", href: "#guides" },
+  //     { label: "Testimonials", href: "#testimonials" },
+  //     { label: "Support", href: "#support" },
+  //   ],
+  // },
   {
-    title: "Blog",
+    title: "Legal",
     links: [
-      { label: "Case Studies", href: "#case-studies" },
-      { label: "Guides", href: "#guides" },
-      { label: "Testimonials", href: "#testimonials" },
-      { label: "Support", href: "#support" },
-      { label: "Legal", href: "#legal" },
+      { label: "Terms", href: "/terms" },
+      { label: "Cookies", href: "/cookies" },
+      { label: "Compliance", href: "/compliance" },
+      { label: "Accessibility", href: "/accessibility" },
+      { label: "Connect", href: "/contact" },
     ],
   },
   {
-    title: "Privacy",
-    links: [
-      { label: "Terms", href: "#terms" },
-      { label: "Cookies", href: "#cookies" },
-      { label: "Compliance", href: "#compliance" },
-      { label: "Accessibility", href: "#accessibility" },
-      { label: "Connect", href: "#connect" },
-    ],
-  },
-  {
-    title: "LinkedIn",
+    title: "Socials",
     links: [
       { label: "Twitter", href: "#twitter" },
       { label: "Facebook", href: "#facebook" },
@@ -48,13 +47,12 @@ const FOOTER_LINKS = [
     ],
   },
   {
-    title: "hello@chaad.com",
+    title: "Contact",
     links: [
       { label: "1-800-BUILD-01", href: "tel:18002845301" },
-      { label: "Schedule a call", href: "#schedule" },
-      { label: "Request a quote", href: "#consultation" },
-      { label: "© 2025 CHAAD. All rights reserved.", href: "#copyright" },
-      { label: "Privacy Policy", href: "#privacy-policy" },
+      { label: "Schedule a call", href: "/contact" },
+      { label: "Request a quote", href: "/contact" },
+      { label: "Privacy Policy", href: "/privacy" },
     ],
   },
 ];
@@ -112,7 +110,7 @@ export function Footer() {
             </div>
             <p className="text-[10px] sm:text-[12px] font-normal text-white mt-2 sm:text-right">
               By subscribing you agree to our{" "}
-              <Link href="#privacy" className="underline underline-offset-2">
+              <Link href="/privacy" className="underline underline-offset-2">
                 Privacy Policy
               </Link>
             </p>
@@ -141,7 +139,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {FOOTER_LINKS.map((col) => (
               <div key={col.title} className="space-y-4">
                 <p className="text-xs font-semibold text-white/90">
@@ -175,15 +173,18 @@ export function Footer() {
           variants={fadeUp}
           transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-white/70">
-            <Link href="#tos" className="hover:text-white transition-colors">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/70">
+            <span className="text-white/60">
+              © 2025 CHAAD. All rights reserved.
+            </span>
+            <Link href="/terms" className="hover:text-white transition-colors">
               Terms of Service
             </Link>
             <Link
-              href="#cookie-settings"
+              href="/cookies"
               className="hover:text-white transition-colors"
             >
-              Cookies Settings
+              Cookie Policy
             </Link>
           </div>
 

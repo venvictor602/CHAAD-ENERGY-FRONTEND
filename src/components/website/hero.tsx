@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layouts/navbar";
+import { TypewriterTitle } from "@/components/website/typewriter-title";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -52,11 +53,21 @@ export function Hero() {
           animate="visible"
         >
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-tight min-h-[1.2em]"
             variants={itemVariants}
           >
-            Build what matters with{" "}
-            <span className="text-white">CHAAD Energy</span>
+            <TypewriterTitle
+              phrases={[
+                "Build what matters with CHAAD Energy",
+                "Delivering Engineering Excellence",
+                "Precision. Safety. Results.",
+              ]}
+              speed={55}
+              deleteSpeed={35}
+              pauseDuration={2800}
+              className="inline"
+              as="span"
+            />
           </motion.h1>
 
           <motion.p

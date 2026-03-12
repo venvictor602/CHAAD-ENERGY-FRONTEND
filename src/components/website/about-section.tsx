@@ -11,7 +11,7 @@ const fadeLeft = {
   hidden: { opacity: 0, x: 48 },
   visible: { opacity: 1, x: 0 },
 };
-const t = { duration: 0.55, ease: [0.22, 1, 0.36, 1] };
+const t = { duration: 1.1, ease: [0.22, 1, 0.36, 1] };
 
 function ImageWithLogoOverlay({
   src,
@@ -77,7 +77,7 @@ export function AboutSection() {
             variants={fadeDown}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={t}
           >
             <div className="rounded-2xl border border-white/10 bg-black/35 backdrop-blur-md p-7 md:p-9 lg:p-10 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
@@ -102,8 +102,8 @@ export function AboutSection() {
             variants={fadeLeft}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ ...t, delay: 0.08 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ ...t, delay: 0.4 }}
           >
             <div className="absolute top-0 right-0 w-[min(100%,628px)] aspect-628/565 rounded-2xl overflow-hidden shadow-2xl z-0 ring-1 ring-white/10">
               <ImageWithLogoOverlay

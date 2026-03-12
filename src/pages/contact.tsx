@@ -11,6 +11,11 @@ export default function ContactPage() {
       <PageHero
         subtitle="Contact"
         title="Connect with Us"
+        titlePhrases={[
+          "Connect with Us",
+          "Request a consultation",
+          "Let's build together",
+        ]}
         description="From precision structural analysis to sustainable energy systems, our expert engineering team is ready to bring your next vision to life."
       />
       <ContactQuoteSection />
