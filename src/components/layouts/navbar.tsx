@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/projects", label: "Projects" },
+  { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
   { href: "/news", label: "News" },
 ];
@@ -31,25 +32,33 @@ export function Navbar({
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (theme === "dark" || solidBackground) return;
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [theme, solidBackground]);
+  }, []);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const isDark = theme === "dark" && !solidBackground;
-  const showLightText = solidBackground ? false : isDark || !scrolled;
-  const useLightBar = solidBackground || (theme === "light" && scrolled);
+  // Text is white when the bar is transparent (not yet scrolled, no solid bg)
+  const showLightText = !solidBackground && !scrolled;
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-4 transition-colors duration-300",
-        isDark && "bg-[#1A1A1A]/50 backdrop-blur-sm",
-        useLightBar && "bg-white/95 backdrop-blur-sm shadow-sm",
+        "fixed top-0 left-0 right-0 z-100 flex items-center justify-between px-6 lg:px-12 py-4 transition-all duration-300",
+        // Solid background pages: always white
+        solidBackground && "bg-white/95 backdrop-blur-sm shadow-sm",
+        // Transparent-to-solid scroll behaviour for all other pages
+        !solidBackground && !scrolled && !isDark && "bg-transparent",
+        !solidBackground &&
+          !scrolled &&
+          isDark &&
+          "bg-black/40 backdrop-blur-sm",
+        !solidBackground &&
+          scrolled &&
+          "bg-white/95 backdrop-blur-sm shadow-sm",
         className,
       )}
     >
@@ -91,7 +100,7 @@ export function Navbar({
 
       <div className="hidden md:block">
         <Button variant="default" size="default" asChild>
-          <Link href="#consultation">Request Consultation</Link>
+          <Link href="/contact">Request Consultation</Link>
         </Button>
       </div>
 
@@ -113,7 +122,10 @@ export function Navbar({
         {mobileMenuOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-50 bg-[#1A1A1A]/90 backdrop-blur-sm md:hidden"
+              className={cn(
+                "fixed inset-0 z-110 md:hidden",
+                scrolled ? "bg-[#1A1A1A]" : "bg-black/60",
+              )}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -122,13 +134,16 @@ export function Navbar({
               aria-hidden
             />
             <motion.div
-              className="fixed top-0 right-0 z-60 w-full max-w-sm h-full bg-[#1A1A1A] shadow-xl md:hidden"
+              className="fixed top-0 right-0 z-120 w-full max-w-sm h-screen shadow-2xl md:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
             >
-              <div className="flex flex-col h-full pt-20 px-6 pb-8">
+              <div
+                className="flex flex-col h-full w-full min-h-full pt-20 px-6 pb-8 bg-[#1A1A1A]"
+                style={{ backgroundColor: "#1A1A1A" }}
+              >
                 <button
                   type="button"
                   className="absolute top-5 right-5 p-2 text-white hover:text-white/80 transition-colors rounded-lg"
@@ -167,7 +182,7 @@ export function Navbar({
                     className="w-full"
                     asChild
                   >
-                    <Link href="#consultation" onClick={closeMobileMenu}>
+                    <Link href="/contact" onClick={closeMobileMenu}>
                       Request Consultation
                     </Link>
                   </Button>

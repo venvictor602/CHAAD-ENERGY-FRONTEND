@@ -1,7 +1,35 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { submitContact } from "@/services/contact";
+import { getServices } from "@/services/services";
+
+const contactSchema = z.object({
+  full_name: z.string().min(1, "Full name is required"),
+  email: z.string().min(1, "Email is required").email("Enter a valid email"),
+  address: z.string().min(1, "Address is required"),
+  company_name: z.string().min(1, "Company name is required"),
+  subject: z.string().min(1, "Subject is required"),
+  services: z.array(z.number()).min(1, "Select at least one service"),
+  message: z.string().min(1, "Message is required"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
+const FALLBACK_SERVICE_OPTIONS = [
+  { value: 0, label: "Structural Engineering" },
+  { value: 1, label: "EPC Services" },
+  { value: 2, label: "Commissioning" },
+  { value: 3, label: "Cathodic Protection" },
+  { value: 4, label: "Tank Services" },
+  { value: 5, label: "Turnkey Solutions" },
+];
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -10,13 +38,92 @@ const fadeUp = {
 const viewport = { once: true, margin: "-60px" };
 const t = { duration: 0.45 };
 
+const inputClass =
+  "w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#485AAC] focus:ring-2 focus:ring-[#485AAC]/20 disabled:opacity-60 disabled:cursor-not-allowed";
+const inputErrorClass =
+  "border-red-500 focus:border-red-500 focus:ring-red-500/20";
+const labelClass =
+  "text-[10px] md:text-sm font-semibold tracking-widest text-[#1A1A1A]/70";
+
 export function ContactQuoteSection({
   imageSrc = "/assets/Contact.png",
 }: {
   imageSrc?: string;
 }) {
+  const [apiError, setApiError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [serviceOptions, setServiceOptions] = useState<
+    { value: number; label: string }[]
+  >(FALLBACK_SERVICE_OPTIONS);
+
+  useEffect(() => {
+    getServices(1)
+      .then((res) => {
+        const list = res.data?.results ?? [];
+        if (list.length > 0) {
+          setServiceOptions(
+            list.map((s) => ({
+              value: s.id,
+              label: s.name || `Service ${s.id}`,
+            })),
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+    setValue,
+    watch,
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    mode: "onChange",
+    defaultValues: {
+      full_name: "",
+      email: "",
+      address: "",
+      company_name: "",
+      subject: "",
+      services: [],
+      message: "",
+    },
+  });
+
+  const servicesValue = watch("services");
+  const selectedServiceId =
+    servicesValue && servicesValue.length > 0 ? String(servicesValue[0]) : "";
+
+  const onSubmit = async (data: ContactFormData) => {
+    setApiError(null);
+    setSuccessMessage(null);
+    try {
+      await submitContact(data);
+      setSuccessMessage("Thank you. Your request has been sent successfully.");
+      reset();
+    } catch (err: unknown) {
+      const ax = err as {
+        response?: { data?: { error?: string } };
+        message?: string;
+      };
+      const message =
+        ax.response?.data?.error ||
+        (ax.message && typeof ax.message === "string" ? ax.message : null) ||
+        "Something went wrong. Please try again.";
+      setApiError(message);
+    }
+  };
+
+  const isSubmitDisabled = !isValid || isSubmitting;
+
   return (
-    <section className="bg-[#F9FAFB] py-16 md:py-24 [font-family:var(--font-inter)]">
+    <section
+      className="relative z-10 bg-[#F9FAFB] py-16 md:py-24 [font-family:var(--font-inter)]"
+      id="consultation"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
           className="space-y-10 md:space-y-32"
@@ -95,7 +202,7 @@ export function ContactQuoteSection({
             variants={fadeUp}
             transition={t}
           >
-            <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 sm:p-8">
+            <div className="relative z-10 bg-white rounded-2xl border border-black/5 shadow-sm p-6 sm:p-8 isolate">
               <div className="space-y-5">
                 <h3 className="text-xl sm:text-2xl font-bold text-[#333333]">
                   Request a Quote
@@ -103,61 +210,150 @@ export function ContactQuoteSection({
 
                 <form
                   className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={handleSubmit(onSubmit)}
+                  noValidate
                 >
+                  {apiError && (
+                    <div
+                      className="sm:col-span-2 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700"
+                      role="alert"
+                    >
+                      {apiError}
+                    </div>
+                  )}
+                  {successMessage && (
+                    <div
+                      className="sm:col-span-2 p-3 rounded-lg bg-green-50 border border-green-200 text-sm text-green-800"
+                      role="status"
+                    >
+                      {successMessage}
+                    </div>
+                  )}
+
                   <label className="space-y-2">
-                    <span className="text-[10px] md:text-sm font-semibold tracking-widest text-[#1A1A1A]/70">
-                      FULL NAME
-                    </span>
+                    <span className={labelClass}>FULL NAME</span>
                     <input
-                      className="w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#485AAC] focus:ring-2 focus:ring-[#485AAC]/20"
+                      {...register("full_name")}
+                      className={`${inputClass} ${errors.full_name ? inputErrorClass : ""}`}
                       placeholder="Jane Doe"
-                      name="fullName"
                       autoComplete="name"
+                      aria-invalid={!!errors.full_name}
+                      aria-describedby={
+                        errors.full_name ? "full_name-error" : undefined
+                      }
                     />
+                    {errors.full_name && (
+                      <p id="full_name-error" className="text-xs text-red-600">
+                        {errors.full_name.message}
+                      </p>
+                    )}
                   </label>
 
                   <label className="space-y-2">
-                    <span className="text-[10px] md:text-sm font-semibold tracking-widest text-[#1A1A1A]/70">
-                      COMPANY NAME
-                    </span>
+                    <span className={labelClass}>COMPANY NAME</span>
                     <input
-                      className="w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#485AAC] focus:ring-2 focus:ring-[#485AAC]/20"
+                      {...register("company_name")}
+                      className={`${inputClass} ${errors.company_name ? inputErrorClass : ""}`}
                       placeholder="Acme Corp"
-                      name="company"
                       autoComplete="organization"
+                      aria-invalid={!!errors.company_name}
+                      aria-describedby={
+                        errors.company_name ? "company_name-error" : undefined
+                      }
                     />
+                    {errors.company_name && (
+                      <p
+                        id="company_name-error"
+                        className="text-xs text-red-600"
+                      >
+                        {errors.company_name.message}
+                      </p>
+                    )}
                   </label>
 
                   <label className="space-y-2">
-                    <span className="text-[10px] md:text-sm font-semibold tracking-widest text-[#1A1A1A]/70">
-                      EMAIL ADDRESS
-                    </span>
+                    <span className={labelClass}>EMAIL ADDRESS</span>
                     <input
-                      className="w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#485AAC] focus:ring-2 focus:ring-[#485AAC]/20"
-                      placeholder="jane@acme.com"
-                      name="email"
+                      {...register("email")}
                       type="email"
+                      className={`${inputClass} ${errors.email ? inputErrorClass : ""}`}
+                      placeholder="jane@acme.com"
                       autoComplete="email"
+                      aria-invalid={!!errors.email}
+                      aria-describedby={
+                        errors.email ? "email-error" : undefined
+                      }
                     />
+                    {errors.email && (
+                      <p id="email-error" className="text-xs text-red-600">
+                        {errors.email.message}
+                      </p>
+                    )}
                   </label>
 
                   <label className="space-y-2">
-                    <span className="text-[10px] md:text-sm font-semibold tracking-widest text-[#1A1A1A]/70">
-                      SERVICE NEEDED
-                    </span>
+                    <span className={labelClass}>ADDRESS</span>
+                    <input
+                      {...register("address")}
+                      className={`${inputClass} ${errors.address ? inputErrorClass : ""}`}
+                      placeholder="City, State, Country"
+                      autoComplete="street-address"
+                      aria-invalid={!!errors.address}
+                      aria-describedby={
+                        errors.address ? "address-error" : undefined
+                      }
+                    />
+                    {errors.address && (
+                      <p id="address-error" className="text-xs text-red-600">
+                        {errors.address.message}
+                      </p>
+                    )}
+                  </label>
+
+                  <label className="space-y-2 sm:col-span-2">
+                    <span className={labelClass}>SUBJECT</span>
+                    <input
+                      {...register("subject")}
+                      className={`${inputClass} ${errors.subject ? inputErrorClass : ""}`}
+                      placeholder="e.g. Quote for structural assessment"
+                      aria-invalid={!!errors.subject}
+                      aria-describedby={
+                        errors.subject ? "subject-error" : undefined
+                      }
+                    />
+                    {errors.subject && (
+                      <p id="subject-error" className="text-xs text-red-600">
+                        {errors.subject.message}
+                      </p>
+                    )}
+                  </label>
+
+                  <label className="space-y-2">
+                    <span className={labelClass}>SERVICE NEEDED</span>
                     <div className="relative">
                       <select
-                        className="w-full h-11 appearance-none rounded-lg border border-black/10 bg-white px-4 pr-10 text-sm text-[#1A1A1A] outline-none focus:border-[#485AAC] focus:ring-2 focus:ring-[#485AAC]/20"
-                        name="service"
-                        defaultValue="Structural Engineering"
+                        className={`${inputClass} appearance-none pr-10 ${errors.services ? inputErrorClass : ""}`}
+                        value={
+                          selectedServiceId === "" ? "" : selectedServiceId
+                        }
+                        onChange={(e) => {
+                          const v = e.target.value;
+                          setValue("services", v === "" ? [] : [Number(v)], {
+                            shouldValidate: true,
+                          });
+                        }}
+                        aria-invalid={!!errors.services}
+                        aria-describedby={
+                          errors.services ? "services-error" : undefined
+                        }
+                        disabled={isSubmitting}
                       >
-                        <option>Structural Engineering</option>
-                        <option>EPC Services</option>
-                        <option>Commissioning</option>
-                        <option>Cathodic Protection</option>
-                        <option>Tank Services</option>
-                        <option>Turnkey Solutions</option>
+                        <option value="">Select a service</option>
+                        {serviceOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
                       </select>
                       <span
                         className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8]"
@@ -166,25 +362,51 @@ export function ContactQuoteSection({
                         ▾
                       </span>
                     </div>
+                    {errors.services && (
+                      <p id="services-error" className="text-xs text-red-600">
+                        {errors.services.message}
+                      </p>
+                    )}
                   </label>
 
                   <label className="space-y-2 sm:col-span-2">
-                    <span className="text-[10px] md:text-sm font-semibold tracking-widest text-[#1A1A1A]/70">
-                      PROJECT DETAILS
+                    <span className={labelClass}>
+                      MESSAGE / PROJECT DETAILS
                     </span>
                     <textarea
-                      className="w-full min-h-[128px] resize-none rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#485AAC] focus:ring-2 focus:ring-[#485AAC]/20"
+                      {...register("message")}
+                      className={`w-full min-h-[128px] resize-none rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#485AAC] focus:ring-2 focus:ring-[#485AAC]/20 disabled:opacity-60 disabled:cursor-not-allowed ${errors.message ? inputErrorClass : ""}`}
                       placeholder="Tell us about your project goals, location, and timeline..."
-                      name="details"
+                      aria-invalid={!!errors.message}
+                      aria-describedby={
+                        errors.message ? "message-error" : undefined
+                      }
+                      disabled={isSubmitting}
                     />
+                    {errors.message && (
+                      <p id="message-error" className="text-xs text-red-600">
+                        {errors.message.message}
+                      </p>
+                    )}
                   </label>
 
                   <div className="sm:col-span-2 pt-2">
                     <Button
-                      className="w-full bg-[#485AAC] hover:bg-[#3d4d94] text-white font-semibold rounded-lg"
                       type="submit"
+                      className="w-full bg-[#485AAC] hover:bg-[#3d4d94] text-white font-semibold rounded-lg"
+                      disabled={isSubmitDisabled}
                     >
-                      Send Request
+                      {isSubmitting ? (
+                        <>
+                          <Loader2
+                            className="size-5 animate-spin"
+                            aria-hidden
+                          />
+                          Sending…
+                        </>
+                      ) : (
+                        "Send Request"
+                      )}
                     </Button>
                   </div>
                 </form>

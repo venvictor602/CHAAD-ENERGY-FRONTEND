@@ -1,9 +1,12 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
+import { getPosts } from "@/services/blog";
+import type { BlogPostItem } from "@/types/app/response";
 
 export type NewsItem = {
   id: string;
@@ -115,6 +118,34 @@ const fadeUp = {
 const viewport = { once: true, margin: "-40px" };
 const t = { duration: 0.4 };
 
+function formatNewsDate(iso: string) {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString("en-NG", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    return iso;
+  }
+}
+
+function blogPostToNewsItem(post: BlogPostItem): NewsItem {
+  const dateStr = formatNewsDate(post.created_at);
+  const desc = post.content_paragraph1?.slice(0, 160) || post.title || "";
+  return {
+    id: String(post.id),
+    imageSrc:
+      post.image?.trim() || "https://picsum.photos/seed/chaad-blog/800/500",
+    imageAlt: post.title,
+    date: dateStr,
+    title: post.title,
+    description: desc + (desc.length >= 160 ? "…" : ""),
+    href: `/news/${post.slug || post.id}`,
+  };
+}
+
 function NewsCard({ item }: { item: NewsItem }) {
   return (
     <motion.article
@@ -153,8 +184,36 @@ function NewsCard({ item }: { item: NewsItem }) {
 }
 
 export function LatestNewsSection({
-  items = NEWS_ITEMS,
+  items: itemsProp,
 }: { items?: NewsItem[] } = {}) {
+  const [items, setItems] = useState<NewsItem[]>(itemsProp ?? NEWS_ITEMS);
+  const [loading, setLoading] = useState(!itemsProp);
+
+  useEffect(() => {
+    if (itemsProp) return;
+    getPosts(1)
+      .then((res) => {
+        const list = res.data?.results ?? [];
+        if (list.length > 0) setItems(list.map(blogPostToNewsItem));
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [itemsProp]);
+
+  if (loading && items.length === 0) {
+    return (
+      <section className="py-16 md:py-24 [font-family:var(--font-inter)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center justify-center gap-4 min-h-[280px]">
+          <Loader2
+            className="h-10 w-10 animate-spin text-[#485AAC]"
+            aria-hidden
+          />
+          <p className="text-sm text-[#777777]">Loading news…</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-16 md:py-24 [font-family:var(--font-inter)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">

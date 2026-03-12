@@ -81,7 +81,7 @@ export function Hero() {
 
           <motion.div variants={itemVariants}>
             <Button variant="default" size="default" asChild>
-              <a href="#consultation">Request Consultation</a>
+              <a href="/contact#consultation">Request Consultation</a>
             </Button>
           </motion.div>
         </motion.div>

@@ -1,33 +1,24 @@
-export type LoginRequest = {
+export type ContactRequest = {
+  full_name: string;
   email: string;
-  password: string;
+  address: string;
+  company_name: string;
+  subject: string;
+  services: number[];
+  message: string;
 };
 
-export type RegisterRequest = {
+export type CareerApplyRequest = {
+  full_name: string;
   email: string;
-  password: string;
-  first_name: string;
-  last_name: string;
   phone_number: string;
-  taxpayer_type: "Individual" | "Corporate";
-  nin: string;
-  taxpayer_id?: string;
-  business_name?: string;
+  resume: string;
+  cover_letter_text: string;
+  cover_letter_file?: string;
 };
 
-export type LogoutRequest = {
-  refresh: string;
-};
-
-export type RefreshTokenRequest = {
-  refresh: string;
-};
-
-export type EmailVerificationRequest = {
+export type BlogCommentRequest = {
+  name: string;
   email: string;
-};
-
-export type EmailVerificationVerifyRequest = {
-  email: string;
-  code: string;
+  content: string;
 };

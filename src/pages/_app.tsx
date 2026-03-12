@@ -5,10 +5,12 @@ import type { AppProps } from "next/app";
 import { Inter, Montserrat, Roboto } from "next/font/google";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
+import { Toaster as SonnerToaster } from "sonner";
 
 import { SEO } from "@/components/seo";
 import { Toaster } from "@/components/ui/toast";
 import { ScrollToTopButton } from "@/components/layouts/scroll-to-top-button";
+import { CookieConsentDrawer } from "@/components/website/cookie-consent-drawer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -91,7 +93,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </AnimatePresence>
         <ScrollToTopButton showAfterPx={500} />
+        <CookieConsentDrawer />
       </main>
+      <SonnerToaster position="top-center" richColors closeButton />
     </Toaster>
   );
 }

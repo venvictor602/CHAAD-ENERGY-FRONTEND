@@ -1,10 +1,79 @@
 "use client";
 
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, X, Youtube } from "lucide-react";
+import { toast } from "sonner";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Loader2,
+  X,
+  Youtube,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { subscribeContact } from "@/services/contact";
+
+const subscribeSchema = z.object({
+  email: z.string().min(1, "Email is required").email("Enter a valid email"),
+});
+
+type SubscribeFormData = z.infer<typeof subscribeSchema>;
+
+function messageOnly(str: string): string {
+  const trimmed = str.trim();
+  const withoutField = trimmed.replace(
+    /^(email|subject|message|address)\s*:\s*/i,
+    "",
+  );
+  return withoutField.trim() || trimmed;
+}
+
+function getSubscribeErrorMessage(err: unknown): string {
+  const ax = err as {
+    response?: {
+      data?: {
+        error?: string;
+        originalError?: { email?: string[]; [key: string]: unknown };
+      };
+    };
+    message?: string;
+  };
+  const data = ax.response?.data;
+  if (!data) {
+    return typeof ax.message === "string"
+      ? messageOnly(ax.message)
+      : "Subscription failed. Please try again.";
+  }
+  const orig = data.originalError as Record<string, unknown> | undefined;
+  if (orig?.email && Array.isArray(orig.email) && orig.email[0]) {
+    return messageOnly(String(orig.email[0]));
+  }
+  if (orig && typeof orig === "object") {
+    const first = Object.values(orig).find(
+      (v) => Array.isArray(v) && v[0] != null,
+    );
+    if (first && Array.isArray(first) && typeof first[0] === "string") {
+      return messageOnly(String(first[0]));
+    }
+  }
+  const errStr = data.error;
+  if (typeof errStr === "string") {
+    try {
+      const parsed = JSON.parse(errStr) as { email?: string[] };
+      if (parsed?.email?.[0]) return messageOnly(parsed.email[0]);
+    } catch {
+      if (errStr.length < 200) return messageOnly(errStr);
+    }
+  }
+  return typeof ax.message === "string"
+    ? messageOnly(ax.message)
+    : "Subscription failed. Please try again.";
+}
 
 const FOOTER_LINKS = [
   {
@@ -13,6 +82,7 @@ const FOOTER_LINKS = [
       { label: "About Us", href: "/about" },
       { label: "Services", href: "/services" },
       { label: "Projects", href: "/projects" },
+      { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
       { label: "News", href: "/news" },
     ],
@@ -63,6 +133,29 @@ const fadeUp = {
 };
 
 export function Footer() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+    reset,
+  } = useForm<SubscribeFormData>({
+    resolver: zodResolver(subscribeSchema),
+    mode: "onChange",
+    defaultValues: { email: "" },
+  });
+
+  const onSubmit = async (data: SubscribeFormData) => {
+    try {
+      await subscribeContact(data.email);
+      toast.success("Thanks for subscribing.");
+      reset();
+    } catch (err: unknown) {
+      toast.error(getSubscribeErrorMessage(err));
+    }
+  };
+
+  const isSubmitDisabled = !isValid || isSubmitting;
+
   return (
     <footer className="bg-[#28325F] text-white">
       <motion.div
@@ -89,23 +182,43 @@ export function Footer() {
 
           <form
             className="w-full lg:w-auto"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
           >
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-              <div className="relative w-full sm:w-[320px]">
+              <div className="relative w-full sm:w-[320px] space-y-1">
                 <input
+                  {...register("email")}
                   type="email"
                   placeholder="Your email address"
-                  className="w-full h-11 rounded-md bg-transparent border border-white/40 px-4 text-sm placeholder:text-white/55 outline-none focus:border-white/70"
+                  className="w-full h-11 rounded-md bg-transparent border border-white/40 px-4 text-sm placeholder:text-white/55 outline-none focus:border-white/70 disabled:opacity-60 disabled:cursor-not-allowed aria-invalid:border-red-400"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={
+                    errors.email ? "footer-email-error" : undefined
+                  }
+                  disabled={isSubmitting}
                 />
+                {errors.email && (
+                  <p id="footer-email-error" className="text-xs text-red-300">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <Button
                 type="submit"
                 variant="default"
                 size="default"
-                className="h-11"
+                className="h-11 min-w-[120px] cursor-pointer"
+                disabled={isSubmitDisabled}
               >
-                Subscribe
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin" aria-hidden />
+                    Sending…
+                  </>
+                ) : (
+                  "Subscribe"
+                )}
               </Button>
             </div>
             <p className="text-[10px] sm:text-[12px] font-normal text-white mt-2 sm:text-right">

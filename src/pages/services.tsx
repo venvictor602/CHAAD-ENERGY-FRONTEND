@@ -1,6 +1,7 @@
 import { SEO } from "@/components/seo";
 import { PageHero } from "@/components/website/page-hero";
 import { CoreCapabilitiesSection } from "@/components/website/core-capabilities-section";
+import { ServicesListSection } from "@/components/website/services-list-section";
 import { CaseStudySection } from "@/components/website/case-study-section";
 import { CtaSection } from "@/components/website/cta-section";
 import { Footer } from "@/components/layouts/footer";
@@ -20,6 +21,7 @@ export default function ServicesPage() {
         description="From concept to completion, we provide end-to-end technical expertise for complex industrial infrastructure. Our commitment to safety and innovation drives every project forward."
       />
       <CoreCapabilitiesSection />
+      <ServicesListSection />
       <CaseStudySection />
       <CtaSection />
       <Footer />

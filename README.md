@@ -31,24 +31,22 @@ src/
 
 ## Setup
 
-1. Copy `.env.example` to `.env.local`:
+1. Copy `.env.example` to `.env.local` (API base URL is already set for production):
 
    ```bash
    cp .env.example .env.local
    ```
 
-2. Set your API base URL in `.env.local`:
+   `.env.example` uses `NEXT_PUBLIC_API_BASE_URL=https://chaadenergy.vercel.app/api`. Override in `.env.local` if you need a different backend (e.g. local API).
 
-   ```
-   NEXT_PUBLIC_API_BASE_URL=https://your-api.example.com/api/v1
-   ```
-
-3. Install dependencies and run:
+2. Install dependencies and run:
 
    ```bash
    npm install
    npm run dev
    ```
+
+   API requests are proxied through `/api/proxy` to the URL in `NEXT_PUBLIC_API_BASE_URL`.
 
 ## Proxy
 

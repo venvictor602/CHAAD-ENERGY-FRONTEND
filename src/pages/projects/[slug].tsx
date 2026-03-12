@@ -5,6 +5,7 @@ import {
   ProjectDetailContent,
   type ProjectDetailData,
 } from "@/components/website/project-detail-content";
+import { ProjectDetailByApi } from "@/components/website/project-detail-by-api";
 
 const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
   "north-sea-platform": {
@@ -330,25 +331,36 @@ const SLUGS = Object.keys(PROJECTS);
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: SLUGS.map((slug) => ({ params: { slug } })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps<{
-  project: ProjectDetailData;
+  project: ProjectDetailData | null;
+  projectId: number | null;
 }> = async ({ params }) => {
   const slug = typeof params?.slug === "string" ? params.slug : "";
+  const numericId = /^\d+$/.test(slug) ? parseInt(slug, 10) : null;
+  if (numericId != null) {
+    return { props: { project: null, projectId: numericId } };
+  }
   const data = PROJECTS[slug];
   if (!data) return { notFound: true };
   const project: ProjectDetailData = { ...data, slug };
-  return { props: { project } };
+  return { props: { project, projectId: null } };
 };
 
 export default function ProjectDetailPage({
   project,
+  projectId,
 }: {
-  project: ProjectDetailData;
+  project: ProjectDetailData | null;
+  projectId: number | null;
 }) {
+  if (projectId != null) {
+    return <ProjectDetailByApi id={projectId} />;
+  }
+  if (!project) return null;
   const breadcrumbItems = [
     { label: "Projects", href: "/projects" },
     { label: project.title },

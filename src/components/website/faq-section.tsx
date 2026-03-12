@@ -1,9 +1,11 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getFaqs } from "@/services/blog";
+import type { FaqItem as ApiFaqItem } from "@/types/app/response";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -17,7 +19,7 @@ type FaqItem = {
   answer: string;
 };
 
-const FAQS: FaqItem[] = [
+const FALLBACK_FAQS: FaqItem[] = [
   {
     question: "What services does CHAAD Engineering provide?",
     answer:
@@ -35,9 +37,24 @@ const FAQS: FaqItem[] = [
   },
 ];
 
+function apiFaqToItem(faq: ApiFaqItem): FaqItem {
+  return { question: faq.question, answer: faq.answer };
+}
+
 export function FaqSection() {
   const baseId = useId();
-  const [openIndex, setOpenIndex] = useState<number>(1);
+  const [openIndex, setOpenIndex] = useState<number>(0);
+  const [faqs, setFaqs] = useState<FaqItem[]>(FALLBACK_FAQS);
+
+  useEffect(() => {
+    getFaqs(1)
+      .then((res) => {
+        const list = res.data?.results ?? [];
+        const active = list.filter((f) => f.is_active !== false);
+        if (active.length > 0) setFaqs(active.map(apiFaqToItem));
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="bg-white py-16 md:py-24">
@@ -63,14 +80,14 @@ export function FaqSection() {
             visible: { transition: { staggerChildren: 0.06 } },
           }}
         >
-          {FAQS.map((faq, idx) => {
+          {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             const buttonId = `${baseId}-btn-${idx}`;
             const panelId = `${baseId}-panel-${idx}`;
 
             return (
               <motion.div
-                key={faq.question}
+                key={`${baseId}-faq-${idx}`}
                 className="bg-white rounded-xl shadow-[0_14px_40px_rgba(15,23,42,0.10)] border border-black/5 overflow-hidden"
                 variants={fadeUp}
                 transition={t}

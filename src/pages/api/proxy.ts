@@ -31,6 +31,15 @@ function extractErrorMessage(err: unknown): string {
       return data;
     }
 
+    if (typeof data === "object" && data !== null && !Array.isArray(data)) {
+      const firstArrayMessage = Object.values(data).find(
+        (v): v is string[] => Array.isArray(v) && typeof v[0] === "string",
+      );
+      if (firstArrayMessage?.[0]) {
+        return firstArrayMessage[0];
+      }
+    }
+
     if (data.errors && typeof data.errors === "object") {
       const errorMessages = [];
 
@@ -147,7 +156,6 @@ export default async function handler(
 
   const baseURL = SERVICE_URLS[service as keyof typeof SERVICE_URLS];
   const targetURL = `${baseURL}${endpoint}`;
-  console.log(baseURL);
 
   const cacheBustingParams = {
     ...params,

@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { NewsArticleDetail } from "@/components/website/news-article-detail";
+import { NewsDetailByApi } from "@/components/website/news-detail-by-api";
 import type { NewsArticle } from "@/components/website/news-article-detail";
 import type { NewsItem } from "@/components/website/latest-news-section";
 
@@ -69,16 +70,28 @@ const NEWS_SLUGS = [
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: NEWS_SLUGS.map((slug) => ({ params: { slug } })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps<{
-  article: NewsArticle;
+  article: NewsArticle | null;
   recentReleases: NewsItem[];
   slug: string;
+  postId: number | null;
 }> = async ({ params }) => {
   const slug = typeof params?.slug === "string" ? params.slug : "";
+  const postId = /^\d+$/.test(slug) ? parseInt(slug, 10) : null;
+  if (postId != null) {
+    return {
+      props: {
+        article: null,
+        recentReleases: RECENT_RELEASES,
+        slug,
+        postId,
+      },
+    };
+  }
   const article: NewsArticle = {
     ...MOCK_ARTICLE,
     slug,
@@ -94,6 +107,7 @@ export const getStaticProps: GetStaticProps<{
       article: serializedArticle,
       recentReleases: RECENT_RELEASES,
       slug,
+      postId: null,
     },
   };
 };
@@ -101,10 +115,16 @@ export const getStaticProps: GetStaticProps<{
 export default function NewsDetailPage({
   article,
   recentReleases,
+  postId,
 }: {
-  article: NewsArticle;
+  article: NewsArticle | null;
   recentReleases: NewsItem[];
+  postId: number | null;
 }) {
+  if (postId != null) {
+    return <NewsDetailByApi postId={postId} />;
+  }
+  if (!article) return null;
   const breadcrumbItems = [
     { label: "News", href: "/news" },
     { label: "Latest news", href: "/news" },
