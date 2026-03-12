@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { getPost, getComments, postComment, likePost } from "@/services/blog";
 import type { BlogPostItem, BlogCommentItem } from "@/types/app/response";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
+import { SkeletonDetailPage } from "@/components/ui/skeleton";
 
 const commentSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -109,11 +110,15 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
     return (
       <>
         <Navbar solidBackground />
-        <main className="pt-[80px] md:pt-[140px] min-h-screen flex items-center justify-center">
-          <Loader2
-            className="h-10 w-10 animate-spin text-[#485AAC]"
-            aria-hidden
-          />
+        <main className="pt-[80px] md:pt-[140px] min-h-screen [font-family:var(--font-inter)]">
+          <div className="border-b border-[#E8E8E8] py-5 px-4 lg:px-0">
+            <div className="max-w-7xl mx-auto">
+              <div className="h-5 w-32 bg-[#E5E7EB] animate-pulse rounded" />
+            </div>
+          </div>
+          <article className="max-w-7xl mx-auto pb-10 px-4 lg:px-0 pt-8">
+            <SkeletonDetailPage />
+          </article>
         </main>
       </>
     );

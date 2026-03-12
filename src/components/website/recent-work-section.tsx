@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Loader2, FolderOpen } from "lucide-react";
+import { FolderOpen } from "lucide-react";
+import { SkeletonCardProject } from "@/components/ui/skeleton";
 
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "./project-card";
@@ -70,12 +71,10 @@ export function RecentWorkSection() {
         </motion.div>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center gap-4 min-h-[280px]">
-            <Loader2
-              className="h-10 w-10 animate-spin text-[#485AAC]"
-              aria-hidden
-            />
-            <p className="text-sm text-[#64748B]">Loading projects…</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <SkeletonCardProject key={i} />
+            ))}
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center gap-4 min-h-[280px] text-center">

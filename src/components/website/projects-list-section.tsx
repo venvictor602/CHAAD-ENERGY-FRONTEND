@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { SkeletonCardCaseStudy } from "@/components/ui/skeleton";
 import { getProjects } from "@/services/projects";
 import type { ProjectItem } from "@/types/app/response";
 import {
@@ -40,13 +40,13 @@ export function ProjectsListSection() {
 
   if (loading) {
     return (
-      <section className="py-16 md:py-24 bg-[#F9FAFB] [font-family:var(--font-inter)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center justify-center gap-4 min-h-[280px]">
-          <Loader2
-            className="h-10 w-10 animate-spin text-[#485AAC]"
-            aria-hidden
-          />
-          <p className="text-sm text-[#64748B]">Loading projects…</p>
+      <section className="py-16 md:py-24 [font-family:var(--font-inter)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <SkeletonCardCaseStudy key={i} />
+            ))}
+          </div>
         </div>
       </section>
     );

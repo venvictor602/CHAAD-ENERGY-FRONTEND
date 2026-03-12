@@ -2,7 +2,8 @@
 
 import { useId, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Minus, Plus, Loader2, HelpCircle } from "lucide-react";
+import { Minus, Plus, HelpCircle } from "lucide-react";
+import { SkeletonFaqItem } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { getFaqs } from "@/services/blog";
 import type { FaqItem as ApiFaqItem } from "@/types/app/response";
@@ -55,12 +56,10 @@ export function FaqSection() {
         </motion.h2>
 
         {loading ? (
-          <div className="mt-10 md:mt-12 flex flex-col items-center justify-center gap-4 min-h-[200px]">
-            <Loader2
-              className="h-10 w-10 animate-spin text-[#485AAC]"
-              aria-hidden
-            />
-            <p className="text-sm text-[#64748B]">Loading FAQs…</p>
+          <div className="mt-10 md:mt-12 max-w-3xl mx-auto space-y-6">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <SkeletonFaqItem key={i} />
+            ))}
           </div>
         ) : faqs.length === 0 ? (
           <div className="mt-10 md:mt-12 flex flex-col items-center justify-center gap-4 min-h-[200px] text-center">

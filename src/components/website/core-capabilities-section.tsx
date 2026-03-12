@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Plus, Loader2, Briefcase } from "lucide-react";
+import { Plus, Briefcase } from "lucide-react";
+import { SkeletonCardServiceCompact } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
@@ -72,12 +73,11 @@ export function CoreCapabilitiesSection() {
           }}
         >
           {loading ? (
-            <div className="col-span-full flex justify-center py-12">
-              <Loader2
-                className="h-10 w-10 animate-spin text-[#485AAC]"
-                aria-hidden
-              />
-            </div>
+            <>
+              {[1, 2, 3].map((i) => (
+                <SkeletonCardServiceCompact key={i} />
+              ))}
+            </>
           ) : services.length === 0 ? (
             <div className="col-span-full flex flex-col items-center gap-4 py-12 text-center">
               <Briefcase className="h-14 w-14 text-[#94A3B8]" aria-hidden />

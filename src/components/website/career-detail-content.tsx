@@ -8,6 +8,7 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Loader2, MapPin, Calendar, FileText } from "lucide-react";
+import { SkeletonDetailPage } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/website/breadcrumb";
 import { getCareer, applyForCareer } from "@/services/careers";
@@ -115,11 +116,11 @@ export function CareerDetailContent({ jobId }: { jobId: number }) {
 
   if (loading) {
     return (
-      <main className="pt-[80px] md:pt-[140px] min-h-screen flex items-center justify-center">
-        <Loader2
-          className="h-10 w-10 animate-spin text-[#485AAC]"
-          aria-hidden
-        />
+      <main className="pt-[80px] md:pt-[140px] min-h-screen bg-[#F9FAFB] [font-family:var(--font-inter)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 md:py-16">
+          <div className="h-5 w-48 mb-8 bg-[#E5E7EB] animate-pulse rounded" />
+          <SkeletonDetailPage />
+        </div>
       </main>
     );
   }

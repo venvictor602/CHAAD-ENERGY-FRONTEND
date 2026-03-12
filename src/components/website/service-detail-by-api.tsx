@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ExternalLink, FileText } from "lucide-react";
 import Image from "next/image";
-import { Loader2 } from "lucide-react";
+import { SkeletonDetailPage } from "@/components/ui/skeleton";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Breadcrumb } from "@/components/website/breadcrumb";
@@ -31,11 +31,11 @@ export function ServiceDetailByApi({ id }: { id: number }) {
     return (
       <>
         <Navbar solidBackground />
-        <main className="pt-[80px] md:pt-[140px] min-h-screen flex items-center justify-center">
-          <Loader2
-            className="h-10 w-10 animate-spin text-[#485AAC]"
-            aria-hidden
-          />
+        <main className="pt-[80px] md:pt-[140px] min-h-screen bg-white [font-family:var(--font-inter)]">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 md:py-16">
+            <div className="h-5 w-48 mb-8 bg-[#E5E7EB] animate-pulse rounded" />
+            <SkeletonDetailPage />
+          </div>
         </main>
       </>
     );

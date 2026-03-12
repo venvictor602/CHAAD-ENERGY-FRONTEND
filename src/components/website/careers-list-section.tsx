@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, Loader2 } from "lucide-react";
+import { ArrowRight, Briefcase } from "lucide-react";
+import { SkeletonCardCareer } from "@/components/ui/skeleton";
 import { getCareers } from "@/services/careers";
 import type { CareerItem } from "@/types/app/response";
 import { slugFromTitle } from "@/lib/utils";
@@ -88,12 +89,12 @@ export function CareersListSection() {
   if (loading) {
     return (
       <section className="py-16 md:py-24 [font-family:var(--font-inter)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center justify-center gap-4 min-h-[280px]">
-          <Loader2
-            className="h-10 w-10 animate-spin text-[#485AAC]"
-            aria-hidden
-          />
-          <p className="text-sm text-[#64748B]">Loading openings…</p>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <SkeletonCardCareer key={i} />
+            ))}
+          </div>
         </div>
       </section>
     );

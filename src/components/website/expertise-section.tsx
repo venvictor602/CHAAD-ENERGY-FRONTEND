@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Loader2, Briefcase } from "lucide-react";
+import { Briefcase } from "lucide-react";
+import { SkeletonCardService } from "@/components/ui/skeleton";
 
 import { ServiceCard } from "./service-card";
 import { getServices } from "@/services/services";
@@ -84,8 +85,10 @@ export function ExpertiseSection() {
         </motion.div>
 
         {loading ? (
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 min-h-[280px] place-items-center">
-            <Loader2 className="w-8 h-8 animate-spin text-[#485AAC]" />
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+            {[1, 2, 3].map((i) => (
+              <SkeletonCardService key={i} />
+            ))}
           </div>
         ) : services.length === 0 ? (
           <div className="flex flex-col items-center justify-center gap-4 min-h-[280px] text-center py-12">
