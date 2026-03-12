@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { SkeletonCardService } from "@/components/ui/skeleton";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
@@ -186,6 +187,34 @@ export function ServicesListSection() {
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
+
+          {/* Custom solution card */}
+          <motion.article
+            className="group flex flex-col bg-[#EDEFF7] rounded-xl border-2 border-dashed border-[#8490C7] overflow-hidden shadow-sm items-center justify-center text-center p-8 gap-5"
+            variants={fadeUp}
+            transition={t}
+          >
+            <div className="w-12 h-12 rounded-full border border-[#ABB3D9] flex items-center justify-center shrink-0">
+              <Plus className="h-6 w-6 text-[#485AAC]" strokeWidth={2.5} />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg md:text-xl font-bold text-[#333333] leading-tight">
+                Need a custom solution?
+              </h3>
+              <p className="text-sm text-[#94A3B8] leading-relaxed">
+                We offer specialized consulting for unique engineering
+                challenges across global industries.
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              size="default"
+              asChild
+              className="bg-transparent border max-w-[190px] w-full border-[#485AAC] text-[#485AAC]"
+            >
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </motion.article>
         </motion.div>
       </div>
     </section>
