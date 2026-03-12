@@ -8,6 +8,7 @@ import { Loader2, Briefcase } from "lucide-react";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
+import { slugFromTitle } from "@/lib/utils";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -20,7 +21,7 @@ const DEFAULT_SERVICE_IMAGE = cloudinaryImages.default;
 
 function ServiceCard({ service }: { service: ServiceItem }) {
   const imgSrc = service.image?.trim() || DEFAULT_SERVICE_IMAGE;
-  const detailHref = `/services/${service.id}`;
+  const detailHref = `/services/${service.id}-${slugFromTitle(service.name)}`;
 
   return (
     <motion.article

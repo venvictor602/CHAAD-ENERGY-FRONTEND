@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Briefcase, Loader2 } from "lucide-react";
 import { getCareers } from "@/services/careers";
 import type { CareerItem } from "@/types/app/response";
+import { slugFromTitle } from "@/lib/utils";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -55,7 +56,7 @@ function CareerCard({ job }: { job: CareerItem }) {
           )}
         </div>
         <Link
-          href={`/careers/${job.id}`}
+          href={`/careers/${job.id}-${slugFromTitle(job.title)}`}
           className="mt-4 inline-flex items-center gap-1.5 text-[#485AAC] font-semibold text-sm hover:text-[#3d4d94] transition-colors w-fit"
         >
           View & Apply

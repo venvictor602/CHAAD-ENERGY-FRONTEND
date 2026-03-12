@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ServiceDetailByApi } from "@/components/website/service-detail-by-api";
+import { idFromSlugParam } from "@/lib/utils";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return { paths: [], fallback: "blocking" };
@@ -9,7 +10,7 @@ export const getStaticProps: GetStaticProps<{
   serviceId: number | null;
 }> = async ({ params }) => {
   const slug = typeof params?.slug === "string" ? params.slug : "";
-  const serviceId = /^\d+$/.test(slug) ? parseInt(slug, 10) : null;
+  const serviceId = idFromSlugParam(slug);
   if (serviceId == null) {
     return { notFound: true };
   }

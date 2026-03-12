@@ -3,13 +3,14 @@ import { SEO } from "@/components/seo";
 import { Navbar } from "@/components/layouts/navbar";
 import { CareerDetailContent } from "@/components/website/career-detail-content";
 import { Footer } from "@/components/layouts/footer";
+import { idFromSlugParam } from "@/lib/utils";
 
 export default function CareerDetailPage() {
   const router = useRouter();
-  const id = router.query.id as string | undefined;
-  const numericId = id ? parseInt(id, 10) : NaN;
+  const slug = router.query.slug as string | undefined;
+  const numericId = slug != null ? idFromSlugParam(slug) : null;
 
-  if (router.isFallback || !id) {
+  if (router.isFallback || slug == null) {
     return (
       <>
         <SEO title="Careers" />
@@ -21,7 +22,7 @@ export default function CareerDetailPage() {
     );
   }
 
-  if (Number.isNaN(numericId) || numericId < 1) {
+  if (numericId == null || numericId < 1) {
     return (
       <>
         <SEO title="Career Not Found" />

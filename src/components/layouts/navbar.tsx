@@ -99,12 +99,15 @@ export function Navbar({
         className,
       )}
     >
-      <Link href="/" className="flex items-center gap-2">
+      <Link
+        href="/"
+        className="flex items-center gap-2 shrink-0 rounded-full bg-white p-2 md:p-3"
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/Logo.svg"
           alt="CHAAD Energy"
-          className="h-10 w-10 md:h-24 md:w-24 object-contain"
+          className="h-10 w-10 md:h-20 md:w-20 object-contain"
         />
       </Link>
 

@@ -7,6 +7,7 @@ import { Plus, Loader2, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
+import { slugFromTitle } from "@/lib/utils";
 
 const DEFAULT_DESCRIPTION = "Comprehensive engineering and technical services.";
 
@@ -86,7 +87,10 @@ export function CoreCapabilitiesSection() {
             </div>
           ) : (
             services.map((item) => (
-              <Link key={item.id} href={`/services/${item.id}`}>
+              <Link
+                key={item.id}
+                href={`/services/${item.id}-${slugFromTitle(item.name)}`}
+              >
                 <article className="w-full sm:max-w-[336px] min-h-0 sm:min-h-[346.5px] rounded-[8px] sm:rounded-[12px] bg-[#485AAC] space-y-4 sm:space-y-[24px] px-5 py-6 sm:p-6 md:p-8 text-white flex flex-col cursor-pointer hover:bg-[#3d4d94] transition-colors">
                   <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-[56px] md:h-[56px] rounded-[8px] bg-[#FCEEEC33] flex items-center justify-center shrink-0">
                     <Briefcase className="h-5 w-5 sm:h-5 sm:w-5 text-white" />

@@ -8,6 +8,7 @@ import { ServiceCard } from "./service-card";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
+import { slugFromTitle } from "@/lib/utils";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -39,7 +40,7 @@ function serviceToCard(item: ServiceItem): CardItem {
       item.description ?? "",
       DESCRIPTION_MAX_LENGTH,
     ),
-    href: `/services/${item.id}`,
+    href: `/services/${item.id}-${slugFromTitle(item.name)}`,
   };
 }
 
