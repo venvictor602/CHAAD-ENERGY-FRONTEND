@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { getPosts } from "@/services/blog";
 import type { BlogPostItem } from "@/types/app/response";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 export type NewsItem = {
   id: string;
@@ -21,7 +22,7 @@ export type NewsItem = {
 const NEWS_ITEMS: NewsItem[] = [
   {
     id: "1",
-    imageSrc: "https://picsum.photos/seed/chaad-news-1/800/500",
+    imageSrc: cloudinaryImages.news[0],
     imageAlt: "Technology and innovation",
     date: "Oct 12, 2024",
     title: "Future of AI in 2024: Beyond the Hype",
@@ -31,7 +32,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "2",
-    imageSrc: "https://picsum.photos/seed/chaad-news-2/800/500",
+    imageSrc: cloudinaryImages.news[1],
     imageAlt: "Energy sector",
     date: "Oct 8, 2024",
     title: "Renewable Energy Integration in Industrial Grids",
@@ -41,7 +42,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "3",
-    imageSrc: "https://picsum.photos/seed/chaad-news-3/800/500",
+    imageSrc: cloudinaryImages.news[2],
     imageAlt: "Safety and compliance",
     date: "Oct 5, 2024",
     title: "Safety Standards Update: What’s Changing in 2025",
@@ -51,7 +52,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "4",
-    imageSrc: "https://picsum.photos/seed/chaad-news-4/800/500",
+    imageSrc: cloudinaryImages.news[3],
     imageAlt: "Infrastructure",
     date: "Sep 28, 2024",
     title: "Cathodic Protection Best Practices for Aging Assets",
@@ -61,7 +62,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "5",
-    imageSrc: "https://picsum.photos/seed/chaad-news-5/800/500",
+    imageSrc: cloudinaryImages.news[4],
     imageAlt: "Project delivery",
     date: "Sep 22, 2024",
     title: "EPC Project Delivery in a Volatile Supply Chain",
@@ -71,7 +72,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "6",
-    imageSrc: "https://picsum.photos/seed/chaad-news-6/800/500",
+    imageSrc: cloudinaryImages.news[5],
     imageAlt: "Industry insights",
     date: "Sep 15, 2024",
     title: "Industry Insights: Decarbonization and the Role of Gas",
@@ -81,7 +82,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "7",
-    imageSrc: "https://picsum.photos/seed/chaad-news-7/800/500",
+    imageSrc: cloudinaryImages.news[6],
     imageAlt: "Commissioning",
     date: "Sep 10, 2024",
     title: "Commissioning Excellence on Mega Projects",
@@ -91,7 +92,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "8",
-    imageSrc: "https://picsum.photos/seed/chaad-news-8/800/500",
+    imageSrc: cloudinaryImages.news[7],
     imageAlt: "Tank services",
     date: "Sep 3, 2024",
     title: "API 653 Inspections: When and How Often",
@@ -101,7 +102,7 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "9",
-    imageSrc: "https://picsum.photos/seed/chaad-news-9/800/500",
+    imageSrc: cloudinaryImages.news[8],
     imageAlt: "Company update",
     date: "Aug 28, 2024",
     title: "CHAAD Energy Expands Services in West Africa",
@@ -136,8 +137,7 @@ function blogPostToNewsItem(post: BlogPostItem): NewsItem {
   const desc = post.content_paragraph1?.slice(0, 160) || post.title || "";
   return {
     id: String(post.id),
-    imageSrc:
-      post.image?.trim() || "https://picsum.photos/seed/chaad-blog/800/500",
+    imageSrc: post.image?.trim() || cloudinaryImages.default,
     imageAlt: post.title,
     date: dateStr,
     title: post.title,

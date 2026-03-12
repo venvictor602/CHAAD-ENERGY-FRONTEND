@@ -14,6 +14,7 @@ import { Breadcrumb } from "@/components/website/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { getPost, getComments, postComment, likePost } from "@/services/blog";
 import type { BlogPostItem, BlogCommentItem } from "@/types/app/response";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const commentSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -134,8 +135,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
     post.content_paragraph3,
   ].filter(Boolean);
   const images = [post.image, post.image2, post.image3].filter(Boolean);
-  const featuredImage =
-    post.image?.trim() || "https://picsum.photos/seed/chaad-news/1200/700";
+  const featuredImage = post.image?.trim() || cloudinaryImages.default;
 
   return (
     <>

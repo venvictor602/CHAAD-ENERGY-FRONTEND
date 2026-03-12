@@ -34,10 +34,10 @@ export function Hero() {
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          poster="https://assets.mixkit.co/videos/26966/26966-thumb-720-0.jpg"
+          poster="https://assets.mixkit.co/videos/4361/4361-thumb-720-0.jpg"
         >
           <source
-            src="https://assets.mixkit.co/videos/26966/26966-720.mp4"
+            src="https://assets.mixkit.co/videos/4361/4361-720.mp4"
             type="video/mp4"
           />
         </video>

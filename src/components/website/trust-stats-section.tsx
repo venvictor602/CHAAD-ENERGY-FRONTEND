@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { DiagonalImageSlider } from "./diagonal-image-slider";
 import { CountUp, useInViewOnce } from "@/components/ui/count-up";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const STATS = [
   { value: "50+", label: "Projects completed" },
@@ -10,16 +11,7 @@ const STATS = [
   { value: "98%", label: "Client satisfaction" },
 ];
 
-const SLIDER_IMAGES = [
-  "https://picsum.photos/seed/chaad-c1/300/400",
-  "https://picsum.photos/seed/chaad-c2/300/400",
-  "https://picsum.photos/seed/chaad-c3/300/400",
-  "https://picsum.photos/seed/chaad-c4/300/400",
-  "https://picsum.photos/seed/chaad-c5/300/400",
-  "https://picsum.photos/seed/chaad-c6/300/400",
-  "https://picsum.photos/seed/chaad-c7/300/400",
-  "https://picsum.photos/seed/chaad-c8/300/400",
-];
+const SLIDER_IMAGES = cloudinaryImages.trustStatsCollage;
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },

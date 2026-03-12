@@ -1,10 +1,25 @@
+export type ServiceFeatureItem = {
+  id: number;
+  title: string;
+  description: string;
+  created_at: string;
+};
+
+export type ServiceBenefitItem = {
+  id: number;
+  title: string;
+  description: string;
+  created_at: string;
+};
+
 export type ServiceItem = {
   id: number;
   name: string;
+  slug?: string;
   description: string;
   image: string;
-  key_features: string;
-  benefits: string;
+  key_features: ServiceFeatureItem[];
+  benefits: ServiceBenefitItem[];
   is_active: boolean;
   created_at: string;
   updated_at: string;

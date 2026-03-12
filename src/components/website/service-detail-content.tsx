@@ -28,7 +28,7 @@ export function ServiceDetailContent({
 }) {
   return (
     <article className="min-h-screen [font-family:var(--font-inter)]">
-      <div className="max-w-4xl mx-auto px-6 lg:px-12 pt-6 pb-4">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-6 pb-4">
         <motion.div
           initial="initial"
           whileInView="visible"
@@ -40,7 +40,7 @@ export function ServiceDetailContent({
         </motion.div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 lg:px-12 pb-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-12">
         <motion.header
           className="mb-8"
           initial="initial"

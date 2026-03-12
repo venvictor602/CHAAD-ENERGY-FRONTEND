@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 export type CaseStudyItem = {
   id: string;
@@ -15,10 +16,12 @@ export type CaseStudyItem = {
   href: string;
 };
 
+const [img1, img2, img3, img4, img5, img6] = cloudinaryImages.caseStudy;
+
 const CASE_STUDIES: CaseStudyItem[] = [
   {
     id: "1",
-    imageSrc: "https://picsum.photos/seed/chaad-oil-platform/800/500",
+    imageSrc: img1,
     imageAlt: "Offshore oil platform",
     category: "OIL & GAS",
     title: "North Sea Offshore Platform Integrity & Life Extension",
@@ -28,7 +31,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
   },
   {
     id: "2",
-    imageSrc: "https://picsum.photos/seed/chaad-wind/800/500",
+    imageSrc: img2,
     imageAlt: "Wind turbines at sunset",
     category: "RENEWABLES",
     title: "Grid Integration & Substation Works for 200MW Wind Farm",
@@ -38,7 +41,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
   },
   {
     id: "3",
-    imageSrc: "https://picsum.photos/seed/chaad-lng/800/500",
+    imageSrc: img3,
     imageAlt: "LNG terminal piping and tanks",
     category: "INFRASTRUCTURE",
     title: "LNG Terminal Tank Inspections & Coating Remediation",
@@ -48,7 +51,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
   },
   {
     id: "4",
-    imageSrc: "https://picsum.photos/seed/chaad-solar/800/500",
+    imageSrc: img4,
     imageAlt: "Solar panels at industrial site",
     category: "RENEWABLES",
     title: "Utility-Scale Solar EPC & Commissioning",
@@ -58,7 +61,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
   },
   {
     id: "5",
-    imageSrc: "https://picsum.photos/seed/chaad-rov/800/500",
+    imageSrc: img5,
     imageAlt: "Underwater ROV",
     category: "OIL & GAS",
     title: "Subsea Pipeline CP Surveys & ROV Support",
@@ -68,7 +71,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
   },
   {
     id: "6",
-    imageSrc: "https://picsum.photos/seed/chaad-refinery/800/500",
+    imageSrc: img6,
     imageAlt: "Industrial refinery",
     category: "INFRASTRUCTURE",
     title: "Major Refinery Modernization & Turnaround Support",

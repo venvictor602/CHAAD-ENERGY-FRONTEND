@@ -10,7 +10,9 @@ import { Breadcrumb } from "@/components/website/breadcrumb";
 import { getProject } from "@/services/projects";
 import type { ProjectItem } from "@/types/app/response";
 
-const DEFAULT_IMG = "https://picsum.photos/seed/chaad-project/1200/600";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
+
+const DEFAULT_IMG = cloudinaryImages.default;
 
 export function ProjectDetailByApi({ id }: { id: number }) {
   const [project, setProject] = useState<ProjectItem | null>(null);

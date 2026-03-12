@@ -2,27 +2,27 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 type DiagonalImageSliderProps = {
   images: string[];
 };
 
 const COLUMN_CONFIG = [
-  { direction: 1, duration: 18, offset: 0 },
-  { direction: -1, duration: 22, offset: -80 },
-  { direction: 1, duration: 16, offset: -40 },
-  { direction: -1, duration: 20, offset: -120 },
-  { direction: 1, duration: 24, offset: -60 },
+  { direction: 1, duration: 38, offset: 0 },
+  { direction: -1, duration: 42, offset: -80 },
+  { direction: 1, duration: 36, offset: -40 },
+  { direction: -1, duration: 40, offset: -120 },
+  { direction: 1, duration: 44, offset: -60 },
 ];
 
 const IMAGE_ROTATIONS = [-2, 1.5, -1, 2, -0.5, 1, -1.5, 0.5, -2, 1];
 
+const IMAGES_PER_COLUMN = 14;
+
 export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
-  const filled =
-    images.length > 0
-      ? images
-      : Array(6).fill("https://picsum.photos/seed/chaad/300/400");
-  const pool = [...filled, ...filled, ...filled, ...filled];
+  const filled = images.length > 0 ? images : cloudinaryImages.diagonalSlider;
+  const pool = [...filled, ...filled, ...filled];
 
   return (
     <div className="relative w-full h-full overflow-hidden" aria-hidden>
@@ -34,10 +34,11 @@ export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
         }}
       >
         {COLUMN_CONFIG.map((col, colIdx) => {
-          const colImages = pool.slice(
-            (colIdx * 3) % pool.length,
-            ((colIdx * 3) % pool.length) + pool.length,
-          );
+          const start = (colIdx * 5) % pool.length;
+          const colImages = Array.from(
+            { length: IMAGES_PER_COLUMN },
+            (_, i) => pool[(start + i) % pool.length],
+          ).filter(Boolean);
           const imgHeight = 220;
           const imgGap = 12;
           const total = colImages.length * (imgHeight + imgGap);
@@ -64,10 +65,11 @@ export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
               >
                 {[...colImages, ...colImages].map((src, imgIdx) => (
                   <div
-                    key={imgIdx}
-                    className="rounded-2xl overflow-hidden shrink-0"
+                    key={`${colIdx}-${imgIdx}`}
+                    className="rounded-2xl overflow-hidden shrink-0 bg-[#E5E7EB]"
                     style={{
                       height: imgHeight,
+                      minHeight: imgHeight,
                       transform: `rotate(${IMAGE_ROTATIONS[imgIdx % IMAGE_ROTATIONS.length]}deg)`,
                     }}
                   >
@@ -78,6 +80,8 @@ export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
                       height={imgHeight}
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      unoptimized
                     />
                   </div>
                 ))}

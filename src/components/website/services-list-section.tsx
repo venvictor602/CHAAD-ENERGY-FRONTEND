@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -15,41 +16,56 @@ const fadeUp = {
 const viewport = { once: true, margin: "-40px" };
 const t = { duration: 0.4 };
 
-const DEFAULT_SERVICE_IMAGE =
-  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80";
+const DEFAULT_SERVICE_IMAGE = cloudinaryImages.default;
 
 function ServiceCard({ service }: { service: ServiceItem }) {
   const imgSrc = service.image?.trim() || DEFAULT_SERVICE_IMAGE;
+  const detailHref = `/services/${service.id}`;
+
   return (
     <motion.article
       className="group flex flex-col bg-white rounded-xl border border-black/5 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
       variants={fadeUp}
       transition={t}
     >
-      <div className="relative w-full aspect-video overflow-hidden shrink-0 bg-[#F1F5F9]">
-        <Image
-          src={imgSrc}
-          alt={service.name}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          loading="lazy"
-          unoptimized
-        />
-      </div>
+      <Link href={detailHref} className="block">
+        <div className="relative w-full aspect-video overflow-hidden shrink-0 bg-[#F1F5F9]">
+          <Image
+            src={imgSrc}
+            alt={service.name}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="lazy"
+            unoptimized
+          />
+        </div>
+      </Link>
       <div className="p-5 sm:p-6 flex flex-col flex-1">
-        <h3 className="text-lg font-bold text-[#333333] leading-tight mb-2">
+        <Link
+          href={detailHref}
+          className="text-lg font-bold text-[#333333] leading-tight mb-2 block hover:text-[#485AAC] transition-colors"
+        >
           {service.name}
-        </h3>
+        </Link>
         <p className="text-sm text-[#64748B] leading-relaxed line-clamp-3 flex-1">
           {service.description}
         </p>
-        <Link
-          href="/contact"
-          className="mt-4 text-[#485AAC] font-semibold text-sm hover:text-[#3d4d94] transition-colors w-fit"
-        >
-          Get in touch
-        </Link>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <Link
+            href={detailHref}
+            className="text-[#485AAC] font-semibold text-sm hover:text-[#3d4d94] transition-colors w-fit"
+          >
+            View details
+          </Link>
+          <span className="text-[#94A3B8]">·</span>
+          <Link
+            href="/contact"
+            className="text-[#485AAC] font-semibold text-sm hover:text-[#3d4d94] transition-colors w-fit"
+          >
+            Get in touch
+          </Link>
+        </div>
       </div>
     </motion.article>
   );

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ProjectCard } from "./project-card";
 import { getProjects } from "@/services/projects";
 import type { ProjectItem } from "@/types/app/response";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 type ProjectCardItem = {
   imageSrc: string;
@@ -19,42 +20,42 @@ type ProjectCardItem = {
 
 const FALLBACK_PROJECTS: ProjectCardItem[] = [
   {
-    imageSrc: "https://picsum.photos/seed/chaad-metro/600/450",
+    imageSrc: cloudinaryImages.recentWork[0],
     imageAlt: "Metro transit hub construction",
     title: "Metro transit hub",
     description: "A modern transportation center serving thousands daily.",
     href: "/projects/1",
   },
   {
-    imageSrc: "https://picsum.photos/seed/chaad-riverside/600/450",
+    imageSrc: cloudinaryImages.recentWork[1],
     imageAlt: "Riverside towers construction",
     title: "Riverside towers",
     description: "Twin residential buildings with premium amenities.",
     href: "/projects/2",
   },
   {
-    imageSrc: "https://picsum.photos/seed/chaad-commerce/600/450",
+    imageSrc: cloudinaryImages.recentWork[2],
     imageAlt: "Commerce plaza development",
     title: "Commerce plaza",
     description: "Retail and office space in the heart of downtown.",
     href: "/projects/3",
   },
   {
-    imageSrc: "https://picsum.photos/seed/chaad-industrial/600/450",
+    imageSrc: cloudinaryImages.recentWork[3],
     imageAlt: "Industrial facility project",
     title: "Industrial facility",
     description: "State-of-the-art manufacturing and logistics hub.",
     href: "/projects/4",
   },
   {
-    imageSrc: "https://picsum.photos/seed/chaad-energy/600/450",
+    imageSrc: cloudinaryImages.recentWork[4],
     imageAlt: "Energy infrastructure project",
     title: "Energy terminal",
     description: "Critical infrastructure for energy distribution.",
     href: "/projects/5",
   },
   {
-    imageSrc: "https://picsum.photos/seed/chaad-pipeline/600/450",
+    imageSrc: cloudinaryImages.recentWork[5],
     imageAlt: "Pipeline project",
     title: "Pipeline network",
     description: "Cross-region pipeline installation and commissioning.",
@@ -64,9 +65,7 @@ const FALLBACK_PROJECTS: ProjectCardItem[] = [
 
 function projectToCard(p: ProjectItem): ProjectCardItem {
   return {
-    imageSrc:
-      p.banner_image?.trim() ||
-      "https://picsum.photos/seed/chaad-project/600/450",
+    imageSrc: p.banner_image?.trim() || cloudinaryImages.recentWorkDefault,
     imageAlt: p.name,
     title: p.name,
     description: p.description?.slice(0, 120) || "",

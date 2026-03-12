@@ -31,7 +31,7 @@ export function ServiceCard({
       </div>
       <div className="flex flex-col flex-1 space-y-[8px]">
         <h3 className="text-xl font-bold text-[#333333]">{title}</h3>
-        <p className="text-[#606060] text-base font-normal leading-relaxed flex-1">
+        <p className="text-[#606060] text-base font-normal leading-relaxed flex-1 line-clamp-3">
           {description}
         </p>
         <LearnMoreLink href={href} />

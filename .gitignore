@@ -38,6 +38,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local assets uploaded to Cloudinary (do not commit)
+/public/assets/CHAAD_ENERGY
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

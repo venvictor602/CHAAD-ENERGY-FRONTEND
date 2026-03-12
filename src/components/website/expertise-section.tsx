@@ -1,33 +1,38 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 
 import { ServiceCard } from "./service-card";
+import { getServices } from "@/services/services";
+import type { ServiceItem } from "@/types/app/response";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
-const SERVICES = [
+const FALLBACK_SERVICES = [
   {
-    imageSrc: "https://picsum.photos/seed/chaad-epc/600/450",
+    imageSrc: cloudinaryImages.expertise[0],
     imageAlt: "EPC services - engineering and construction",
     title: "EPC Services",
     description:
       "Complete Engineering, Procurement, and Construction management delivered on schedule and within budget.",
-    href: "#epc",
+    href: "/services/epc-services",
   },
   {
-    imageSrc: "https://picsum.photos/seed/chaad-commissioning/600/450",
+    imageSrc: cloudinaryImages.expertise[1],
     imageAlt: "Commissioning and system testing",
     title: "Commissioning",
     description:
       "Ensuring operational readiness and performance optimization through rigorous testing and quality assurance.",
-    href: "#commissioning",
+    href: "/services/commissioning",
   },
   {
-    imageSrc: "https://picsum.photos/seed/chaad-cathodic/600/450",
+    imageSrc: cloudinaryImages.expertise[2],
     imageAlt: "Cathodic protection systems",
     title: "Cathodic Protection",
     description:
       "Advanced corrosion control solutions to extend the lifespan of critical assets and infrastructure.",
-    href: "#cathodic",
+    href: "/services/cathodic-protection",
   },
 ];
 
@@ -36,7 +41,56 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
+type CardItem = {
+  imageSrc: string;
+  imageAlt: string;
+  title: string;
+  description: string;
+  href: string;
+};
+
+const DESCRIPTION_MAX_LENGTH = 160;
+
+function truncateDescription(text: string, maxLen: number): string {
+  const s = (text ?? "").trim();
+  if (s.length <= maxLen) return s;
+  return s.slice(0, maxLen).trim() + "…";
+}
+
+function serviceToCard(item: ServiceItem): CardItem {
+  return {
+    imageSrc: item.image?.trim() || cloudinaryImages.default,
+    imageAlt: item.name,
+    title: item.name,
+    description: truncateDescription(
+      item.description ?? "",
+      DESCRIPTION_MAX_LENGTH,
+    ),
+    href: `/services/${item.id}`,
+  };
+}
+
 export function ExpertiseSection() {
+  const [services, setServices] = useState<CardItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getServices(1)
+      .then((res) => {
+        const list = res.data?.results ?? [];
+        const active = list.filter((s) => s.is_active !== false);
+        if (active.length > 0) {
+          setServices(active.map(serviceToCard));
+        } else {
+          setServices(FALLBACK_SERVICES);
+        }
+      })
+      .catch(() => setServices(FALLBACK_SERVICES))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const items = services.length > 0 ? services : FALLBACK_SERVICES;
+
   return (
     <section id="services" className="bg-white py-16 md:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 space-y-[16px] lg:space-y-[48px]">
@@ -61,26 +115,32 @@ export function ExpertiseSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-          {SERVICES.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={itemVariants}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              <ServiceCard
-                imageSrc={service.imageSrc}
-                imageAlt={service.imageAlt}
-                title={service.title}
-                description={service.description}
-                href={service.href}
-              />
-            </motion.div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 min-h-[280px] place-items-center">
+            <Loader2 className="w-8 h-8 animate-spin text-[#485AAC]" />
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+            {items.map((service, index) => (
+              <motion.div
+                key={service.href + index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={itemVariants}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <ServiceCard
+                  imageSrc={service.imageSrc}
+                  imageAlt={service.imageAlt}
+                  title={service.title}
+                  description={service.description}
+                  href={service.href}
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

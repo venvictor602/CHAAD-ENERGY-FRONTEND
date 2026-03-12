@@ -10,6 +10,7 @@ type CapabilityItem = {
   title: string;
   description: string;
   icon: React.ComponentType<{ className?: string }>;
+  slug: string;
 };
 
 const CAPABILITIES: CapabilityItem[] = [
@@ -18,30 +19,35 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       "Comprehensive Engineering, Procurement, and Construction management. We deliver turnkey infrastructure projects with a single point of responsibility and rigorous quality control.",
     icon: Building2,
+    slug: "epc-services",
   },
   {
     title: "Commissioning",
     description:
       "Systematic verification to ensure all systems and components are designed, installed, tested, and maintained according to the operational requirements of the owner.",
     icon: Cog,
+    slug: "commissioning",
   },
   {
     title: "Cathodic Protection",
     description:
       "Advanced corrosion control engineering for buried or submerged metal structures. Our solutions extend asset life and prevent costly environmental incidents.",
     icon: Shield,
+    slug: "cathodic-protection",
   },
   {
     title: "Tank Services",
     description:
       "Specialized industrial storage solutions including API 653 inspections, structural repairs, floor replacements, and specialized lining systems.",
     icon: Container,
+    slug: "tank-services",
   },
   {
     title: "Turnkey Solutions",
     description:
       "Seamlessly integrated services from front-end engineering design to final hand-off. We handle the complexity so you can focus on your core business operations.",
     icon: Key,
+    slug: "turnkey-solutions",
   },
 ];
 
@@ -55,7 +61,7 @@ const t = { duration: 0.4 };
 export function CoreCapabilitiesSection() {
   return (
     <section className="bg-white py-16 md:py-24 [font-family:var(--font-inter)]">
-      <div className="max-w-[1072px] mx-auto">
+      <div className="max-w-[1072px] mx-auto px-6 lg:px-12">
         <motion.h2
           className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] leading-tight mb-10 md:mb-16 text-center"
           initial="initial"
@@ -68,7 +74,7 @@ export function CoreCapabilitiesSection() {
         </motion.h2>
 
         <motion.div
-          className="grid grid-cols-1 px-4 sm:px-0 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-center place-items-center"
           initial="initial"
           whileInView="visible"
           viewport={viewport}
@@ -80,24 +86,25 @@ export function CoreCapabilitiesSection() {
           }}
         >
           {CAPABILITIES.map((item) => (
-            <motion.article
-              key={item.title}
-              className="w-full sm:max-w-[336px] min-h-0 sm:min-h-[346.5px] rounded-[8px] sm:rounded-[12px] bg-[#485AAC] space-y-4 sm:space-y-[24px] px-5 py-6 sm:p-6 md:p-8 text-white flex flex-col"
-              variants={fadeUp}
-              transition={t}
-            >
-              <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-[56px] md:h-[56px] rounded-[8px] bg-[#FCEEEC33] flex items-center justify-center shrink-0">
-                <item.icon className="h-5 w-5 sm:h-5 sm:w-5 text-white" />
-              </div>
-              <div className="space-y-3 sm:space-y-[16px] min-w-0">
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#F1F5F9] leading-tight">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[#EDEFF7] leading-[1.6]">
-                  {item.description}
-                </p>
-              </div>
-            </motion.article>
+            <Link key={item.title} href={`/services/${item.slug}`}>
+              <motion.article
+                className="w-full sm:max-w-[336px] min-h-0 sm:min-h-[346.5px] rounded-[8px] sm:rounded-[12px] bg-[#485AAC] space-y-4 sm:space-y-[24px] px-5 py-6 sm:p-6 md:p-8 text-white flex flex-col cursor-pointer hover:bg-[#3d4d94] transition-colors"
+                variants={fadeUp}
+                transition={t}
+              >
+                <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-[56px] md:h-[56px] rounded-[8px] bg-[#FCEEEC33] flex items-center justify-center shrink-0">
+                  <item.icon className="h-5 w-5 sm:h-5 sm:w-5 text-white" />
+                </div>
+                <div className="space-y-3 sm:space-y-[16px] min-w-0">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#F1F5F9] leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-[#EDEFF7] leading-[1.6]">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.article>
+            </Link>
           ))}
 
           <motion.article

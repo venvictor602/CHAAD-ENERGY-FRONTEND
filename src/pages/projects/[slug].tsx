@@ -6,6 +6,12 @@ import {
   type ProjectDetailData,
 } from "@/components/website/project-detail-content";
 import { ProjectDetailByApi } from "@/components/website/project-detail-by-api";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
+
+function projectGallery(base: number, alts: string[]) {
+  const urls = cloudinaryImages.projectGallery(base);
+  return alts.map((alt, i) => ({ src: urls[i] ?? urls[0], alt }));
+}
 
 const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
   "north-sea-platform": {
@@ -43,24 +49,12 @@ const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
         icon: "costs",
       },
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-oil-platform/1200/600",
-        alt: "Offshore platform",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-oil-2/1200/600",
-        alt: "Platform detail",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-oil-3/1200/600",
-        alt: "Construction",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-oil-4/1200/600",
-        alt: "Site work",
-      },
-    ],
+    galleryImages: projectGallery(18, [
+      "Offshore platform",
+      "Platform detail",
+      "Construction",
+      "Site work",
+    ]),
   },
   "metro-transit-hub": {
     title: "Metro Transit Hub",
@@ -97,17 +91,7 @@ const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
         icon: "costs",
       },
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-metro-1/1200/600",
-        alt: "Transit hub",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-metro-2/1200/600",
-        alt: "Construction",
-      },
-      { src: "https://picsum.photos/seed/chaad-metro-3/1200/600", alt: "Site" },
-    ],
+    galleryImages: projectGallery(22, ["Transit hub", "Construction", "Site"]),
   },
   "wind-farm-grid": {
     title: "Grid Integration & Substation Works for 200MW Wind Farm",
@@ -141,16 +125,7 @@ const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
         icon: "costs",
       },
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-wind/1200/600",
-        alt: "Wind farm",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-wind-2/1200/600",
-        alt: "Substation",
-      },
-    ],
+    galleryImages: projectGallery(26, ["Wind farm", "Substation"]),
   },
   "lng-terminal": {
     title: "LNG Terminal Tank Inspections & Coating Remediation",
@@ -183,16 +158,7 @@ const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
         icon: "costs",
       },
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-lng/1200/600",
-        alt: "LNG terminal",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-lng-2/1200/600",
-        alt: "Tank work",
-      },
-    ],
+    galleryImages: projectGallery(30, ["LNG terminal", "Tank work"]),
   },
   "solar-epc": {
     title: "Utility-Scale Solar EPC & Commissioning",
@@ -225,16 +191,7 @@ const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
         icon: "costs",
       },
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-solar/1200/600",
-        alt: "Solar plant",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-solar-2/1200/600",
-        alt: "Installation",
-      },
-    ],
+    galleryImages: projectGallery(34, ["Solar plant", "Installation"]),
   },
   "subsea-cp": {
     title: "Subsea Pipeline CP Surveys & ROV Support",
@@ -267,13 +224,7 @@ const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
         icon: "costs",
       },
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-rov/1200/600",
-        alt: "ROV operations",
-      },
-      { src: "https://picsum.photos/seed/chaad-rov-2/1200/600", alt: "Survey" },
-    ],
+    galleryImages: projectGallery(38, ["ROV operations", "Survey"]),
   },
   "refinery-modernization": {
     title: "Major Refinery Modernization & Turnaround Support",
@@ -309,20 +260,7 @@ const PROJECTS: Record<string, Omit<ProjectDetailData, "slug">> = {
         icon: "costs",
       },
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-refinery/1200/600",
-        alt: "Refinery",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-refinery-2/1200/600",
-        alt: "Modernization",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-refinery-3/1200/600",
-        alt: "Site",
-      },
-    ],
+    galleryImages: projectGallery(42, ["Refinery", "Modernization", "Site"]),
   },
 };
 

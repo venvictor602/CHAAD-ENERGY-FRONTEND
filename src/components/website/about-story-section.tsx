@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -63,19 +65,43 @@ export function AboutStorySection() {
               viewport={viewport}
               transition={{ duration: 0.5, delay: 0.15 }}
             >
-              <div className="w-full md:w-[343px] h-[360px] max-w-full rounded-[12px] bg-[#485AAC] overflow-hidden" />
-              <div className="w-full md:w-[343px] h-[360px] max-w-full rounded-[12px] bg-[#485AAC] overflow-hidden" />
+              <div className="relative w-full md:w-[343px] h-[360px] max-w-full rounded-[12px] overflow-hidden shrink-0">
+                <Image
+                  src={cloudinaryImages.aboutStory[0]}
+                  alt="CHAAD Energy - Our Story"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 343px"
+                />
+              </div>
+              <div className="relative w-full md:w-[343px] h-[360px] max-w-full rounded-[12px] overflow-hidden shrink-0">
+                <Image
+                  src={cloudinaryImages.aboutStory[1]}
+                  alt="CHAAD Energy - Our Story"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 343px"
+                />
+              </div>
             </motion.div>
           </div>
 
           <div className="px-6 flex flex-col-reverse lg:flex-row items-start gap-4 md:gap-[40px] lg:h-[458px]">
             <motion.div
-              className="w-full lg:w-[511px] h-[458px] lg:h-full max-w-full rounded-[12px] bg-[#485AAC] overflow-hidden"
+              className="relative w-full lg:w-[511px] h-[458px] lg:h-full max-w-full rounded-[12px] overflow-hidden shrink-0"
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={viewport}
               transition={{ duration: 0.5 }}
-            />
+            >
+              <Image
+                src={cloudinaryImages.aboutStory[2]}
+                alt="CHAAD Energy - Our Mission"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 511px"
+              />
+            </motion.div>
             <motion.div
               className="flex flex-col h-full justify-between gap-4 md:gap-[50px] max-w-[732px] w-full"
               initial="initial"

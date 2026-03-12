@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 type Leader = {
   name: string;
@@ -13,22 +14,22 @@ const LEADERS: Leader[] = [
   {
     name: "Dr. Marcus Vance",
     role: "Chief Executive Officer",
-    imageSrc: "https://picsum.photos/seed/chaad-leader-1/600/600",
+    imageSrc: cloudinaryImages.leadership[0],
   },
   {
     name: "Elena Rodriguez",
     role: "Chief Technology Officer",
-    imageSrc: "https://picsum.photos/seed/chaad-leader-2/600/600",
+    imageSrc: cloudinaryImages.leadership[1],
   },
   {
     name: "Jameson Wright",
     role: "VP of Sustainability",
-    imageSrc: "https://picsum.photos/seed/chaad-leader-3/600/600",
+    imageSrc: cloudinaryImages.leadership[2],
   },
   {
     name: "Sarah Jenkins",
     role: "Operations Director",
-    imageSrc: "https://picsum.photos/seed/chaad-leader-4/600/600",
+    imageSrc: cloudinaryImages.leadership[3],
   },
 ];
 

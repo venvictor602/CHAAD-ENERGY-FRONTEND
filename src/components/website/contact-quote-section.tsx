@@ -52,24 +52,36 @@ export function ContactQuoteSection({
 }) {
   const [apiError, setApiError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [servicesLoading, setServicesLoading] = useState(true);
   const [serviceOptions, setServiceOptions] = useState<
     { value: number; label: string }[]
-  >(FALLBACK_SERVICE_OPTIONS);
+  >([]);
 
   useEffect(() => {
+    setServicesLoading(true);
     getServices(1)
       .then((res) => {
-        const list = res.data?.results ?? [];
-        if (list.length > 0) {
+        const raw =
+          res.data?.results ?? (Array.isArray(res.data) ? res.data : []);
+        const list = Array.isArray(raw) ? raw : [];
+        const active = list.filter(
+          (s: { is_active?: boolean }) => s.is_active !== false,
+        );
+        if (active.length > 0) {
           setServiceOptions(
-            list.map((s) => ({
+            active.map((s: { id: number; name?: string }) => ({
               value: s.id,
-              label: s.name || `Service ${s.id}`,
+              label: s.name?.trim() || `Service ${s.id}`,
             })),
           );
+        } else {
+          setServiceOptions(FALLBACK_SERVICE_OPTIONS);
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        setServiceOptions(FALLBACK_SERVICE_OPTIONS);
+      })
+      .finally(() => setServicesLoading(false));
   }, []);
 
   const {
@@ -346,9 +358,14 @@ export function ContactQuoteSection({
                         aria-describedby={
                           errors.services ? "services-error" : undefined
                         }
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || servicesLoading}
+                        aria-busy={servicesLoading}
                       >
-                        <option value="">Select a service</option>
+                        <option value="">
+                          {servicesLoading
+                            ? "Loading services…"
+                            : "Select a service"}
+                        </option>
                         {serviceOptions.map((opt) => (
                           <option key={opt.value} value={opt.value}>
                             {opt.label}

@@ -5,6 +5,13 @@ import {
   ServiceDetailContent,
   type ServiceDetailData,
 } from "@/components/website/service-detail-content";
+import { ServiceDetailByApi } from "@/components/website/service-detail-by-api";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
+
+function serviceGallery(base: number, alts: [string, string, string]) {
+  const urls = cloudinaryImages.serviceGallery(base);
+  return urls.map((src, i) => ({ src, alt: alts[i] ?? "" }));
+}
 
 const SERVICES: Record<string, Omit<ServiceDetailData, "slug">> = {
   "construction-services": {
@@ -21,20 +28,11 @@ const SERVICES: Record<string, Omit<ServiceDetailData, "slug">> = {
       "Electrical and lighting",
       "Measurement and instrumentation",
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-construction-1/800/600",
-        alt: "Construction workers and excavator at site",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-construction-2/800/600",
-        alt: "Workers on scaffolding and concrete structure",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-construction-3/800/600",
-        alt: "Excavation and construction equipment",
-      },
-    ],
+    galleryImages: serviceGallery(0, [
+      "Construction workers and excavator at site",
+      "Workers on scaffolding and concrete structure",
+      "Excavation and construction equipment",
+    ]),
   },
   "epc-services": {
     title: "EPC Services",
@@ -49,20 +47,11 @@ const SERVICES: Record<string, Omit<ServiceDetailData, "slug">> = {
       "Construction and installation",
       "Commissioning and handover",
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-epc-1/800/600",
-        alt: "EPC project site",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-epc-2/800/600",
-        alt: "Installation",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-epc-3/800/600",
-        alt: "Commissioning",
-      },
-    ],
+    galleryImages: serviceGallery(3, [
+      "EPC project site",
+      "Installation",
+      "Commissioning",
+    ]),
   },
   commissioning: {
     title: "Commissioning",
@@ -77,20 +66,11 @@ const SERVICES: Record<string, Omit<ServiceDetailData, "slug">> = {
       "Start-up and performance testing",
       "Handover documentation and training",
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-comm-1/800/600",
-        alt: "Commissioning activities",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-comm-2/800/600",
-        alt: "Testing",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-comm-3/800/600",
-        alt: "Handover",
-      },
-    ],
+    galleryImages: serviceGallery(6, [
+      "Commissioning activities",
+      "Testing",
+      "Handover",
+    ]),
   },
   "cathodic-protection": {
     title: "Cathodic Protection",
@@ -105,17 +85,11 @@ const SERVICES: Record<string, Omit<ServiceDetailData, "slug">> = {
       "Surveys and monitoring",
       "Remediation and life extension",
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-cp-1/800/600",
-        alt: "CP installation",
-      },
-      { src: "https://picsum.photos/seed/chaad-cp-2/800/600", alt: "Survey" },
-      {
-        src: "https://picsum.photos/seed/chaad-cp-3/800/600",
-        alt: "Monitoring",
-      },
-    ],
+    galleryImages: serviceGallery(9, [
+      "CP installation",
+      "Survey",
+      "Monitoring",
+    ]),
   },
   "tank-services": {
     title: "Tank Services",
@@ -130,17 +104,11 @@ const SERVICES: Record<string, Omit<ServiceDetailData, "slug">> = {
       "Floor and shell lining",
       "Anode and CP for tanks",
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-tank-1/800/600",
-        alt: "Tank inspection",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-tank-2/800/600",
-        alt: "Tank repair",
-      },
-      { src: "https://picsum.photos/seed/chaad-tank-3/800/600", alt: "Lining" },
-    ],
+    galleryImages: serviceGallery(12, [
+      "Tank inspection",
+      "Tank repair",
+      "Lining",
+    ]),
   },
   "turnkey-solutions": {
     title: "Turnkey Solutions",
@@ -155,20 +123,11 @@ const SERVICES: Record<string, Omit<ServiceDetailData, "slug">> = {
       "Operations and maintenance support",
       "Lifecycle and asset management",
     ],
-    galleryImages: [
-      {
-        src: "https://picsum.photos/seed/chaad-turnkey-1/800/600",
-        alt: "Turnkey project",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-turnkey-2/800/600",
-        alt: "Delivery",
-      },
-      {
-        src: "https://picsum.photos/seed/chaad-turnkey-3/800/600",
-        alt: "Handover",
-      },
-    ],
+    galleryImages: serviceGallery(15, [
+      "Turnkey project",
+      "Delivery",
+      "Handover",
+    ]),
   },
 };
 
@@ -177,25 +136,36 @@ const SLUGS = Object.keys(SERVICES);
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: SLUGS.map((slug) => ({ params: { slug } })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps<{
-  service: ServiceDetailData;
+  service: ServiceDetailData | null;
+  serviceId: number | null;
 }> = async ({ params }) => {
-  const slug = typeof params?.slug === "string" ? params.slug : "";
-  const data = SERVICES[slug];
+  const param = typeof params?.slug === "string" ? params.slug : "";
+  const numericId = /^\d+$/.test(param) ? parseInt(param, 10) : null;
+  if (numericId != null) {
+    return { props: { service: null, serviceId: numericId } };
+  }
+  const data = SERVICES[param];
   if (!data) return { notFound: true };
-  const service: ServiceDetailData = { ...data, slug };
-  return { props: { service } };
+  const service: ServiceDetailData = { ...data, slug: param };
+  return { props: { service, serviceId: null } };
 };
 
 export default function ServiceDetailPage({
   service,
+  serviceId,
 }: {
-  service: ServiceDetailData;
+  service: ServiceDetailData | null;
+  serviceId: number | null;
 }) {
+  if (serviceId != null) {
+    return <ServiceDetailByApi id={serviceId} />;
+  }
+  if (!service) return null;
   const titleLabel = service.title;
   const breadcrumbItems = [
     { label: "Services", href: "/services" },
@@ -204,7 +174,7 @@ export default function ServiceDetailPage({
   return (
     <>
       <Navbar solidBackground />
-      <main className="pt-[72px]">
+      <main className="pt-[80px] md:pt-[140px]">
         <ServiceDetailContent
           service={service}
           breadcrumbItems={breadcrumbItems}

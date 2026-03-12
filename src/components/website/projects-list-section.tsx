@@ -7,13 +7,12 @@ import {
   CaseStudyGrid,
   type CaseStudyItem,
 } from "@/components/website/case-study-grid";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 function projectToCaseStudy(p: ProjectItem): CaseStudyItem {
   return {
     id: String(p.id),
-    imageSrc:
-      p.banner_image?.trim() ||
-      "https://picsum.photos/seed/chaad-project/800/500",
+    imageSrc: p.banner_image?.trim() || cloudinaryImages.default,
     imageAlt: p.name,
     category: "Project",
     title: p.name,

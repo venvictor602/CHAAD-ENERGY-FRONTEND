@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const METRICS = [
   { value: "200+", label: "PROJECT MILESTONES" },
@@ -87,14 +89,24 @@ export function CaseStudySection() {
             viewport={viewport}
             transition={{ duration: 0.5 }}
           >
-            <div
-              className="w-full max-w-[349px] rounded-xl bg-[#485AAC] shrink-0"
-              style={{ aspectRatio: "349/252" }}
-            />
-            <div
-              className="w-full max-w-[349px] ml-auto rounded-xl bg-[#42529D] shrink-0"
-              style={{ aspectRatio: "349/268" }}
-            />
+            <div className="relative w-full max-w-[349px] rounded-xl overflow-hidden shrink-0 aspect-349/252">
+              <Image
+                src={cloudinaryImages.caseStudySection[0]}
+                alt="Major Refinery Modernization - project"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 349px"
+              />
+            </div>
+            <div className="relative w-full max-w-[349px] ml-auto rounded-xl overflow-hidden shrink-0 aspect-349/268">
+              <Image
+                src={cloudinaryImages.caseStudySection[1]}
+                alt="Major Refinery Modernization - site"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 349px"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

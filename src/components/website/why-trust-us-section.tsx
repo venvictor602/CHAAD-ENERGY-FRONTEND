@@ -96,7 +96,7 @@ export function WhyTrustUsSection() {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src="/assets/Global%20Leaders.png"
+              src="/assets/Global%20Leaders.jpg"
               width={800}
               height={600}
               alt="Industrial team at work"
@@ -106,7 +106,7 @@ export function WhyTrustUsSection() {
             />
             <div
               ref={badgeRef}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 flex items-center gap-4 rounded-[12px] bg-[#1A1A1A]/60 backdrop-blur-sm p-[16px] lg:p-[24px] max-w-[457px] w-full"
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 flex items-center gap-4 rounded-[12px] bg-[#1A1A1A]/95 p-[16px] lg:p-[24px] max-w-[457px] w-full shadow-lg"
             >
               <p className="text-3xl md:text-4xl font-extrabold text-[#DE5943] shrink-0">
                 <CountUp value="7+" start={badgeInView} />

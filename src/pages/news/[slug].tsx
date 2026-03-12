@@ -5,6 +5,7 @@ import { NewsArticleDetail } from "@/components/website/news-article-detail";
 import { NewsDetailByApi } from "@/components/website/news-detail-by-api";
 import type { NewsArticle } from "@/components/website/news-article-detail";
 import type { NewsItem } from "@/components/website/latest-news-section";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const ARTICLE_BODY = [
   "CHAAD Energy has extensive experience successfully completing construction projects under incredible circumstances, in remote locations and in difficult environments safely, within budget and schedule.",
@@ -17,7 +18,7 @@ const MOCK_ARTICLE: NewsArticle = {
   date: "Oct 12, 2024",
   title: "Future of AI in 2024: Beyond the Hype",
   subtitle: "Future of AI in 2024: Beyond the Hype",
-  featuredImage: "https://picsum.photos/seed/chaad-construction/1200/700",
+  featuredImage: cloudinaryImages.news[0],
   featuredImageAlt: "Construction workers at site",
   body: ARTICLE_BODY,
 };
@@ -25,7 +26,7 @@ const MOCK_ARTICLE: NewsArticle = {
 const RECENT_RELEASES: NewsItem[] = [
   {
     id: "1",
-    imageSrc: "https://picsum.photos/seed/chaad-news-1/800/500",
+    imageSrc: cloudinaryImages.news[0],
     imageAlt: "Technology and innovation",
     date: "Oct 12, 2024",
     title: "Future of AI in 2024: Beyond the Hype",
@@ -35,7 +36,7 @@ const RECENT_RELEASES: NewsItem[] = [
   },
   {
     id: "2",
-    imageSrc: "https://picsum.photos/seed/chaad-news-2/800/500",
+    imageSrc: cloudinaryImages.news[1],
     imageAlt: "Energy sector",
     date: "Oct 8, 2024",
     title: "Renewable Energy Integration in Industrial Grids",
@@ -45,7 +46,7 @@ const RECENT_RELEASES: NewsItem[] = [
   },
   {
     id: "3",
-    imageSrc: "https://picsum.photos/seed/chaad-news-3/800/500",
+    imageSrc: cloudinaryImages.news[2],
     imageAlt: "Safety and compliance",
     date: "Oct 5, 2024",
     title: "Safety Standards Update: What's Changing in 2025",
