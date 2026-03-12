@@ -19,23 +19,26 @@ export function CookieConsentDrawer() {
   const [functionalEnabled, setFunctionalEnabled] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
+    const t = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
     const stored = Cookies.get(COOKIE_NAME);
-    if (stored !== "accepted" && stored !== "declined") {
-      setVisible(true);
-    }
     const func = Cookies.get(COOKIE_FUNCTIONAL);
-    setFunctionalEnabled(func !== "false");
+    const t = setTimeout(() => {
+      if (stored !== "accepted" && stored !== "declined") setVisible(true);
+      setFunctionalEnabled(func !== "false");
+    }, 0);
+    return () => clearTimeout(t);
   }, [mounted]);
 
   useEffect(() => {
     if (!settingsOpen) return;
     const func = Cookies.get(COOKIE_FUNCTIONAL);
-    setFunctionalEnabled(func !== "false");
+    const t = setTimeout(() => setFunctionalEnabled(func !== "false"), 0);
+    return () => clearTimeout(t);
   }, [settingsOpen]);
 
   const accept = () => {
