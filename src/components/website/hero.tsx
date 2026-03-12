@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -81,7 +82,7 @@ export function Hero() {
 
           <motion.div variants={itemVariants}>
             <Button variant="default" size="default" asChild>
-              <a href="/contact#consultation">Request Consultation</a>
+              <Link href="/contact#consultation">Request Consultation</Link>
             </Button>
           </motion.div>
         </motion.div>

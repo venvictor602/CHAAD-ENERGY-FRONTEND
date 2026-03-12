@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -140,7 +141,7 @@ export function RecentWorkSection() {
           transition={{ duration: 0.4 }}
         >
           <Button variant="default" size="default" asChild>
-            <a href="/projects">View all</a>
+            <Link href="/projects">View all</Link>
           </Button>
         </motion.div>
       </div>
