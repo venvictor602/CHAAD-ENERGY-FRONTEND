@@ -45,7 +45,7 @@ export function RecentWorkSection() {
     getProjects(1)
       .then((res) => {
         const list = res.data?.results ?? [];
-        setProjects(list.map(projectToCard));
+        setProjects(list.slice(0, 5).map(projectToCard));
       })
       .catch(() => setError("Unable to load projects."))
       .finally(() => setLoading(false));

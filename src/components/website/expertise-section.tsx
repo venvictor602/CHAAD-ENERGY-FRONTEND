@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 import { SkeletonCardService } from "@/components/ui/skeleton";
-
+import { Button } from "@/components/ui/button";
 import { ServiceCard } from "./service-card";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
@@ -54,7 +55,7 @@ export function ExpertiseSection() {
       .then((res) => {
         const list = res.data?.results ?? [];
         const active = list.filter((s) => s.is_active !== false);
-        setServices(active.map(serviceToCard));
+        setServices(active.slice(0, 3).map(serviceToCard));
       })
       .catch(() => setServices([]))
       .finally(() => setLoading(false));
@@ -101,26 +102,41 @@ export function ExpertiseSection() {
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.href + index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={itemVariants}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <ServiceCard
-                  imageSrc={service.imageSrc}
-                  imageAlt={service.imageAlt}
-                  title={service.title}
-                  description={service.description}
-                  href={service.href}
-                />
-              </motion.div>
-            ))}
-          </div>
+          <>
+            <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.href + index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                  variants={itemVariants}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                >
+                  <ServiceCard
+                    imageSrc={service.imageSrc}
+                    imageAlt={service.imageAlt}
+                    title={service.title}
+                    description={service.description}
+                    href={service.href}
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              className="flex justify-center mt-10"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={itemVariants}
+              transition={{ duration: 0.4 }}
+            >
+              <Button variant="default" size="default" asChild>
+                <Link href="/services">View all services</Link>
+              </Button>
+            </motion.div>
+          </>
         )}
       </div>
     </section>
