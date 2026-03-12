@@ -8,30 +8,32 @@
  * Deletes each file from public/assets/CHAAD_ENERGY after a successful upload.
  */
 
-require("dotenv").config({ path: ".env.local" });
-const path = require("path");
-const fs = require("fs");
-const cloudinary = require("cloudinary").v2;
-
-const ASSETS_DIR = path.join(
-  __dirname,
-  "..",
-  "public",
-  "assets",
-  "CHAAD_ENERGY",
-);
-const OUTPUT_FILE = path.join(
-  __dirname,
-  "..",
-  "src",
-  "lib",
-  "cloudinary-assets.json",
-);
+const IMAGE_EXT = /\.(jpg|jpeg|png|gif|webp|heic|heif)$/i;
 const FOLDER = "chaad-energy";
 
-const IMAGE_EXT = /\.(jpg|jpeg|png|gif|webp|heic|heif)$/i;
-
 async function main() {
+  const { default: dotenv } = await import("dotenv");
+  dotenv.config({ path: ".env.local" });
+
+  const path = (await import("node:path")).default;
+  const fs = (await import("node:fs")).default;
+  const { v2: cloudinary } = await import("cloudinary");
+
+  const ASSETS_DIR = path.join(
+    __dirname,
+    "..",
+    "public",
+    "assets",
+    "CHAAD_ENERGY",
+  );
+  const OUTPUT_FILE = path.join(
+    __dirname,
+    "..",
+    "src",
+    "lib",
+    "cloudinary-assets.json",
+  );
+
   const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } =
     process.env;
   if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_API_KEY || !CLOUDINARY_API_SECRET) {
