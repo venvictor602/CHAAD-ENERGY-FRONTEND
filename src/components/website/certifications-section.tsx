@@ -63,7 +63,7 @@ export function CertificationsSection() {
 
           <div className="absolute inset-0 flex items-center justify-center">
             <Image
-              src="/assets/iso.png"
+              src="/assets/iSO.png"
               alt="ISO 9001 certified"
               width={170}
               height={170}
