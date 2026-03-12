@@ -119,7 +119,7 @@ export type BlogPostItem = {
   likes_count: number;
   created_at: string;
   updated_at: string;
-  post_video_link: string;
+  post_video_link: string | null;
 };
 
 export type BlogPostsListResponse = {
@@ -135,6 +135,8 @@ export type BlogCommentItem = {
   email: string;
   content: string;
   created_at: string;
+  parent?: number | null;
+  replies?: BlogCommentItem[];
 };
 
 export type BlogCommentsListResponse = {

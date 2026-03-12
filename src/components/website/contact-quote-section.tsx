@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -16,20 +17,14 @@ const contactSchema = z.object({
   address: z.string().min(1, "Address is required"),
   company_name: z.string().min(1, "Company name is required"),
   subject: z.string().min(1, "Subject is required"),
-  services: z.array(z.number()).min(1, "Select at least one service"),
+  services: z
+    .array(z.number())
+    .min(1, "Select at least one service")
+    .optional(),
   message: z.string().min(1, "Message is required"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
-
-const FALLBACK_SERVICE_OPTIONS = [
-  { value: 0, label: "Structural Engineering" },
-  { value: 1, label: "EPC Services" },
-  { value: 2, label: "Commissioning" },
-  { value: 3, label: "Cathodic Protection" },
-  { value: 4, label: "Tank Services" },
-  { value: 5, label: "Turnkey Solutions" },
-];
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -50,6 +45,7 @@ export function ContactQuoteSection({
 }: {
   imageSrc?: string;
 }) {
+  const router = useRouter();
   const [apiError, setApiError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [servicesLoading, setServicesLoading] = useState(true);
@@ -67,20 +63,14 @@ export function ContactQuoteSection({
         const active = list.filter(
           (s: { is_active?: boolean }) => s.is_active !== false,
         );
-        if (active.length > 0) {
-          setServiceOptions(
-            active.map((s: { id: number; name?: string }) => ({
-              value: s.id,
-              label: s.name?.trim() || `Service ${s.id}`,
-            })),
-          );
-        } else {
-          setServiceOptions(FALLBACK_SERVICE_OPTIONS);
-        }
+        setServiceOptions(
+          active.map((s: { id: number; name?: string }) => ({
+            value: s.id,
+            label: s.name?.trim() || `Service ${s.id}`,
+          })),
+        );
       })
-      .catch(() => {
-        setServiceOptions(FALLBACK_SERVICE_OPTIONS);
-      })
+      .catch(() => setServiceOptions([]))
       .finally(() => setServicesLoading(false));
   }, []);
 
@@ -109,11 +99,24 @@ export function ContactQuoteSection({
   const selectedServiceId =
     servicesValue && servicesValue.length > 0 ? String(servicesValue[0]) : "";
 
+  useEffect(() => {
+    const serviceIdParam = router.query?.service;
+    if (!serviceIdParam || serviceOptions.length === 0) return;
+    const id =
+      typeof serviceIdParam === "string" ? parseInt(serviceIdParam, 10) : NaN;
+    if (isNaN(id)) return;
+    const exists = serviceOptions.some((o) => o.value === id);
+    if (exists) setValue("services", [id]);
+  }, [router.query?.service, serviceOptions, setValue]);
+
   const onSubmit = async (data: ContactFormData) => {
     setApiError(null);
     setSuccessMessage(null);
     try {
-      await submitContact(data);
+      await submitContact({
+        ...data,
+        services: data.services ?? [],
+      });
       setSuccessMessage("Thank you. Your request has been sent successfully.");
       reset();
     } catch (err: unknown) {
@@ -364,7 +367,9 @@ export function ContactQuoteSection({
                         <option value="">
                           {servicesLoading
                             ? "Loading services…"
-                            : "Select a service"}
+                            : serviceOptions.length === 0
+                              ? "No services available"
+                              : "Select a service"}
                         </option>
                         {serviceOptions.map((opt) => (
                           <option key={opt.value} value={opt.value}>

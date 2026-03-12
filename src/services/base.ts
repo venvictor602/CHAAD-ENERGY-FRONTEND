@@ -1,4 +1,5 @@
 import Axios from "@/config/axios";
+import { getCached, buildGetCacheKey } from "@/lib/api-cache";
 
 class BaseService {
   private makeRequest(
@@ -29,13 +30,9 @@ class BaseService {
     params?: Record<string, unknown>,
     config?: Record<string, unknown>,
   ) {
-    return this.makeRequest(
-      "GET",
-      service,
-      endpoint,
-      undefined,
-      params,
-      config,
+    const key = buildGetCacheKey(service, endpoint, params);
+    return getCached(key, () =>
+      this.makeRequest("GET", service, endpoint, undefined, params, config),
     );
   }
 

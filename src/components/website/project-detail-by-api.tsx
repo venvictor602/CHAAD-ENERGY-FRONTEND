@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { ExternalLink, FileText } from "lucide-react";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
@@ -93,11 +94,21 @@ export function ProjectDetailByApi({ id }: { id: number }) {
                 />
               </div>
             )}
-            {project.description && (
+            {project.description?.trim() ? (
               <div className="prose prose-lg text-[#64748B] max-w-none mb-8 whitespace-pre-wrap">
                 {project.description}
               </div>
-            )}
+            ) : !project.subtitle1?.trim() ? (
+              <div className="flex flex-col items-center justify-center gap-4 py-12 text-center min-h-[200px] bg-[#F8F9FA] rounded-xl mb-8">
+                <FileText className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+                <p className="text-[#64748B] font-medium">
+                  No details available yet.
+                </p>
+                <p className="text-sm text-[#94A3B8]">
+                  Check back later for more information.
+                </p>
+              </div>
+            ) : null}
             {project.subtitle1 && (
               <section className="mb-8">
                 <h2 className="text-xl font-bold text-[#333333] mb-2">
@@ -127,6 +138,22 @@ export function ProjectDetailByApi({ id }: { id: number }) {
                 ))}
               </div>
             )}
+
+            <section className="mt-12 py-8 px-6 rounded-xl bg-[#F0F4FF] border border-[#E0E7FF]">
+              <p className="text-lg font-semibold text-[#1A1A1A] mb-2">
+                Interested in a similar project?
+              </p>
+              <p className="text-[#64748B] text-sm mb-4 max-w-xl">
+                Let&apos;s discuss how we can help bring your vision to life.
+              </p>
+              <Link
+                href="/contact#consultation"
+                className="inline-flex items-center gap-2 text-[#485AAC] font-semibold hover:underline"
+              >
+                Get in touch
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </Link>
+            </section>
           </article>
         </div>
       </main>

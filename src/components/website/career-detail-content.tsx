@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Loader2, MapPin, Calendar } from "lucide-react";
+import { Loader2, MapPin, Calendar, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/website/breadcrumb";
 import { getCareer, applyForCareer } from "@/services/careers";
@@ -192,6 +192,21 @@ export function CareerDetailContent({ jobId }: { jobId: number }) {
                 </div>
               </section>
             )}
+            {!job.description &&
+              !job.requirements &&
+              !job.responsibilities &&
+              !job.benefits &&
+              !job.salary_range && (
+                <div className="flex flex-col items-center justify-center gap-4 py-12 text-center min-h-[200px] bg-[#F8F9FA] rounded-xl">
+                  <FileText className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+                  <p className="text-[#64748B] font-medium">
+                    No additional details available yet.
+                  </p>
+                  <p className="text-sm text-[#94A3B8]">
+                    Check back later or apply to learn more.
+                  </p>
+                </div>
+              )}
             {job.requirements && (
               <section>
                 <h2 className="text-lg font-bold text-[#333333] mb-2">

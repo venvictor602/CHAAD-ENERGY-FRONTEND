@@ -87,15 +87,6 @@ const FOOTER_LINKS = [
       { label: "News", href: "/news" },
     ],
   },
-  // {
-  //   title: "Blog",
-  //   links: [
-  //     { label: "Case Studies", href: "#case-studies" },
-  //     { label: "Guides", href: "#guides" },
-  //     { label: "Testimonials", href: "#testimonials" },
-  //     { label: "Support", href: "#support" },
-  //   ],
-  // },
   {
     title: "Legal",
     links: [

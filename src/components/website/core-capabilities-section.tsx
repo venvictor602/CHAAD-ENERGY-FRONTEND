@@ -1,55 +1,14 @@
 "use client";
 
-import type React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Building2, Cog, Shield, Container, Key, Plus } from "lucide-react";
+import { Plus, Loader2, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getServices } from "@/services/services";
+import type { ServiceItem } from "@/types/app/response";
 
-type CapabilityItem = {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-  slug: string;
-};
-
-const CAPABILITIES: CapabilityItem[] = [
-  {
-    title: "EPC Services",
-    description:
-      "Comprehensive Engineering, Procurement, and Construction management. We deliver turnkey infrastructure projects with a single point of responsibility and rigorous quality control.",
-    icon: Building2,
-    slug: "epc-services",
-  },
-  {
-    title: "Commissioning",
-    description:
-      "Systematic verification to ensure all systems and components are designed, installed, tested, and maintained according to the operational requirements of the owner.",
-    icon: Cog,
-    slug: "commissioning",
-  },
-  {
-    title: "Cathodic Protection",
-    description:
-      "Advanced corrosion control engineering for buried or submerged metal structures. Our solutions extend asset life and prevent costly environmental incidents.",
-    icon: Shield,
-    slug: "cathodic-protection",
-  },
-  {
-    title: "Tank Services",
-    description:
-      "Specialized industrial storage solutions including API 653 inspections, structural repairs, floor replacements, and specialized lining systems.",
-    icon: Container,
-    slug: "tank-services",
-  },
-  {
-    title: "Turnkey Solutions",
-    description:
-      "Seamlessly integrated services from front-end engineering design to final hand-off. We handle the complexity so you can focus on your core business operations.",
-    icon: Key,
-    slug: "turnkey-solutions",
-  },
-];
+const DEFAULT_DESCRIPTION = "Comprehensive engineering and technical services.";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -59,6 +18,32 @@ const viewport = { once: true, margin: "-40px" };
 const t = { duration: 0.4 };
 
 export function CoreCapabilitiesSection() {
+  const [services, setServices] = useState<ServiceItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getServices(1)
+      .then((res) => {
+        const d = res?.data;
+        const list = Array.isArray(d)
+          ? d
+          : d &&
+              typeof d === "object" &&
+              "results" in d &&
+              Array.isArray((d as { results: unknown }).results)
+            ? (d as { results: ServiceItem[] }).results
+            : d &&
+                typeof d === "object" &&
+                "data" in d &&
+                Array.isArray((d as { data: unknown }).data)
+              ? (d as { data: ServiceItem[] }).data
+              : [];
+        setServices(list.filter((s) => s?.is_active !== false));
+      })
+      .catch(() => setServices([]))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <section className="bg-white py-16 md:py-24 [font-family:var(--font-inter)]">
       <div className="max-w-[1072px] mx-auto px-6 lg:px-12">
@@ -85,27 +70,40 @@ export function CoreCapabilitiesSection() {
             },
           }}
         >
-          {CAPABILITIES.map((item) => (
-            <Link key={item.title} href={`/services/${item.slug}`}>
-              <motion.article
-                className="w-full sm:max-w-[336px] min-h-0 sm:min-h-[346.5px] rounded-[8px] sm:rounded-[12px] bg-[#485AAC] space-y-4 sm:space-y-[24px] px-5 py-6 sm:p-6 md:p-8 text-white flex flex-col cursor-pointer hover:bg-[#3d4d94] transition-colors"
-                variants={fadeUp}
-                transition={t}
-              >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-[56px] md:h-[56px] rounded-[8px] bg-[#FCEEEC33] flex items-center justify-center shrink-0">
-                  <item.icon className="h-5 w-5 sm:h-5 sm:w-5 text-white" />
-                </div>
-                <div className="space-y-3 sm:space-y-[16px] min-w-0">
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#F1F5F9] leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-[#EDEFF7] leading-[1.6]">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.article>
-            </Link>
-          ))}
+          {loading ? (
+            <div className="col-span-full flex justify-center py-12">
+              <Loader2
+                className="h-10 w-10 animate-spin text-[#485AAC]"
+                aria-hidden
+              />
+            </div>
+          ) : services.length === 0 ? (
+            <div className="col-span-full flex flex-col items-center gap-4 py-12 text-center">
+              <Briefcase className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+              <p className="text-[#64748B] font-medium">
+                No services available yet.
+              </p>
+            </div>
+          ) : (
+            services.map((item) => (
+              <Link key={item.id} href={`/services/${item.id}`}>
+                <article className="w-full sm:max-w-[336px] min-h-0 sm:min-h-[346.5px] rounded-[8px] sm:rounded-[12px] bg-[#485AAC] space-y-4 sm:space-y-[24px] px-5 py-6 sm:p-6 md:p-8 text-white flex flex-col cursor-pointer hover:bg-[#3d4d94] transition-colors">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-[56px] md:h-[56px] rounded-[8px] bg-[#FCEEEC33] flex items-center justify-center shrink-0">
+                    <Briefcase className="h-5 w-5 sm:h-5 sm:w-5 text-white" />
+                  </div>
+                  <div className="space-y-3 sm:space-y-[16px] min-w-0">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#F1F5F9] leading-tight">
+                      {item.name}
+                    </h3>
+                    <p className="text-sm text-[#EDEFF7] leading-[1.6] line-clamp-4">
+                      {item.description?.slice(0, 160) || DEFAULT_DESCRIPTION}
+                      {(item.description?.length ?? 0) > 160 ? "…" : ""}
+                    </p>
+                  </div>
+                </article>
+              </Link>
+            ))
+          )}
 
           <motion.article
             className="w-full sm:max-w-[336px] min-h-0 sm:min-h-[346.5px] rounded-[8px] sm:rounded-[12px] bg-[#EDEFF7] border-2 border-dashed border-[#8490C7] px-5 py-6 sm:p-6 md:p-8 flex flex-col items-center justify-center text-center gap-4 sm:gap-5"

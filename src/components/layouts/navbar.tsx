@@ -81,16 +81,13 @@ export function Navbar({
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const isDark = theme === "dark" && !solidBackground;
-  // Text is white when the bar is transparent (not yet scrolled, no solid bg)
   const showLightText = !solidBackground && !scrolled;
 
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-100 flex items-center justify-between px-6 lg:px-12 py-4 transition-all duration-300",
-        // Solid background pages: always white
         solidBackground && "bg-white/95 backdrop-blur-sm shadow-sm",
-        // Transparent-to-solid scroll behaviour for all other pages
         !solidBackground && !scrolled && !isDark && "bg-transparent",
         !solidBackground &&
           !scrolled &&
@@ -113,7 +110,9 @@ export function Navbar({
 
       <ul className="hidden md:flex items-center gap-8">
         {NAV_LINKS.map((link) => {
-          const isActive = router.pathname === link.href;
+          const isActive =
+            router.asPath === link.href ||
+            (link.href !== "/" && router.asPath.startsWith(link.href + "/"));
           return (
             <li key={link.href}>
               <Link
@@ -195,7 +194,10 @@ export function Navbar({
 
                 <ul className="flex flex-col gap-6">
                   {NAV_LINKS.map((link) => {
-                    const isActive = router.pathname === link.href;
+                    const isActive =
+                      router.asPath === link.href ||
+                      (link.href !== "/" &&
+                        router.asPath.startsWith(link.href + "/"));
                     return (
                       <li key={link.href}>
                         <Link

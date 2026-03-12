@@ -82,7 +82,6 @@ export function CookieConsentDrawer() {
             hidden: { pointerEvents: "none" },
           }}
         >
-          {/* Backdrop */}
           <motion.div
             className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
             variants={{
@@ -97,7 +96,6 @@ export function CookieConsentDrawer() {
             aria-hidden
           />
 
-          {/* Full-width drawer panel */}
           <motion.div
             className="relative w-full px-4 pb-6 pt-2"
             variants={{
@@ -163,7 +161,6 @@ export function CookieConsentDrawer() {
         </motion.div>
       )}
 
-      {/* Cookie Preferences modal */}
       <AnimatePresence>
         {settingsOpen && (
           <motion.div
@@ -218,7 +215,6 @@ export function CookieConsentDrawer() {
                   </Link>
                 </p>
 
-                {/* Necessary Cookies */}
                 <div className="mb-6">
                   <div className="flex items-center justify-between gap-3 mb-2">
                     <h3 className="text-base font-semibold text-white">
@@ -244,7 +240,6 @@ export function CookieConsentDrawer() {
                   </div>
                 </div>
 
-                {/* Functional Cookies */}
                 <div className="mb-8">
                   <div className="flex items-center justify-between gap-3 mb-2">
                     <h3 className="text-base font-semibold text-white">

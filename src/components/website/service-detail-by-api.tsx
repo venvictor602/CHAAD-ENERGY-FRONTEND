@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { ExternalLink, FileText } from "lucide-react";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Breadcrumb } from "@/components/website/breadcrumb";
-import { getServiceById } from "@/services/services";
+import { getService } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
 
 import { cloudinaryImages } from "@/lib/cloudinary-images";
@@ -20,14 +21,8 @@ export function ServiceDetailByApi({ id }: { id: number }) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    getServiceById(id)
-      .then((item) => {
-        if (item) {
-          setService(item);
-        } else {
-          setError(true);
-        }
-      })
+    getService(id)
+      .then((res) => setService(res.data))
       .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, [id]);
@@ -100,9 +95,19 @@ export function ServiceDetailByApi({ id }: { id: number }) {
               </div>
             )}
 
-            {service.description && (
+            {service.description?.trim() ? (
               <div className="prose prose-lg max-w-none text-[#333333] leading-relaxed mb-10 whitespace-pre-wrap">
                 {service.description}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center gap-4 py-12 text-center min-h-[200px] bg-[#F8F9FA] rounded-xl mb-10">
+                <FileText className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+                <p className="text-[#64748B] font-medium">
+                  No description available yet.
+                </p>
+                <p className="text-sm text-[#94A3B8]">
+                  Check back later for more details.
+                </p>
               </div>
             )}
 
@@ -161,6 +166,22 @@ export function ServiceDetailByApi({ id }: { id: number }) {
                 </ul>
               </section>
             )}
+
+            <section className="mt-12 py-8 px-6 rounded-xl bg-[#F0F4FF] border border-[#E0E7FF]">
+              <p className="text-lg font-semibold text-[#1A1A1A] mb-2">
+                Interested in {service.name}?
+              </p>
+              <p className="text-[#64748B] text-sm mb-4 max-w-xl">
+                Reach out and we&apos;ll get back to you.
+              </p>
+              <Link
+                href={`/contact?service=${id}#consultation`}
+                className="inline-flex items-center gap-2 text-[#485AAC] font-semibold hover:underline"
+              >
+                Get a quote
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </Link>
+            </section>
           </article>
         </div>
       </main>

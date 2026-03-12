@@ -2,39 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { Loader2, Briefcase } from "lucide-react";
 
 import { ServiceCard } from "./service-card";
 import { getServices } from "@/services/services";
 import type { ServiceItem } from "@/types/app/response";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
-
-const FALLBACK_SERVICES = [
-  {
-    imageSrc: cloudinaryImages.expertise[0],
-    imageAlt: "EPC services - engineering and construction",
-    title: "EPC Services",
-    description:
-      "Complete Engineering, Procurement, and Construction management delivered on schedule and within budget.",
-    href: "/services/epc-services",
-  },
-  {
-    imageSrc: cloudinaryImages.expertise[1],
-    imageAlt: "Commissioning and system testing",
-    title: "Commissioning",
-    description:
-      "Ensuring operational readiness and performance optimization through rigorous testing and quality assurance.",
-    href: "/services/commissioning",
-  },
-  {
-    imageSrc: cloudinaryImages.expertise[2],
-    imageAlt: "Cathodic protection systems",
-    title: "Cathodic Protection",
-    description:
-      "Advanced corrosion control solutions to extend the lifespan of critical assets and infrastructure.",
-    href: "/services/cathodic-protection",
-  },
-];
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -79,17 +52,11 @@ export function ExpertiseSection() {
       .then((res) => {
         const list = res.data?.results ?? [];
         const active = list.filter((s) => s.is_active !== false);
-        if (active.length > 0) {
-          setServices(active.map(serviceToCard));
-        } else {
-          setServices(FALLBACK_SERVICES);
-        }
+        setServices(active.map(serviceToCard));
       })
-      .catch(() => setServices(FALLBACK_SERVICES))
+      .catch(() => setServices([]))
       .finally(() => setLoading(false));
   }, []);
-
-  const items = services.length > 0 ? services : FALLBACK_SERVICES;
 
   return (
     <section id="services" className="bg-white py-16 md:py-24 lg:py-32">
@@ -119,9 +86,19 @@ export function ExpertiseSection() {
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10 min-h-[280px] place-items-center">
             <Loader2 className="w-8 h-8 animate-spin text-[#485AAC]" />
           </div>
+        ) : services.length === 0 ? (
+          <div className="flex flex-col items-center justify-center gap-4 min-h-[280px] text-center py-12">
+            <Briefcase className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+            <p className="text-[#64748B] font-medium">
+              No services available yet.
+            </p>
+            <p className="text-sm text-[#94A3B8]">
+              Check back later for our offerings.
+            </p>
+          </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-            {items.map((service, index) => (
+            {services.map((service, index) => (
               <motion.div
                 key={service.href + index}
                 initial="hidden"

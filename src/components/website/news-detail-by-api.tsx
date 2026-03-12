@@ -6,7 +6,14 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Heart, MessageCircle } from "lucide-react";
+import {
+  Loader2,
+  Heart,
+  MessageCircle,
+  Eye,
+  ExternalLink,
+  FileText,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
@@ -51,9 +58,10 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<CommentFormData>({
     resolver: zodResolver(commentSchema),
+    mode: "onChange",
   });
 
   useEffect(() => {
@@ -129,13 +137,15 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
     );
   }
 
-  const contentParagraphs = [
+  const paragraphs = [
     post.content_paragraph1,
     post.content_paragraph2,
     post.content_paragraph3,
-  ].filter(Boolean);
-  const images = [post.image, post.image2, post.image3].filter(Boolean);
-  const featuredImage = post.image?.trim() || cloudinaryImages.default;
+  ];
+  const images = [post.image, post.image2, post.image3];
+  const hasContent =
+    paragraphs.some((p) => (p ?? "").trim()) ||
+    images.some((img) => (img ?? "").trim());
 
   return (
     <>
@@ -163,44 +173,74 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
             {post.author && <p className="text-[#64748B]">By {post.author}</p>}
           </header>
 
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-8 bg-[#E5E7EB]">
-            <Image
-              src={featuredImage}
-              alt={post.title}
-              fill
-              className="object-cover"
-              sizes="100vw"
-              unoptimized
-            />
-          </div>
-
-          <div className="prose prose-lg max-w-none text-[#333333] space-y-6">
-            {contentParagraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-
-          {images.length > 1 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-              {images.slice(1, 3).map((src, i) => (
-                <div
-                  key={i}
-                  className="relative aspect-video rounded-lg overflow-hidden bg-[#E5E7EB]"
-                >
-                  <Image
-                    src={src}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
-                    unoptimized
-                  />
+          <div className="prose prose-lg max-w-none text-[#333333] space-y-10 mb-10">
+            {hasContent ? (
+              paragraphs.map((p, i) => (
+                <div key={i} className="space-y-6">
+                  {p?.trim() && <p className="leading-relaxed">{p}</p>}
+                  {images[i]?.trim() && (
+                    <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#E5E7EB] not-prose">
+                      <Image
+                        src={images[i]?.trim() || ""}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="100vw"
+                        unoptimized
+                      />
+                    </div>
+                  )}
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center gap-4 py-12 text-center min-h-[200px] bg-[#F8F9FA] rounded-xl">
+                <FileText className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+                <p className="text-[#64748B] font-medium">
+                  No content available yet.
+                </p>
+                <p className="text-sm text-[#94A3B8]">
+                  Check back later for updates.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <section className="mb-10 py-8 px-6 rounded-xl bg-[#F0F4FF] border border-[#E0E7FF]">
+            <p className="text-lg font-semibold text-[#1A1A1A] mb-2">
+              Have questions? Get in touch
+            </p>
+            <p className="text-[#64748B] text-sm mb-4 max-w-xl">
+              Want to learn more or discuss your project? Our team is here to
+              help.
+            </p>
+            <Link
+              href="/contact#consultation"
+              className="inline-flex items-center gap-2 text-[#485AAC] font-semibold hover:underline"
+            >
+              Contact us
+              <ExternalLink className="h-4 w-4" aria-hidden />
+            </Link>
+          </section>
+
+          {post.post_video_link && post.post_video_link.trim() && (
+            <div className="mb-8">
+              <a
+                href={post.post_video_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#485AAC] text-white font-medium hover:bg-[#3d4d94] transition-colors"
+              >
+                <ExternalLink className="h-4 w-4" aria-hidden />
+                Watch video
+              </a>
             </div>
           )}
 
-          <div className="flex flex-wrap items-center gap-4 mt-10 pt-8 border-t border-[#E8E8E8]">
+          <div className="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-[#E8E8E8]">
+            <span className="inline-flex items-center gap-2 text-[#64748B]">
+              <Eye className="h-5 w-5" aria-hidden />
+              {post.views ?? 0} view{(post.views ?? 0) !== 1 ? "s" : ""}
+            </span>
             <button
               type="button"
               onClick={onLike}
@@ -225,21 +265,32 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
             ) : (
               <ul className="space-y-4 mb-10">
                 {comments.length === 0 ? (
-                  <li className="text-[#64748B]">
-                    No comments yet. Be the first to comment.
+                  <li className="flex flex-col items-center justify-center gap-4 py-12 text-center bg-[#F8F9FA] rounded-xl">
+                    <MessageCircle
+                      className="h-14 w-14 text-[#94A3B8]"
+                      aria-hidden
+                    />
+                    <p className="text-[#64748B] font-medium">
+                      No comments yet.
+                    </p>
+                    <p className="text-sm text-[#94A3B8]">
+                      Be the first to comment.
+                    </p>
                   </li>
                 ) : (
-                  comments.map((c) => (
-                    <li key={c.id} className="bg-[#F8F9FA] rounded-lg p-4">
-                      <p className="font-semibold text-[#333333]">{c.name}</p>
-                      <p className="text-sm text-[#64748B]">
-                        {formatDate(c.created_at)}
-                      </p>
-                      <p className="mt-2 text-[#555] whitespace-pre-wrap">
-                        {c.content}
-                      </p>
-                    </li>
-                  ))
+                  comments
+                    .filter((c) => !c.parent)
+                    .map((c) => (
+                      <li key={c.id} className="bg-[#F8F9FA] rounded-lg p-4">
+                        <p className="font-semibold text-[#333333]">{c.name}</p>
+                        <p className="text-sm text-[#64748B]">
+                          {formatDate(c.created_at)}
+                        </p>
+                        <p className="mt-2 text-[#555] whitespace-pre-wrap">
+                          {c.content}
+                        </p>
+                      </li>
+                    ))
                 )}
               </ul>
             )}
@@ -310,7 +361,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
                   </p>
                 )}
               </div>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={!isValid || isSubmitting}>
                 {isSubmitting ? "Submitting…" : "Post comment"}
               </Button>
             </form>

@@ -7,11 +7,11 @@ export function getServices(page = 1): Promise<{ data: ServicesListResponse }> {
   }>;
 }
 
-export async function getServiceById(
-  id: number,
-): Promise<ServiceItem | undefined> {
-  const res = await (apiService.get("base", "/services/") as Promise<{
-    data: ServicesListResponse;
-  }>);
-  return res.data?.results?.find((s) => s.id === id);
+/** Fetches services list and returns the service matching the given id */
+export async function getService(id: number): Promise<{ data: ServiceItem }> {
+  const res = await getServices(1);
+  const list = res.data?.results ?? [];
+  const item = list.find((s) => s.id === id);
+  if (!item) throw new Error("Service not found");
+  return { data: item };
 }

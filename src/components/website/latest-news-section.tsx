@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, Newspaper } from "lucide-react";
 import { getPosts } from "@/services/blog";
 import type { BlogPostItem } from "@/types/app/response";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
+import { slugFromTitle } from "@/lib/utils";
 
 export type NewsItem = {
   id: string;
@@ -18,99 +19,6 @@ export type NewsItem = {
   description: string;
   href: string;
 };
-
-const NEWS_ITEMS: NewsItem[] = [
-  {
-    id: "1",
-    imageSrc: cloudinaryImages.news[0],
-    imageAlt: "Technology and innovation",
-    date: "Oct 12, 2024",
-    title: "Future of AI in 2024: Beyond the Hype",
-    description:
-      "Exploring the upcoming trends in artificial intelligence, from generative models to autonomous agent systems and their ethical implications.",
-    href: "/news/future-of-ai-2024",
-  },
-  {
-    id: "2",
-    imageSrc: cloudinaryImages.news[1],
-    imageAlt: "Energy sector",
-    date: "Oct 8, 2024",
-    title: "Renewable Energy Integration in Industrial Grids",
-    description:
-      "How leading operators are balancing grid stability with higher shares of wind and solar while maintaining reliability.",
-    href: "/news/renewable-energy-integration",
-  },
-  {
-    id: "3",
-    imageSrc: cloudinaryImages.news[2],
-    imageAlt: "Safety and compliance",
-    date: "Oct 5, 2024",
-    title: "Safety Standards Update: What’s Changing in 2025",
-    description:
-      "An overview of revised safety and environmental regulations affecting oil, gas, and construction projects.",
-    href: "/news/safety-standards-2025",
-  },
-  {
-    id: "4",
-    imageSrc: cloudinaryImages.news[3],
-    imageAlt: "Infrastructure",
-    date: "Sep 28, 2024",
-    title: "Cathodic Protection Best Practices for Aging Assets",
-    description:
-      "Extending the life of buried and submerged infrastructure through modern CP design and monitoring.",
-    href: "/news/cathodic-protection-best-practices",
-  },
-  {
-    id: "5",
-    imageSrc: cloudinaryImages.news[4],
-    imageAlt: "Project delivery",
-    date: "Sep 22, 2024",
-    title: "EPC Project Delivery in a Volatile Supply Chain",
-    description:
-      "Strategies for managing cost and schedule when materials and equipment lead times remain unpredictable.",
-    href: "/news/epc-supply-chain",
-  },
-  {
-    id: "6",
-    imageSrc: cloudinaryImages.news[5],
-    imageAlt: "Industry insights",
-    date: "Sep 15, 2024",
-    title: "Industry Insights: Decarbonization and the Role of Gas",
-    description:
-      "How natural gas and hydrogen are shaping the transition in power and industrial sectors.",
-    href: "/news/decarbonization-gas",
-  },
-  {
-    id: "7",
-    imageSrc: cloudinaryImages.news[6],
-    imageAlt: "Commissioning",
-    date: "Sep 10, 2024",
-    title: "Commissioning Excellence on Mega Projects",
-    description:
-      "Lessons from large-scale commissioning programs and the importance of early planning.",
-    href: "/news/commissioning-mega-projects",
-  },
-  {
-    id: "8",
-    imageSrc: cloudinaryImages.news[7],
-    imageAlt: "Tank services",
-    date: "Sep 3, 2024",
-    title: "API 653 Inspections: When and How Often",
-    description:
-      "A practical guide to tank inspection intervals and what to expect during an API 653 assessment.",
-    href: "/news/api-653-inspections",
-  },
-  {
-    id: "9",
-    imageSrc: cloudinaryImages.news[8],
-    imageAlt: "Company update",
-    date: "Aug 28, 2024",
-    title: "CHAAD Energy Expands Services in West Africa",
-    description:
-      "Our latest office and project footprint updates to better serve clients across the region.",
-    href: "/news/chaad-expands-west-africa",
-  },
-];
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -142,7 +50,7 @@ function blogPostToNewsItem(post: BlogPostItem): NewsItem {
     date: dateStr,
     title: post.title,
     description: desc + (desc.length >= 160 ? "…" : ""),
-    href: `/news/${post.slug || post.id}`,
+    href: `/news/${post.id}-${slugFromTitle(post.slug || post.title)}`,
   };
 }
 
@@ -186,7 +94,7 @@ function NewsCard({ item }: { item: NewsItem }) {
 export function LatestNewsSection({
   items: itemsProp,
 }: { items?: NewsItem[] } = {}) {
-  const [items, setItems] = useState<NewsItem[]>(itemsProp ?? NEWS_ITEMS);
+  const [items, setItems] = useState<NewsItem[]>(itemsProp ?? []);
   const [loading, setLoading] = useState(!itemsProp);
 
   useEffect(() => {
@@ -194,13 +102,13 @@ export function LatestNewsSection({
     getPosts(1)
       .then((res) => {
         const list = res.data?.results ?? [];
-        if (list.length > 0) setItems(list.map(blogPostToNewsItem));
+        setItems(list.map(blogPostToNewsItem));
       })
-      .catch(() => {})
+      .catch(() => setItems([]))
       .finally(() => setLoading(false));
   }, [itemsProp]);
 
-  if (loading && items.length === 0) {
+  if (loading) {
     return (
       <section className="py-16 md:py-24 [font-family:var(--font-inter)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center justify-center gap-4 min-h-[280px]">
@@ -209,6 +117,40 @@ export function LatestNewsSection({
             aria-hidden
           />
           <p className="text-sm text-[#777777]">Loading news…</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <section className="py-16 md:py-24 [font-family:var(--font-inter)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <motion.h2
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-4"
+            initial="initial"
+            whileInView="visible"
+            viewport={viewport}
+            variants={fadeUp}
+            transition={t}
+          >
+            Latest News
+          </motion.h2>
+          <motion.p
+            className="text-sm md:text-lg text-[#777777] font-normal leading-relaxed max-w-2xl mb-12"
+            variants={fadeUp}
+            transition={t}
+          >
+            Stay updated with our latest company news, breakthrough technology
+            trends, and deep industry insights.
+          </motion.p>
+          <div className="flex flex-col items-center justify-center gap-4 min-h-[240px] text-center py-12">
+            <Newspaper className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+            <p className="text-[#64748B] font-medium">No news yet.</p>
+            <p className="text-sm text-[#94A3B8]">
+              Check back later for updates.
+            </p>
+          </div>
         </div>
       </section>
     );

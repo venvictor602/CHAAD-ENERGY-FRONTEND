@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { cloudinaryImages } from "@/lib/cloudinary-images";
+import { ArrowRight, FolderOpen } from "lucide-react";
 
 export type CaseStudyItem = {
   id: string;
@@ -15,71 +14,6 @@ export type CaseStudyItem = {
   description: string;
   href: string;
 };
-
-const [img1, img2, img3, img4, img5, img6] = cloudinaryImages.caseStudy;
-
-const CASE_STUDIES: CaseStudyItem[] = [
-  {
-    id: "1",
-    imageSrc: img1,
-    imageAlt: "Offshore oil platform",
-    category: "OIL & GAS",
-    title: "North Sea Offshore Platform Integrity & Life Extension",
-    description:
-      "Comprehensive structural assessment and cathodic protection upgrades for a major operator, extending asset life by 15 years.",
-    href: "/projects/north-sea-platform",
-  },
-  {
-    id: "2",
-    imageSrc: img2,
-    imageAlt: "Wind turbines at sunset",
-    category: "RENEWABLES",
-    title: "Grid Integration & Substation Works for 200MW Wind Farm",
-    description:
-      "Full EPC scope for grid connection and balance-of-plant works, enabling stable renewable power delivery to the national grid.",
-    href: "/projects/wind-farm-grid",
-  },
-  {
-    id: "3",
-    imageSrc: img3,
-    imageAlt: "LNG terminal piping and tanks",
-    category: "INFRASTRUCTURE",
-    title: "LNG Terminal Tank Inspections & Coating Remediation",
-    description:
-      "API 653 inspections and specialized lining systems for cryogenic storage tanks at a regional LNG import facility.",
-    href: "/projects/lng-terminal",
-  },
-  {
-    id: "4",
-    imageSrc: img4,
-    imageAlt: "Solar panels at industrial site",
-    category: "RENEWABLES",
-    title: "Utility-Scale Solar EPC & Commissioning",
-    description:
-      "Turnkey design, procurement, and construction of a 50MW solar PV plant with full commissioning and handover.",
-    href: "/projects/solar-epc",
-  },
-  {
-    id: "5",
-    imageSrc: img5,
-    imageAlt: "Underwater ROV",
-    category: "OIL & GAS",
-    title: "Subsea Pipeline CP Surveys & ROV Support",
-    description:
-      "Cathodic protection surveys and ROV-based inspection support for subsea pipelines in West African waters.",
-    href: "/projects/subsea-cp",
-  },
-  {
-    id: "6",
-    imageSrc: img6,
-    imageAlt: "Industrial refinery",
-    category: "INFRASTRUCTURE",
-    title: "Major Refinery Modernization & Turnaround Support",
-    description:
-      "Large-scale modernization of a regional fuel storage facility with integrated CP and commissioning services.",
-    href: "/projects/refinery-modernization",
-  },
-];
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -130,29 +64,40 @@ function CaseStudyCard({ item }: { item: CaseStudyItem }) {
 }
 
 export function CaseStudyGrid({
-  items = CASE_STUDIES,
+  items = [],
 }: {
   items?: CaseStudyItem[];
 } = {}) {
+  const list = items ?? [];
   return (
     <section className="py-16 md:py-24 [font-family:var(--font-inter)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-          initial="initial"
-          whileInView="visible"
-          viewport={viewport}
-          variants={{
-            initial: {},
-            visible: {
-              transition: { staggerChildren: 0.08, delayChildren: 0.05 },
-            },
-          }}
-        >
-          {items.map((item) => (
-            <CaseStudyCard key={item.id} item={item} />
-          ))}
-        </motion.div>
+        {list.length === 0 ? (
+          <div className="flex flex-col items-center justify-center gap-4 min-h-[280px] text-center py-12">
+            <FolderOpen className="h-14 w-14 text-[#94A3B8]" aria-hidden />
+            <p className="text-[#64748B] font-medium">No projects yet.</p>
+            <p className="text-sm text-[#94A3B8]">
+              Check back later for our work.
+            </p>
+          </div>
+        ) : (
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            initial="initial"
+            whileInView="visible"
+            viewport={viewport}
+            variants={{
+              initial: {},
+              visible: {
+                transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+              },
+            }}
+          >
+            {list.map((item) => (
+              <CaseStudyCard key={item.id} item={item} />
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -21,4 +21,5 @@ export type BlogCommentRequest = {
   name: string;
   email: string;
   content: string;
+  parent?: number | null;
 };
