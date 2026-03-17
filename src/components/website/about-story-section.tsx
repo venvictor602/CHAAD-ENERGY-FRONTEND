@@ -51,11 +51,13 @@ export function AboutStorySection() {
                 variants={fadeUp}
                 transition={transition}
               >
-                CHAAD Engineering and Technical Services Limited (CHAAD E&T) is
-                an indigenous Nigerian EPC (Engineering, Procurement, and
-                Construction) company, incorporated in 2018 (RC 148924). We are
-                ISO 9001-certified and built on a foundation of expertise in Oil
-                &amp; Gas, Energy, and Construction.
+                CHAAD Energy Limited is an indigenous Nigerian Oil and Energy
+                Services Company with the Registration Number RC 7025469.
+                Focused on delivering excellence and reliable technical
+                solutions across the energy value chain. Operating within the
+                broader oil &amp; gas, energy and construction sectors, the
+                company specializes in providing end-to-end project support,
+                from concept design through execution and maintenance.
               </motion.p>
             </motion.div>
             <motion.div
@@ -130,8 +132,8 @@ export function AboutStorySection() {
                   To create superior value for all our stakeholders and
                   commercial value to our clients by providing quality and
                   cost-effective solutions, with emphasis on strict adherence to
-                  safety and environmental impact of all our operations and
-                  services
+                  the safety and environmental guidelines of all our operations
+                  and services.
                 </motion.p>
               </div>
               <div className=" space-y-[27px]">
@@ -148,8 +150,8 @@ export function AboutStorySection() {
                   transition={transition}
                 >
                   To become a world-class leader in service delivery to the Oil
-                  &amp; Gas, Manufacturing and FMCG industries, while improving
-                  the quality of life and sustaining economic growth.
+                  &amp; Gas, Energy, and Construction industries, while
+                  improving the quality of life and sustaining economic growth.
                 </motion.p>
               </div>
             </motion.div>

@@ -159,19 +159,35 @@ export function ContactQuoteSection({
               Office Locations
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-4 items-start">
-              <div className="flex gap-4 col-span-2">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-start">
+              <div className="flex gap-4">
                 <div
                   className="w-1 bg-[#485AAC] rounded-full shrink-0"
                   aria-hidden
                 />
                 <div className="space-y-1">
                   <p className="text-sm md:text-base font-bold text-[#333333]">
-                    Port Harcourt
+                    Head Office
                   </p>
-                  <p className="text-xs sm:text-sm text-[#94A3B8] font-normal leading-relaxed max-w-md">
-                    No 3 Sweet Apple Close, Km 17, PHC/Aba Expressway, Off
-                    Boskel Road, Port Harcourt, Rivers 500102, Nigeria
+                  <p className="text-xs sm:text-sm text-[#94A3B8] font-normal leading-relaxed">
+                    #7, Sweet Apple Close KM 17 PHC/ABA Expressway, Off Boskel
+                    Road, Port Harcourt, Obio/Akpor L.G.A River State.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div
+                  className="w-1 bg-[#485AAC] rounded-full shrink-0"
+                  aria-hidden
+                />
+                <div className="space-y-1">
+                  <p className="text-sm md:text-base font-bold text-[#333333]">
+                    Branch Office
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#94A3B8] font-normal leading-relaxed">
+                    #16, Rocahs Okorocha Street, Beaula Beach Estate, Opp Mbaise
+                    Park, Egbu Road, Owerri North L.G.A Imo State.
                   </p>
                 </div>
               </div>
@@ -186,9 +202,9 @@ export function ContactQuoteSection({
                     Call Us
                   </p>
                   <p className="text-xs sm:text-sm text-[#94A3B8] font-normal leading-relaxed">
-                    +1 (555) 234-5678
+                    +234 908 659 5997
                     <br />
-                    Mon–Fri, 8am–6pm
+                    Mon–Fri, 8:00 AM – 5:00 PM
                   </p>
                 </div>
               </div>
@@ -202,10 +218,10 @@ export function ContactQuoteSection({
                   <p className="text-sm md:text-base font-bold text-[#333333]">
                     Email Us
                   </p>
-                  <p className="text-xs sm:text-sm text-[#94A3B8] font-normal leading-relaxed">
-                    hello@chaadng.com
+                  <p className="text-xs sm:text-sm text-[#94A3B8] font-normal leading-relaxed break-all">
+                    info@chaadenergy.com
                     <br />
-                    Response within 24h
+                    www.chaadenergy.com
                   </p>
                 </div>
               </div>

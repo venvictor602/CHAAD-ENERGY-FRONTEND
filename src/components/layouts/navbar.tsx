@@ -86,28 +86,16 @@ export function Navbar({
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-100 flex items-center justify-between px-6 lg:px-12 py-4 transition-all duration-300",
-        solidBackground && "bg-white/95 backdrop-blur-sm shadow-sm",
-        !solidBackground && !scrolled && !isDark && "bg-transparent",
-        !solidBackground &&
-          !scrolled &&
-          isDark &&
-          "bg-black/40 backdrop-blur-sm",
-        !solidBackground &&
-          scrolled &&
-          "bg-white/95 backdrop-blur-sm shadow-sm",
+        "fixed top-0 left-0 right-0 z-100 flex items-center justify-between px-6 lg:px-12 py-4 bg-white shadow-sm transition-all duration-300",
         className,
       )}
     >
-      <Link
-        href="/"
-        className="flex items-center gap-2 shrink-0 rounded-full bg-white p-2 md:p-3"
-      >
+      <Link href="/" className="flex items-center gap-2 shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/Logo.svg"
           alt="CHAAD Energy"
-          className="h-10 w-10 md:h-20 md:w-20 object-contain"
+          className="h-12 w-12 md:h-16 md:w-16 object-contain"
         />
       </Link>
 
@@ -122,15 +110,8 @@ export function Navbar({
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors pb-1 border-b-2 border-transparent",
-                  isActive && "border-[#485AAC]",
-                  isActive && showLightText && "text-white",
-                  isActive && !showLightText && "text-[#485AAC]",
-                  !isActive &&
-                    showLightText &&
-                    "text-white/95 hover:text-white",
-                  !isActive &&
-                    !showLightText &&
-                    "text-[#28325F] hover:text-[#1A1A1A]",
+                  isActive && "border-[#485AAC] text-[#485AAC]",
+                  !isActive && "text-[#28325F] hover:text-[#1A1A1A]",
                 )}
               >
                 {link.label}
@@ -141,19 +122,19 @@ export function Navbar({
       </ul>
 
       <div className="hidden md:block">
-        <Button variant="default" size="default" asChild>
+        <Button
+          variant="default"
+          size="default"
+          className="bg-[#DE5943] hover:bg-[#c44d39] text-white"
+          asChild
+        >
           <Link href="/contact">Request Consultation</Link>
         </Button>
       </div>
 
       <button
         type="button"
-        className={cn(
-          "md:hidden p-2 transition-colors rounded-lg",
-          showLightText
-            ? "text-white hover:text-white/80"
-            : "text-[#28325F] hover:text-[#1A1A1A]",
-        )}
+        className="md:hidden p-2 transition-colors rounded-lg text-[#28325F] hover:text-[#1A1A1A]"
         onClick={() => setMobileMenuOpen(true)}
         aria-label="Open menu"
       >

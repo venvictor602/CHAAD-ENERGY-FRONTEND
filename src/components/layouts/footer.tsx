@@ -100,9 +100,12 @@ const FOOTER_LINKS = [
   {
     title: "Socials",
     links: [
-      { label: "Twitter", href: "#twitter" },
+      { label: "Twitter", href: "https://x.com/chaadenergy?s=21" },
       { label: "Facebook", href: "#facebook" },
-      { label: "Instagram", href: "#instagram" },
+      {
+        label: "Instagram",
+        href: "https://www.instagram.com/chaadenergylimited?igsh=MTBmNGFmd3A3eTNhcA%3D%3D&utm_source=qr",
+      },
       { label: "YouTube", href: "#youtube" },
       { label: "Get in touch", href: "#get-in-touch" },
     ],
@@ -110,7 +113,7 @@ const FOOTER_LINKS = [
   {
     title: "Contact",
     links: [
-      { label: "1-800-BUILD-01", href: "tel:18002845301" },
+      { label: "+234 908 659 5997", href: "tel:+2349086595997" },
       { label: "Schedule a call", href: "/contact" },
       { label: "Request a quote", href: "/contact" },
       { label: "Privacy Policy", href: "/privacy" },
@@ -301,14 +304,14 @@ export function Footer() {
               <Facebook className="h-4 w-4" />
             </Link>
             <Link
-              href="#instagram"
+              href="https://www.instagram.com/chaadenergylimited?igsh=MTBmNGFmd3A3eTNhcA%3D%3D&utm_source=qr"
               aria-label="Instagram"
               className="hover:text-white transition-colors"
             >
               <Instagram className="h-4 w-4" />
             </Link>
             <Link
-              href="#x"
+              href="https://x.com/chaadenergy?s=21"
               aria-label="X"
               className="hover:text-white transition-colors"
             >

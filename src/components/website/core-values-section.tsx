@@ -2,7 +2,14 @@
 
 import type React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, Users, HeartHandshake } from "lucide-react";
+import {
+  ShieldCheck,
+  Users,
+  HeartHandshake,
+  Zap,
+  Target,
+  Award,
+} from "lucide-react";
 
 type ValueItem = {
   title: string;
@@ -12,22 +19,40 @@ type ValueItem = {
 
 const VALUES: ValueItem[] = [
   {
+    title: "Resilience",
+    description:
+      "We choose a positive and progressive attitude which allows us to persist and perform in challenging work environments.",
+    icon: Zap,
+  },
+  {
     title: "Accessibility",
     description:
-      "We operate with unwavering honesty and Always open, always available to clients and staff.",
-    icon: ShieldCheck,
+      "We maintain an open-door policy that gives employees the opportunity to discuss any work challenge(s) with their respective superiors and the human resource department. We are also available to all our stakeholders, for enquiries and advisory.",
+    icon: Users,
   },
   {
     title: "Teamwork",
     description:
-      "Utilizing cutting-edge technology to solve the energy problems of tomorrow with collaboration and synergy for shared success",
-    icon: Users,
+      "We strive for an inclusive culture where every individual is socially connected and appreciated. We value and encourage synergy of purpose and excellent teamwork in our daily operations as it contributes to the growth and success of the organization.",
+    icon: HeartHandshake,
   },
   {
-    title: "Resilience",
+    title: "Integrity",
     description:
-      "Our commitment to superior quality ensures that every infrastructure project exceeds industry standards. Perform with positivity in all conditions.",
-    icon: HeartHandshake,
+      "Our staff are expected to give full dedication to their work, as we consistently deliver on our obligations to clients and keep our promises. We also provide equal opportunity for engagement and promotion based on merit, diligent service and conduct.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Operational Excellence",
+    description:
+      "We are committed to excellence in how we conduct business. This culture is upheld by management and forms an essential fabric of who we are and represent.",
+    icon: Target,
+  },
+  {
+    title: "Competence",
+    description:
+      "We believe in continuous professional improvements through training, mentorship and encouragement; helping employees to improve and sustain their skills. We reward staff creativity, high performance and loyalty to service.",
+    icon: Award,
   },
 ];
 

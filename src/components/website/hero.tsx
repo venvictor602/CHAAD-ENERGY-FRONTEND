@@ -1,91 +1,148 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layouts/navbar";
-import { TypewriterTitle } from "@/components/website/typewriter-title";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
-  },
-};
+const HERO_IMAGES: string[] = [
+  cloudinaryImages.caseStudy[0],
+  cloudinaryImages.caseStudy[1],
+  cloudinaryImages.caseStudy[2],
+  cloudinaryImages.aboutStory[0],
+  cloudinaryImages.aboutStory[2],
+];
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
+const INTERVAL = 3000; // ms between crossfades
+
+const contentVariants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
+    transition: {
+      delay: 0.3 + i * 0.15,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
 };
 
 export function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, INTERVAL);
+    return () => clearInterval(id);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-      <div className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          poster="https://assets.mixkit.co/videos/4361/4361-thumb-720-0.jpg"
-        >
-          <source
-            src="https://assets.mixkit.co/videos/4361/4361-720.mp4"
-            type="video/mp4"
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#0c1526]">
+      <div className="absolute inset-0" aria-hidden>
+        <AnimatePresence>
+          <motion.img
+            key={current}
+            src={HERO_IMAGES[current]}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
           />
-        </video>
-        <div className="absolute inset-0 bg-[#1A1A1A]/60" aria-hidden />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-black/10" />
       </div>
 
       <Navbar />
 
-      <div className="relative flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-16">
-        <motion.div
-          className="max-w-4xl mx-auto text-center space-y-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+      <div className="relative flex-1 flex items-center justify-center px-6 pt-28 pb-16">
+        <div
+          className="
+            relative w-full max-w-[620px] text-center
+            bg-[#DE5943]/35 backdrop-blur-[10px]
+            shadow-[0_8px_60px_0_rgba(0,0,0,0.5)]
+            px-10 py-12 md:py-14
+          "
+          style={{
+            clipPath:
+              "polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%)",
+            borderLeft: "4px solid rgba(255,255,255,0.5)",
+          }}
         >
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-tight min-h-[1.2em]"
-            variants={itemVariants}
-          >
-            <TypewriterTitle
-              phrases={[
-                "Build what matters with CHAAD Energy",
-                "Delivering Engineering Excellence",
-                "Precision. Safety. Results.",
-              ]}
-              speed={55}
-              deleteSpeed={35}
-              pauseDuration={2800}
-              className="inline"
-              as="span"
-            />
-          </motion.h1>
+          <div
+            className="absolute top-0 left-0 right-0 h-1 bg-white/50"
+            aria-hidden
+          />
 
           <motion.p
-            className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto leading-relaxed"
-            variants={itemVariants}
+            custom={0}
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-xs font-bold tracking-[0.22em] text-[#ffffff] uppercase mb-4"
           >
-            Delivering Engineering Excellence Across Energy & Industrial
-            Landscapes. Partner with a solutions-driven team that values safety,
-            precision, and measurable results.
+            CHAAD Energy Limited
           </motion.p>
 
-          <motion.div variants={itemVariants}>
-            <Button variant="default" size="default" asChild>
+          <motion.h1
+            custom={1}
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight"
+          >
+            Powering Nigeria&apos;s Energy Future
+          </motion.h1>
+
+          <motion.div
+            custom={2}
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+            className="mx-auto mt-5 mb-5 h-[3px] w-16 rounded-full bg-white/60"
+            aria-hidden
+          />
+
+          <motion.p
+            custom={3}
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-sm sm:text-base text-white/85 max-w-md mx-auto leading-relaxed"
+          >
+            End-to-end oil &amp; gas, energy and construction solutions —
+            delivered with safety, precision and measurable results.
+          </motion.p>
+
+          <motion.div
+            custom={4}
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+          >
+            {/* <Button
+              asChild
+              variant="default"
+              className="rounded-sm px-8 h-11 font-semibold bg-[#DE5943] hover:bg-[#c44d39] text-white shadow-lg"
+            >
               <Link href="/contact#consultation">Request Consultation</Link>
+            </Button> */}
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-sm px-8 h-11 font-semibold border-white/40 text-white bg-white/10 hover:bg-white/20"
+            >
+              <Link href="/about">Discover More</Link>
             </Button>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
