@@ -100,11 +100,12 @@ const FOOTER_LINKS = [
   {
     title: "Socials",
     links: [
-      { label: "Twitter", href: "https://x.com/chaadenergy?s=21" },
+      { label: "Twitter", href: "https://x.com/chaadenergy?s=21", external: true },
       { label: "Facebook", href: "#facebook" },
       {
         label: "Instagram",
         href: "https://www.instagram.com/chaadenergylimited?igsh=MTBmNGFmd3A3eTNhcA%3D%3D&utm_source=qr",
+        external: true,
       },
       { label: "YouTube", href: "#youtube" },
       { label: "Get in touch", href: "#get-in-touch" },
@@ -258,6 +259,9 @@ export function Footer() {
                       <Link
                         href={l.href}
                         className="text-xs text-white/70 hover:text-white transition-colors"
+                        {...("external" in l && l.external
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
                       >
                         {l.label}
                       </Link>
@@ -306,6 +310,8 @@ export function Footer() {
             <Link
               href="https://www.instagram.com/chaadenergylimited?igsh=MTBmNGFmd3A3eTNhcA%3D%3D&utm_source=qr"
               aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors"
             >
               <Instagram className="h-4 w-4" />
@@ -313,6 +319,8 @@ export function Footer() {
             <Link
               href="https://x.com/chaadenergy?s=21"
               aria-label="X"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors"
             >
               <X className="h-4 w-4" />
