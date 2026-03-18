@@ -17,13 +17,14 @@ type Slot = {
 };
 
 const DEFAULT_LOGOS: LogoItem[] = [
-  { src: "/Logo.svg", alt: "Client logo 1" },
-  { src: "/Logo.svg", alt: "Client logo 2" },
-  { src: "/Logo.svg", alt: "Client logo 3" },
-  { src: "/Logo.svg", alt: "Client logo 4" },
-  { src: "/Logo.svg", alt: "Client logo 5" },
-  { src: "/Logo.svg", alt: "Client logo 6" },
-  { src: "/Logo.svg", alt: "Client logo 7" },
+  { src: "/CLIENT%20LOGO/CHEVRON.svg", alt: "Chevron" },
+  { src: "/CLIENT%20LOGO/SEPLAT.svg", alt: "Seplat" },
+  { src: "/CLIENT%20LOGO/RENAISSANCE.svg", alt: "Renaissance" },
+  { src: "/CLIENT%20LOGO/HEIRS.svg", alt: "Heirs" },
+  { src: "/CLIENT%20LOGO/HERITAGE.svg", alt: "Heritage" },
+  { src: "/CLIENT%20LOGO/NEWCROSS.svg", alt: "Newcross" },
+  { src: "/CLIENT%20LOGO/PNG%20GAS.svg", alt: "PNG Gas" },
+  { src: "/CLIENT%20LOGO/ARADEL.svg", alt: "Aradel" },
 ];
 
 const SLOTS: Slot[] = [
@@ -101,7 +102,7 @@ export function TrustedBySection({
                 const slot = SLOTS[i % SLOTS.length];
                 return (
                   <motion.div
-                    key={logo.alt}
+                    key={`${logo.alt}-${i}`}
                     className="absolute"
                     style={{
                       left: slot.left,

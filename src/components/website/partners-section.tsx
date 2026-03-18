@@ -11,39 +11,44 @@ type Partner = {
 
 const PARTNERS: Partner[] = [
   {
-    name: "MOBILTEX (KEY PARTNER)",
-    description:
-      "Authorized representatives for the installation, programming, and use of Mobitex products including Remote Cathodic Protection Units, interrupters, and Data Loggers in West Africa.",
+    name: "Chevron",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/CHEVRON.svg",
   },
   {
-    name: "GWC ITALIA S.P.A",
-    description:
-      "Authorized representatives and dealers of GWC Italia S.P.A products including API-6D/6FA Floating and Trunnion mounted Ball valves in Nigeria.",
+    name: "Seplat",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/SEPLAT.svg",
   },
   {
-    name: "BOSKEL NIGERIA LIMITED",
-    description:
-      "Authorized distributors of OEM tires and lubricant, technical service support and project management consultants.",
+    name: "Renaissance",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/RENAISSANCE.svg",
   },
   {
-    name: "ENELTEC",
-    description:
-      "Authorized representatives and dealers of Eneltec LED Lighting Products including Flood Lights, Tunnel Lights, Street Lights, Explosion Proof Lights, Marine Lights and Panel Lights in Nigeria.",
+    name: "Heirs",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/HEIRS.svg",
   },
   {
-    name: "DUX VALVES",
-    description:
-      "Authorized representative of Dux Valves B.V specialized in manufacture and distribution of Angle Choke Valves, Actuators and Spares.",
+    name: "Heritage",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/HERITAGE.svg",
   },
   {
-    name: "FEDEX",
-    description:
-      "Provision of overseas and inland logistic, warehousing, and other supply chain management support services.",
+    name: "Newcross",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/NEWCROSS.svg",
   },
   {
-    name: "SEA AVIN LOGISTICS",
-    description:
-      "Provision of overseas and inland logistics, clearing and forwarding support services.",
+    name: "PNG Gas",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/PNG%20GAS.svg",
+  },
+  {
+    name: "Aradel",
+    description: "Description coming soon.",
+    logoSrc: "/CLIENT%20LOGO/ARADEL.svg",
   },
 ];
 
@@ -73,15 +78,15 @@ export function PartnersSection() {
             variants={fadeUp}
             transition={t}
           >
-            Our Partner
+            Our Clients
           </motion.h2>
           <motion.p
             className=" text-sm md:text-base text-[#6D7BBD] max-w-lg mx-auto leading-relaxed"
             variants={fadeUp}
             transition={t}
           >
-            Over the years, we&apos;ve partnered with several companies so we
-            can serve you better.
+            We’re trusted by leading companies across the energy and industrial
+            landscape.
           </motion.p>
         </motion.div>
 
