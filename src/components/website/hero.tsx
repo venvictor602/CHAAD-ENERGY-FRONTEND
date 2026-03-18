@@ -9,11 +9,11 @@ import { Navbar } from "@/components/layouts/navbar";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const HERO_IMAGES: string[] = [
-  cloudinaryImages.caseStudy[0],
-  cloudinaryImages.caseStudy[1],
-  cloudinaryImages.caseStudy[2],
-  cloudinaryImages.aboutStory[0],
-  cloudinaryImages.aboutStory[2],
+  cloudinaryImages.hero[0],
+  cloudinaryImages.hero[1],
+  cloudinaryImages.hero[2],
+  cloudinaryImages.hero[3],
+  cloudinaryImages.hero[4],
 ];
 
 const INTERVAL = 3000; // ms between crossfades
@@ -56,7 +56,14 @@ export function Hero() {
             transition={{ duration: 1.2, ease: "easeInOut" }}
           />
         </AnimatePresence>
-        <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-black/10" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(12,21,38,0.25) 0%, rgba(12,21,38,0.10) 35%, rgba(0,0,0,0.35) 100%), radial-gradient(900px 520px at 20% 30%, rgba(222,89,67,0.18), transparent 60%), radial-gradient(820px 560px at 85% 70%, rgba(72,90,172,0.20), transparent 62%)",
+          }}
+          aria-hidden
+        />
       </div>
 
       <Navbar />

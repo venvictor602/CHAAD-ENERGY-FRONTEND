@@ -45,6 +45,14 @@ export const cloudinaryImages = {
   about: [opt(getUrl(0), 700), opt(getUrl(1), 700)],
   /** About story section (Our Story / Our Mission): 3 image boxes */
   aboutStory: [opt(getUrl(0), 500), opt(getUrl(1), 500), opt(getUrl(2), 500)],
+  /** Full-bleed hero backgrounds (higher res to avoid pixelation) */
+  hero: [
+    opt(getUrl(12), 2400),
+    opt(getUrl(13), 2400),
+    opt(getUrl(14), 2400),
+    opt(getUrl(0), 2400),
+    opt(getUrl(2), 2400),
+  ],
   /** Case study section (Major Refinery): 2 image boxes */
   caseStudySection: [opt(getUrl(12), 800), opt(getUrl(13), 800)],
   /** Trust stats carousel: 8 images */

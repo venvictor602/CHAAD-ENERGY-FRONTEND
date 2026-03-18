@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { cloudinaryImages } from "@/lib/cloudinary-images";
+import {
+  cloudinaryImages,
+  getCloudinaryOptimizedUrl,
+} from "@/lib/cloudinary-images";
 
 const fadeDown = {
   hidden: { opacity: 0, y: -28 },
@@ -108,7 +111,10 @@ export function AboutSection() {
           >
             <div className="absolute top-0 right-0 w-[min(100%,628px)] aspect-628/565 rounded-2xl overflow-hidden shadow-2xl z-0 ring-1 ring-white/10">
               <ImageWithLogoOverlay
-                src={cloudinaryImages.recentWork[0] ?? cloudinaryImages.default}
+                src={getCloudinaryOptimizedUrl(
+                  cloudinaryImages.recentWork[0] ?? cloudinaryImages.default,
+                  { width: 1400 },
+                )}
                 alt="Industrial construction workers on site"
                 width={628}
                 height={565}
@@ -116,7 +122,10 @@ export function AboutSection() {
             </div>
             <div className="absolute bottom-0 right-0 translate-x-10 md:translate-x-14 w-[min(100%,446px)] aspect-446/333 rounded-2xl overflow-hidden shadow-2xl z-10 ring-1 ring-white/10">
               <ImageWithLogoOverlay
-                src={cloudinaryImages.recentWork[1] ?? cloudinaryImages.default}
+                src={getCloudinaryOptimizedUrl(
+                  cloudinaryImages.recentWork[1] ?? cloudinaryImages.default,
+                  { width: 1200 },
+                )}
                 alt="Industrial transport and logistics"
                 width={446}
                 height={333}
