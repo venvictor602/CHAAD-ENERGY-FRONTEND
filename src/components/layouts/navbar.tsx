@@ -128,7 +128,7 @@ export function Navbar({
           className="bg-[#DE5943] hover:bg-[#c44d39] text-white"
           asChild
         >
-          <Link href="/contact">Request Consultation</Link>
+          <Link href="/contact">Contact Us</Link>
         </Button>
       </div>
 
@@ -209,7 +209,7 @@ export function Navbar({
                     asChild
                   >
                     <Link href="/contact" onClick={closeMobileMenu}>
-                      Request Consultation
+                      Contact Us
                     </Link>
                   </Button>
                 </div>

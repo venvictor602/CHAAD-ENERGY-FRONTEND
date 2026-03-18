@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layouts/navbar";
@@ -62,7 +61,7 @@ export function Hero() {
         {/* Dark Overlays */}
         <div className="absolute inset-0 bg-linear-to-b from-black/25 via-black/5 to-black/60" />
 
-        {/* Ambient Blobs without bottom cutoff */}
+        {/* Unique animated pattern overlay (isometric grid + particles) */}
         <motion.svg
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 1440 900"
@@ -72,40 +71,76 @@ export function Hero() {
           transition={{ duration: 0.6 }}
         >
           <defs>
-            <filter id="heroBlur" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="18" />
-            </filter>
-            <filter id="softBlur" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="10" />
+            <pattern
+              id="isoGrid"
+              width="72"
+              height="42"
+              patternUnits="userSpaceOnUse"
+            >
+              {/* isometric “wireframe” tile */}
+              <path
+                d="M18 21 L36 10 L54 21 L36 32 Z"
+                fill="none"
+                stroke="rgba(255,255,255,0.10)"
+                strokeWidth="1"
+              />
+              <path
+                d="M18 21 L18 42 M54 21 L54 42"
+                fill="none"
+                stroke="rgba(72,90,172,0.10)"
+                strokeWidth="1"
+              />
+            </pattern>
+            <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="rgba(72,90,172,0.16)" />
+              <stop offset="60%" stopColor="rgba(72,90,172,0.06)" />
+              <stop offset="100%" stopColor="rgba(222,89,67,0.10)" />
+            </linearGradient>
+            <filter id="softGlow" x="-35%" y="-35%" width="170%" height="170%">
+              <feGaussianBlur stdDeviation="12" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
             </filter>
           </defs>
 
-          {/* Big centered “spotlight” circle */}
+          {/* Drifting isometric grid field */}
           <motion.g
-            animate={{ opacity: [0.55, 0.7, 0.55], scale: [1, 1.03, 1] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            style={{ transformOrigin: "720px 430px" }}
+            opacity={0.55}
+            animate={{ x: [0, -36, 0], y: [0, 22, 0] }}
+            transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
           >
-            <circle
-              cx="720"
-              cy="430"
-              r="340"
-              fill="rgba(72,90,172,0.16)"
-              filter="url(#softBlur)"
+            <rect
+              x="-120"
+              y="-120"
+              width="1680"
+              height="1140"
+              fill="url(#isoGrid)"
             />
-            <circle cx="720" cy="430" r="250" fill="rgba(72,90,172,0.10)" />
           </motion.g>
 
-          {/* Warm accent blob */}
-          <motion.circle
-            cx="290"
-            cy="360"
-            r="220"
-            fill="rgba(222,89,67,0.12)"
-            filter="url(#heroBlur)"
-            animate={{ cx: [290, 310, 290], cy: [360, 346, 360] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          {/* Angular ribbon accent (not a wave) */}
+          <motion.path
+            d="M-120,760 L420,610 C560,572 640,540 720,490 C820,427 930,390 1100,410 L1560,465 L1560,980 L-120,980 Z"
+            fill="url(#accentGrad)"
+            filter="url(#softGlow)"
+            opacity={0.78}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
           />
+
+          {/* Minimal particles */}
+          <motion.g
+            animate={{ opacity: [0.35, 0.6, 0.35] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <circle cx="220" cy="210" r="2" fill="rgba(255,255,255,0.30)" />
+            <circle cx="520" cy="170" r="1.6" fill="rgba(255,255,255,0.22)" />
+            <circle cx="980" cy="220" r="2.2" fill="rgba(255,255,255,0.22)" />
+            <circle cx="1240" cy="160" r="1.8" fill="rgba(255,255,255,0.18)" />
+            <circle cx="1160" cy="320" r="1.5" fill="rgba(222,89,67,0.24)" />
+          </motion.g>
         </motion.svg>
       </div>
 
@@ -151,9 +186,9 @@ export function Hero() {
               relative flex flex-col items-center justify-center text-center
               w-[340px] h-[340px] sm:w-[500px] sm:h-[500px] lg:w-[580px] lg:h-[580px]
               rounded-full p-6 sm:p-12 lg:p-16
-              bg-linear-to-br from-[#485aac] to-[#28325f]
-              shadow-[0_20px_60px_rgba(0,0,0,0.5)]
-              border-8 sm:border-12 border-white/5
+              bg-[#DE5943]/10
+              shadow-[0_20px_60px_rgba(0,0,0,0.4)]
+              border-6 sm:border-10 border-white/10
               backdrop-blur-md
             "
           >
@@ -193,24 +228,14 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4"
+              className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full"
             >
               <Button
                 asChild
-                variant="default"
-                className="rounded-full px-5 sm:px-8 h-10 sm:h-12 text-xs sm:text-sm font-semibold bg-white text-[#28325f] hover:bg-white/90"
+                variant="outline"
+                className="rounded-full px-5 sm:px-8 h-10 sm:h-12 text-xs sm:text-sm font-semibold border-white/40 text-white bg-white/10 hover:bg-white/20 w-full sm:w-auto"
               >
-                <Link href="/about">Discover more about CHAAD</Link>
-              </Button>
-              <Button
-                asChild
-                variant="default"
-                size="icon"
-                className="rounded-full h-10 w-10 sm:h-12 sm:w-12 bg-white/20 text-white hover:bg-white/30 backdrop-blur-md"
-              >
-                <Link href="/about">
-                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
-                </Link>
+                <Link href="/about">Discover More about CHAAD</Link>
               </Button>
             </motion.div>
           </motion.div>
