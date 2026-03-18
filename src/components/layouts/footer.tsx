@@ -100,7 +100,11 @@ const FOOTER_LINKS = [
   {
     title: "Socials",
     links: [
-      { label: "Twitter", href: "https://x.com/chaadenergy?s=21", external: true },
+      {
+        label: "Twitter",
+        href: "https://x.com/chaadenergy?s=21",
+        external: true,
+      },
       { label: "Facebook", href: "#facebook" },
       {
         label: "Instagram",
