@@ -149,7 +149,7 @@ export function Hero() {
       {/* The Cup SVG Layer at the bottom */}
       {/* Uses var(--secondary) which maps to #edeff7 to match the next section */}
       <div
-        className="absolute bottom-0 left-0 w-full h-[120px] sm:h-[160px] md:h-[220px] pointer-events-none z-10"
+        className="absolute bottom-0 left-0 w-full h-[60px] sm:h-[120px] md:h-[160px] lg:h-[220px] pointer-events-none z-10"
         aria-hidden
       >
         <svg
@@ -158,14 +158,14 @@ export function Hero() {
           preserveAspectRatio="none"
         >
           <path
-            d="M0,220 L0,80 L400,80 C540,80 580,200 720,200 C860,200 900,80 1040,80 L1440,80 L1440,220 Z"
+            d="M0,220 L0,80 L300,80 C500,80 540,200 720,200 C900,200 940,80 1140,80 L1440,80 L1440,220 Z"
             fill="#edeff7"
           />
         </svg>
       </div>
 
       {/* Interactive Content Container - Floating Circle */}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-end px-4 sm:px-6 pb-[20px] sm:pb-[30px] md:pb-[40px] pointer-events-none">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-center sm:justify-end px-4 sm:px-6 pb-0 sm:pb-[30px] md:pb-[40px] pointer-events-none">
         {/* Outer Entrance Animation Wrapper */}
         <motion.div
           initial={{ opacity: 0, scale: 0.6, y: 150 }}
@@ -184,11 +184,11 @@ export function Hero() {
             }}
             className="
               relative flex flex-col items-center justify-center text-center
-              w-[340px] h-[340px] sm:w-[500px] sm:h-[500px] lg:w-[580px] lg:h-[580px]
-              rounded-full p-6 sm:p-12 lg:p-16
-              bg-[#DE5943]/10
+              w-[92vw] max-w-[360px] sm:max-w-[500px] lg:max-w-[580px] aspect-square
+              rounded-full p-4 sm:p-12 lg:p-16
+              bg-linear-to-br from-[#DE5943]/40 to-[#DE5943]/10
               shadow-[0_20px_60px_rgba(0,0,0,0.4)]
-              border-6 sm:border-10 border-white/10
+              border-6 sm:border-10 border-[#DE5943]/20
               backdrop-blur-md
             "
           >
@@ -197,7 +197,7 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.22em] text-white/80 uppercase mb-3 sm:mb-4"
+              className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.22em] text-white/80 uppercase mb-2 sm:mb-4 px-2"
             >
               CHAAD Energy Limited
             </motion.div>
@@ -207,9 +207,10 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="text-2xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-white leading-[1.15] sm:leading-[1.1]"
+              className="text-[26px] sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-white leading-[1.15] sm:leading-[1.1] max-w-[260px] sm:max-w-none mx-auto"
             >
-              Powering Nigeria&apos;s <br /> Energy Future
+              Powering Nigeria&apos;s <br className="hidden sm:block" /> Energy
+              Future
             </motion.h1>
 
             <motion.p
@@ -217,7 +218,7 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="mt-4 sm:mt-6 text-xs sm:text-sm md:text-base text-white/90 max-w-[90%] sm:max-w-[85%] mx-auto leading-relaxed"
+              className="mt-3 sm:mt-6 text-[11px] sm:text-sm md:text-base text-white/90 max-w-[240px] sm:max-w-[85%] mx-auto leading-relaxed"
             >
               End-to-end oil & gas, energy and construction solutions —
               delivered with safety, precision and measurable results.
@@ -228,12 +229,12 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full"
+              className="mt-5 sm:mt-8 flex flex-col items-center justify-center w-full px-4 sm:px-0"
             >
               <Button
                 asChild
                 variant="outline"
-                className="rounded-full px-5 sm:px-8 h-10 sm:h-12 text-xs sm:text-sm font-semibold border-white/40 text-white bg-white/10 hover:bg-white/20 w-full sm:w-auto"
+                className="rounded-full px-5 sm:px-8 h-11 sm:h-12 text-[11px] sm:text-sm font-semibold border-white/40 text-white bg-white/10 hover:bg-white/20 w-full sm:w-auto max-w-[220px] sm:max-w-none shadow-xl truncate transition-transform hover:scale-105"
               >
                 <Link href="/about">Discover More about CHAAD</Link>
               </Button>
