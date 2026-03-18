@@ -108,7 +108,7 @@ export function AboutSection() {
           >
             <div className="absolute top-0 right-0 w-[min(100%,628px)] aspect-628/565 rounded-2xl overflow-hidden shadow-2xl z-0 ring-1 ring-white/10">
               <ImageWithLogoOverlay
-                src={cloudinaryImages.about[0]}
+                src={cloudinaryImages.recentWork[0] ?? cloudinaryImages.default}
                 alt="Industrial construction workers on site"
                 width={628}
                 height={565}
@@ -116,7 +116,7 @@ export function AboutSection() {
             </div>
             <div className="absolute bottom-0 right-0 translate-x-10 md:translate-x-14 w-[min(100%,446px)] aspect-446/333 rounded-2xl overflow-hidden shadow-2xl z-10 ring-1 ring-white/10">
               <ImageWithLogoOverlay
-                src={cloudinaryImages.about[1]}
+                src={cloudinaryImages.recentWork[1] ?? cloudinaryImages.default}
                 alt="Industrial transport and logistics"
                 width={446}
                 height={333}
