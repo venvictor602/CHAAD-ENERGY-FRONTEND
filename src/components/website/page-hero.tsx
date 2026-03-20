@@ -62,7 +62,7 @@ export function PageHero({
               variants={containerVariants}
             >
               <motion.div
-                className="space-y-4 w-full max-w-xl lg:max-w-none"
+                className="flex flex-col items-center justify-center space-y-4 w-full max-w-xl lg:max-w-none lg:items-start lg:justify-start"
                 variants={itemVariants}
               >
                 <p className="text-sm md:text-[24px] font-bold text-white/90 border-b-2 border-[#485AAC] pb-1 inline-block lg:w-fit">
@@ -84,7 +84,7 @@ export function PageHero({
                 </h1>
               </motion.div>
               <motion.p
-                className="text-sm sm:text-base font-medium text-white/95 leading-relaxed max-w-xl lg:max-w-none"
+                className="text-sm sm:text-base font-medium text-white/95 leading-relaxed max-w-xl mx-auto lg:mx-0 lg:max-w-none text-center lg:text-left"
                 variants={itemVariants}
               >
                 {description}

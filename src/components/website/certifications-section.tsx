@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export function CertificationsSection() {
   return (
-    <section id="certifications" className="bg-white py-16 md:py-24">
+    <section id="certifications" className="bg-red-500 py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <motion.h2
@@ -36,42 +35,6 @@ export function CertificationsSection() {
             capability.
           </motion.p>
         </div>
-
-        <motion.div
-          className="mt-10 md:mt-14 rounded-2xl bg-[#F3F4F6] overflow-hidden relative h-[170px] md:h-[200px]"
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.4 }}
-        >
-          <div
-            className="absolute inset-0 opacity-50"
-            style={{
-              background:
-                "radial-gradient(280px 140px at 12% 45%, rgba(72,90,172,0.18), transparent 60%), radial-gradient(320px 180px at 88% 55%, rgba(72,90,172,0.16), transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="absolute -left-10 top-4 h-44 w-44 md:h-56 md:w-56 rounded-[36px] bg-[#E7ECF9] rotate-12 opacity-70"
-            aria-hidden
-          />
-          <div
-            className="absolute -right-14 bottom-0 h-48 w-48 md:h-60 md:w-60 rounded-[44px] bg-[#E7ECF9] -rotate-6 opacity-70"
-            aria-hidden
-          />
-
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Image
-              src="/assets/iSO.png"
-              alt="ISO 9001 certified"
-              width={170}
-              height={170}
-              className="object-contain"
-              loading="lazy"
-            />
-          </div>
-        </motion.div>
       </div>
     </section>
   );

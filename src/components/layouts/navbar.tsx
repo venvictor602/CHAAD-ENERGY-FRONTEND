@@ -17,16 +17,37 @@ const NAV_LINKS = [
   { href: "/news", label: "News" },
 ];
 
+const SOLID_BG_PATHS = [
+  "/terms",
+  "/privacy",
+  "/cookies",
+  "/compliance",
+  "/accessibility",
+];
+
+function useSolidBackground(prop?: boolean): boolean {
+  const router = useRouter();
+  if (prop !== undefined) return prop;
+  const path = router.asPath.split("?")[0];
+  if (SOLID_BG_PATHS.includes(path)) return true;
+  if (path.startsWith("/services/") && path !== "/services") return true;
+  if (path.startsWith("/news/") && path !== "/news") return true;
+  if (path.startsWith("/careers/") && path !== "/careers") return true;
+  if (path.startsWith("/projects/") && path !== "/projects") return true;
+  return false;
+}
+
 export function Navbar({
   className,
   theme = "light",
-  solidBackground = false,
+  solidBackground,
 }: {
   className?: string;
   theme?: "light" | "dark";
   solidBackground?: boolean;
 }) {
   const router = useRouter();
+  const solidBg = useSolidBackground(solidBackground);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -79,13 +100,13 @@ export function Navbar({
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const isDark = theme === "dark" && !solidBackground;
-  const showLightText = !solidBackground && !scrolled;
+  const isDark = theme === "dark" && !solidBg;
+  const showLightText = !solidBg && !scrolled;
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-100 flex items-center justify-between px-6 lg:px-12 py-4 bg-white shadow-sm transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-[9999] flex items-center justify-between px-6 lg:px-12 py-4 bg-white shadow-sm transition-all duration-300",
         className,
       )}
     >
@@ -145,7 +166,7 @@ export function Navbar({
           <>
             <motion.div
               className={cn(
-                "fixed inset-0 z-110 md:hidden",
+                "fixed inset-0 z-[10001] md:hidden",
                 scrolled ? "bg-[#1A1A1A]" : "bg-black/60",
               )}
               initial={{ opacity: 0 }}
@@ -156,7 +177,7 @@ export function Navbar({
               aria-hidden
             />
             <motion.div
-              className="fixed top-0 right-0 z-120 w-full max-w-sm h-screen shadow-2xl md:hidden"
+              className="fixed top-0 right-0 z-[10002] w-full max-w-sm h-screen shadow-2xl md:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
