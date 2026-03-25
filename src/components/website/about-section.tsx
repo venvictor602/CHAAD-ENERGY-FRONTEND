@@ -47,7 +47,7 @@ function ImageWithLogoOverlay({
         }}
         aria-hidden
       />
-      <div className="absolute bottom-3 right-3 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#991B1B]/30 backdrop-blur-sm flex items-center justify-center p-2 ring-1 ring-white/20">
+      <div className="absolute bottom-3 right-3 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#C44D4D]/30 backdrop-blur-sm flex items-center justify-center p-2 ring-1 ring-white/20">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/Logo.svg"
@@ -64,7 +64,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative bg-[#991B1B] py-16 md:py-24 lg:py-28 overflow-hidden"
+      className="relative bg-[#C44D4D] py-16 md:py-24 lg:py-28 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-[0.25]"

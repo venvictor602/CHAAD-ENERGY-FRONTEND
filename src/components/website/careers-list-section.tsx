@@ -40,7 +40,7 @@ function CareerCard({ job }: { job: CareerItem }) {
     >
       <div className="p-5 sm:p-6 flex flex-col flex-1">
         <div className="space-y-3">
-          <span className="inline-block w-fit px-2 py-1 rounded bg-[#991B1B]/10 text-[#991B1B] text-xs font-semibold tracking-wide">
+          <span className="inline-block w-fit px-2 py-1 rounded bg-[#C44D4D]/10 text-[#C44D4D] text-xs font-semibold tracking-wide">
             {job.department || "General"}
           </span>
           <h3 className="text-lg sm:text-xl font-bold text-[#333333] leading-tight">
@@ -58,7 +58,7 @@ function CareerCard({ job }: { job: CareerItem }) {
         </div>
         <Link
           href={`/careers/${job.id}-${slugFromTitle(job.title)}`}
-          className="mt-4 inline-flex items-center gap-1.5 text-[#991B1B] font-semibold text-sm hover:text-[#7F1D1D] transition-colors w-fit"
+          className="mt-4 inline-flex items-center gap-1.5 text-[#C44D4D] font-semibold text-sm hover:text-[#A33A3A] transition-colors w-fit"
         >
           View & Apply
           <ArrowRight className="h-4 w-4 shrink-0" />

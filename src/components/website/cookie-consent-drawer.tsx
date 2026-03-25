@@ -110,8 +110,8 @@ export function CookieConsentDrawer() {
           >
             <div className="w-full bg-white rounded-t-2xl shadow-[0_-4px_24px_rgba(0,0,0,0.12)] border border-[#E8E8E8] border-b-0 overflow-hidden [font-family:var(--font-inter)]">
               <div className="max-w-7xl mx-auto p-5 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center">
-                <div className="shrink-0 w-10 h-10 rounded-full bg-[#991B1B]/10 flex items-center justify-center">
-                  <Cookie className="h-5 w-5 text-[#991B1B]" aria-hidden />
+                <div className="shrink-0 w-10 h-10 rounded-full bg-[#C44D4D]/10 flex items-center justify-center">
+                  <Cookie className="h-5 w-5 text-[#C44D4D]" aria-hidden />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base font-semibold text-[#1A1A1A] mb-1">
@@ -123,7 +123,7 @@ export function CookieConsentDrawer() {
                     experience. By continuing, you accept our use of cookies.{" "}
                     <Link
                       href="/cookies"
-                      className="text-[#991B1B] font-medium hover:underline underline-offset-2"
+                      className="text-[#C44D4D] font-medium hover:underline underline-offset-2"
                     >
                       Cookie policy
                     </Link>
@@ -209,7 +209,7 @@ export function CookieConsentDrawer() {
                   blocking some types of cookies may impact your experience.{" "}
                   <Link
                     href="/cookies"
-                    className="text-[#991B1B] hover:underline underline-offset-2"
+                    className="text-[#C44D4D] hover:underline underline-offset-2"
                   >
                     Cookie policy
                   </Link>
@@ -220,7 +220,7 @@ export function CookieConsentDrawer() {
                     <h3 className="text-base font-semibold text-white">
                       Necessary Cookies
                     </h3>
-                    <span className="shrink-0 px-2.5 py-0.5 rounded-md bg-[#991B1B] text-white text-xs font-medium">
+                    <span className="shrink-0 px-2.5 py-0.5 rounded-md bg-[#C44D4D] text-white text-xs font-medium">
                       Always Active
                     </span>
                   </div>
@@ -232,7 +232,7 @@ export function CookieConsentDrawer() {
                   </p>
                   <div className="flex justify-end">
                     <div
-                      className="w-11 h-6 rounded-full bg-[#991B1B] flex items-center justify-end pr-1 cursor-not-allowed opacity-95"
+                      className="w-11 h-6 rounded-full bg-[#C44D4D] flex items-center justify-end pr-1 cursor-not-allowed opacity-95"
                       aria-hidden
                     >
                       <span className="w-4 h-4 rounded-full bg-white shadow" />
@@ -253,7 +253,7 @@ export function CookieConsentDrawer() {
                       className={cn(
                         "shrink-0 w-11 h-6 rounded-full transition-colors flex items-center",
                         functionalEnabled
-                          ? "bg-[#991B1B] justify-end pr-1"
+                          ? "bg-[#C44D4D] justify-end pr-1"
                           : "bg-white/20 justify-start pl-1",
                       )}
                     >
@@ -282,7 +282,7 @@ export function CookieConsentDrawer() {
                     variant="default"
                     size="default"
                     onClick={savePreferences}
-                    className="bg-[#991B1B] text-white hover:bg-[#7F1D1D]"
+                    className="bg-[#C44D4D] text-white hover:bg-[#A33A3A]"
                   >
                     Save Preferences
                   </Button>

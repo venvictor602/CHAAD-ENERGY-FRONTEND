@@ -4,13 +4,13 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --color-primary: #991b1b;
-  --color-primary-hover: #7f1d1d;
+  --color-primary: #c44d4d;
+  --color-primary-hover: #a33a3a;
   --color-dark: #1a1a1a;
   /* Legacy "blue" tokens mapped to the brand deep red palette */
-  --color-blue-800: #7f1d1d;
-  --color-blue-600: #991b1b;
-  --color-blue-500: #991b1b;
+  --color-blue-800: #a33a3a;
+  --color-blue-600: #c44d4d;
+  --color-blue-500: #c44d4d;
   --color-blue-300: #fecaca;
   --color-blue-50: #fef2f2;
 
@@ -21,31 +21,31 @@
   --card-foreground: #1a1a1a;
   --popover: oklch(1 0 0);
   --popover-foreground: #1a1a1a;
-  --primary: #991b1b;
+  --primary: #c44d4d;
   --primary-foreground: #ffffff;
   --secondary: #edeff7;
   --secondary-foreground: #1a1a1a;
   --muted: #edeff7;
-  --muted-foreground: #7f1d1d;
+  --muted-foreground: #a33a3a;
   --accent: #edeff7;
   --accent-foreground: #1a1a1a;
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: #991b1b;
-  --chart-1: #991b1b;
+  --ring: #c44d4d;
+  --chart-1: #c44d4d;
   --chart-2: #fecaca;
-  --chart-3: #7f1d1d;
-  --chart-4: #991b1b;
+  --chart-3: #a33a3a;
+  --chart-4: #c44d4d;
   --chart-5: #edeff7;
   --sidebar: #edeff7;
   --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #991b1b;
+  --sidebar-primary: #c44d4d;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #fecaca;
   --sidebar-accent-foreground: #1a1a1a;
   --sidebar-border: #fecaca;
-  --sidebar-ring: #991b1b;
+  --sidebar-ring: #c44d4d;
   --font-montserrat: "Montserrat", sans-serif;
 }
 

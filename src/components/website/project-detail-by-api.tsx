@@ -49,7 +49,7 @@ export function ProjectDetailByApi({ id }: { id: number }) {
           <p className="text-[#64748B]">Project not found.</p>
           <Link
             href="/projects"
-            className="text-[#991B1B] font-semibold hover:underline"
+            className="text-[#C44D4D] font-semibold hover:underline"
           >
             Back to Projects
           </Link>
@@ -148,7 +148,7 @@ export function ProjectDetailByApi({ id }: { id: number }) {
               </p>
               <Link
                 href="/contact#consultation"
-                className="inline-flex items-center gap-2 text-[#991B1B] font-semibold hover:underline"
+                className="inline-flex items-center gap-2 text-[#C44D4D] font-semibold hover:underline"
               >
                 Get in touch
                 <ExternalLink className="h-4 w-4" aria-hidden />

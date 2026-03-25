@@ -113,11 +113,11 @@ export function CoreValuesSection() {
               variants={fadeUp}
               transition={t}
             >
-              <div className="w-[56px] h-[56px] rounded-[8px] bg-[#991B1B]/15 flex items-center justify-center">
-                <v.icon className="h-6 w-6 text-[#991B1B]" />
+              <div className="w-[56px] h-[56px] rounded-[8px] bg-[#C44D4D]/15 flex items-center justify-center">
+                <v.icon className="h-6 w-6 text-[#C44D4D]" />
               </div>
               <div className="space-y-[16px]">
-                <h3 className="text-lg md:text-xl font-bold text-[#991B1B]">
+                <h3 className="text-lg md:text-xl font-bold text-[#C44D4D]">
                   {v.title}
                 </h3>
                 <p className=" text-sm leading-relaxed text-[#94A3B8] font-normal">

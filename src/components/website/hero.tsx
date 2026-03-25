@@ -60,7 +60,7 @@ export function Hero() {
         </AnimatePresence>
 
         {/* Brand overlay (coral-tinted) */}
-        <div className="absolute inset-0 bg-linear-to-b from-[#991B1B]/10 via-black/10 to-[#991B1B]/35" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#C44D4D]/10 via-black/10 to-[#C44D4D]/35" />
 
         {/* Unique animated pattern overlay (isometric grid + particles) */}
         <motion.svg
@@ -187,7 +187,7 @@ export function Hero() {
               "relative flex flex-col items-center justify-center text-center",
               "w-[min(92vw,580px)] aspect-square max-h-[min(92vw,72svh)]",
               "rounded-full p-5 sm:p-10 lg:p-14",
-              "bg-linear-to-br from-white/10 via-[#991B1B]/6 to-transparent",
+              "bg-linear-to-br from-white/10 via-[#C44D4D]/6 to-transparent",
               "shadow-[0_20px_60px_rgba(0,0,0,0.4)]",
               "border-6 sm:border-10 border-white/10 backdrop-blur-[2px]",
             )}

@@ -33,7 +33,7 @@ export function TrustStatsSection() {
                 className="w-[6px] shrink-0 rounded-sm self-stretch"
                 style={{
                   background:
-                    "linear-gradient(to bottom, #991B1B 0%, transparent 100%)",
+                    "linear-gradient(to bottom, #C44D4D 0%, transparent 100%)",
                 }}
               />
               <h2 className="text-3xl md:text-4xl lg:text-[40px] font-extrabold italic text-[#1A1A1A] leading-tight">

@@ -126,7 +126,7 @@ export function Navbar({
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors pb-1 border-b-2 border-transparent",
-                  isActive && "border-[#991B1B] text-[#991B1B]",
+                  isActive && "border-[#C44D4D] text-[#C44D4D]",
                   !isActive && "text-[#28325F] hover:text-[#1A1A1A]",
                 )}
               >
@@ -141,7 +141,7 @@ export function Navbar({
         <Button
           variant="default"
           size="default"
-          className="bg-[#991B1B] hover:bg-[#7F1D1D] text-white"
+          className="bg-[#C44D4D] hover:bg-[#A33A3A] text-white"
           asChild
         >
           <Link href="/contact">Contact Us</Link>
@@ -206,8 +206,8 @@ export function Navbar({
                           className={cn(
                             "text-base font-medium transition-colors",
                             isActive
-                              ? "text-[#991B1B]"
-                              : "text-white hover:text-[#991B1B]",
+                              ? "text-[#C44D4D]"
+                              : "text-white hover:text-[#C44D4D]",
                           )}
                         >
                           {link.label}

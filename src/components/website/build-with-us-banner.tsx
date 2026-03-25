@@ -15,7 +15,7 @@ export function BuildWithUsBanner() {
   return (
     <section className="relative bg-white py-16 sm:py-20 md:py-24 overflow-hidden [font-family:var(--font-inter)]">
       <motion.div
-        className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-[#991B1B]/10 pointer-events-none"
+        className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-[#C44D4D]/10 pointer-events-none"
         aria-hidden
         initial={{ scale: 0.8, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
@@ -23,7 +23,7 @@ export function BuildWithUsBanner() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       />
       <motion.div
-        className="absolute -bottom-32 -left-32 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[#991B1B]/10 pointer-events-none"
+        className="absolute -bottom-32 -left-32 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[#C44D4D]/10 pointer-events-none"
         aria-hidden
         initial={{ scale: 0.8, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
@@ -31,7 +31,7 @@ export function BuildWithUsBanner() {
         transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
       />
       <motion.div
-        className="absolute -bottom-16 -right-16 w-40 h-40 sm:w-52 sm:h-52 rounded-full bg-[#991B1B]/10 pointer-events-none"
+        className="absolute -bottom-16 -right-16 w-40 h-40 sm:w-52 sm:h-52 rounded-full bg-[#C44D4D]/10 pointer-events-none"
         aria-hidden
         initial={{ scale: 0.8, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
@@ -70,7 +70,7 @@ export function BuildWithUsBanner() {
           transition={{ ...t, delay: 0.1 }}
         >
           <Button
-            className="w-full sm:w-auto bg-[#991B1B] border-2 border-[#991B1B] text-white hover:bg-[#7F1D1D] hover:border-[#7F1D1D] font-bold text-base rounded-[8px] px-6 py-6 sm:py-2.5 h-auto"
+            className="w-full sm:w-auto bg-[#C44D4D] border-2 border-[#C44D4D] text-white hover:bg-[#A33A3A] hover:border-[#A33A3A] font-bold text-base rounded-[8px] px-6 py-6 sm:py-2.5 h-auto"
             size="default"
             asChild
           >
@@ -78,7 +78,7 @@ export function BuildWithUsBanner() {
           </Button>
           <Button
             variant="outline"
-            className="w-full sm:w-auto border-2 border-[#991B1B] bg-transparent text-[#991B1B] text-base hover:bg-[#991B1B]/10 hover:border-[#991B1B] font-semibold rounded-[8px] px-6 py-6 sm:py-2.5 h-auto"
+            className="w-full sm:w-auto border-2 border-[#C44D4D] bg-transparent text-[#C44D4D] text-base hover:bg-[#C44D4D]/10 hover:border-[#C44D4D] font-semibold rounded-[8px] px-6 py-6 sm:py-2.5 h-auto"
             size="default"
             asChild
           >

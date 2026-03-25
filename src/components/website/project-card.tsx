@@ -37,7 +37,7 @@ export function ProjectCard({
         </p>
         <Link
           href={href}
-          className="inline-flex items-center gap-1.5 text-[#991B1B] font-semibold text-sm hover:text-[#7F1D1D] transition-colors"
+          className="inline-flex items-center gap-1.5 text-[#C44D4D] font-semibold text-sm hover:text-[#A33A3A] transition-colors"
         >
           View project
           <ArrowRight className="h-4 w-4" />

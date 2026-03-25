@@ -58,7 +58,7 @@ export function CtaSection({
           >
             <Button
               size="default"
-              className="w-full min-h-12 sm:min-h-0 bg-[#991B1B] hover:bg-[#7F1D1D] text-white font-bold text-base sm:text-lg px-6 py-3.5 sm:py-2.5 rounded-xl"
+              className="w-full min-h-12 sm:min-h-0 bg-[#C44D4D] hover:bg-[#A33A3A] text-white font-bold text-base sm:text-lg px-6 py-3.5 sm:py-2.5 rounded-xl"
               asChild
             >
               <Link href={buttonHref}>{buttonText}</Link>

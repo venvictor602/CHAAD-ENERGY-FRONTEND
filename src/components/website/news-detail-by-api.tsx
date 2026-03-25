@@ -132,7 +132,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
           <p className="text-[#64748B]">Article not found.</p>
           <Link
             href="/news"
-            className="text-[#991B1B] font-semibold hover:underline"
+            className="text-[#C44D4D] font-semibold hover:underline"
           >
             Back to News
           </Link>
@@ -220,7 +220,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
             </p>
             <Link
               href="/contact#consultation"
-              className="inline-flex items-center gap-2 text-[#991B1B] font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-[#C44D4D] font-semibold hover:underline"
             >
               Contact us
               <ExternalLink className="h-4 w-4" aria-hidden />
@@ -233,7 +233,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
                 href={post.post_video_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#991B1B] text-white font-medium hover:bg-[#7F1D1D] transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#C44D4D] text-white font-medium hover:bg-[#A33A3A] transition-colors"
               >
                 <ExternalLink className="h-4 w-4" aria-hidden />
                 Watch video
@@ -250,7 +250,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
               type="button"
               onClick={onLike}
               disabled={liking}
-              className="inline-flex items-center gap-2 text-[#64748B] hover:text-[#991B1B] disabled:opacity-60 transition-colors"
+              className="inline-flex items-center gap-2 text-[#64748B] hover:text-[#C44D4D] disabled:opacity-60 transition-colors"
             >
               <Heart className="h-5 w-5" aria-hidden />
               <span>{likesCount ?? post.likes_count ?? 0} likes</span>
@@ -317,7 +317,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
                 <input
                   id="comment-name"
                   {...register("name")}
-                  className="w-full rounded-lg border border-[#E5E7EB] px-3 py-2 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#991B1B]"
+                  className="w-full rounded-lg border border-[#E5E7EB] px-3 py-2 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#C44D4D]"
                   placeholder="Your name"
                 />
                 {errors.name && (
@@ -337,7 +337,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
                   id="comment-email"
                   type="email"
                   {...register("email")}
-                  className="w-full rounded-lg border border-[#E5E7EB] px-3 py-2 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#991B1B]"
+                  className="w-full rounded-lg border border-[#E5E7EB] px-3 py-2 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#C44D4D]"
                   placeholder="your@email.com"
                 />
                 {errors.email && (
@@ -357,7 +357,7 @@ export function NewsDetailByApi({ postId }: { postId: number }) {
                   id="comment-content"
                   {...register("content")}
                   rows={4}
-                  className="w-full rounded-lg border border-[#E5E7EB] px-3 py-2 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#991B1B]"
+                  className="w-full rounded-lg border border-[#E5E7EB] px-3 py-2 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#C44D4D]"
                   placeholder="Your comment"
                 />
                 {errors.content && (

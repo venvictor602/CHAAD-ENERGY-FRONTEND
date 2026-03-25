@@ -34,7 +34,7 @@ const viewport = { once: true, margin: "-60px" };
 const t = { duration: 0.45 };
 
 const inputClass =
-  "w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#991B1B] focus:ring-2 focus:ring-[#991B1B]/20 disabled:opacity-60 disabled:cursor-not-allowed";
+  "w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#C44D4D] focus:ring-2 focus:ring-[#C44D4D]/20 disabled:opacity-60 disabled:cursor-not-allowed";
 const inputErrorClass =
   "border-red-500 focus:border-red-500 focus:ring-red-500/20";
 const labelClass =
@@ -162,7 +162,7 @@ export function ContactQuoteSection({
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-start">
               <div className="flex gap-4">
                 <div
-                  className="w-1 bg-[#991B1B] rounded-full shrink-0"
+                  className="w-1 bg-[#C44D4D] rounded-full shrink-0"
                   aria-hidden
                 />
                 <div className="space-y-1">
@@ -178,7 +178,7 @@ export function ContactQuoteSection({
 
               <div className="flex gap-4">
                 <div
-                  className="w-1 bg-[#991B1B] rounded-full shrink-0"
+                  className="w-1 bg-[#C44D4D] rounded-full shrink-0"
                   aria-hidden
                 />
                 <div className="space-y-1">
@@ -194,7 +194,7 @@ export function ContactQuoteSection({
 
               <div className="flex gap-4">
                 <div
-                  className="w-1 bg-[#991B1B] rounded-full shrink-0"
+                  className="w-1 bg-[#C44D4D] rounded-full shrink-0"
                   aria-hidden
                 />
                 <div className="space-y-1">
@@ -211,7 +211,7 @@ export function ContactQuoteSection({
 
               <div className="flex gap-4">
                 <div
-                  className="w-1 bg-[#991B1B] rounded-full shrink-0"
+                  className="w-1 bg-[#C44D4D] rounded-full shrink-0"
                   aria-hidden
                 />
                 <div className="space-y-1">
@@ -413,7 +413,7 @@ export function ContactQuoteSection({
                     </span>
                     <textarea
                       {...register("message")}
-                      className={`w-full min-h-[128px] resize-none rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#991B1B] focus:ring-2 focus:ring-[#991B1B]/20 disabled:opacity-60 disabled:cursor-not-allowed ${errors.message ? inputErrorClass : ""}`}
+                      className={`w-full min-h-[128px] resize-none rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#C44D4D] focus:ring-2 focus:ring-[#C44D4D]/20 disabled:opacity-60 disabled:cursor-not-allowed ${errors.message ? inputErrorClass : ""}`}
                       placeholder="Tell us about your project goals, location, and timeline..."
                       aria-invalid={!!errors.message}
                       aria-describedby={
@@ -431,7 +431,7 @@ export function ContactQuoteSection({
                   <div className="sm:col-span-2 pt-2">
                     <Button
                       type="submit"
-                      className="w-full bg-[#991B1B] hover:bg-[#7F1D1D] text-white font-semibold rounded-lg"
+                      className="w-full bg-[#C44D4D] hover:bg-[#A33A3A] text-white font-semibold rounded-lg"
                       disabled={isSubmitDisabled}
                     >
                       {isSubmitting ? (

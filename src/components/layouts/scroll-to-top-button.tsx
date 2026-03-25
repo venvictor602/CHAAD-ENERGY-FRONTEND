@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 /** Deep red on white when overlapping the (red) footer so the FAB stays visible. */
 const ON_DARK_SURFACE =
-  "!bg-white !text-[#991B1B] border border-black/10 shadow-lg hover:!bg-[#FEF2F2] hover:!text-[#7F1D1D] focus-visible:!ring-[#991B1B]/40";
+  "!bg-white !text-[#C44D4D] border border-black/10 shadow-lg hover:!bg-[#FEF2F2] hover:!text-[#A33A3A] focus-visible:!ring-[#C44D4D]/40";
 
 export function ScrollToTopButton({
   showAfterPx = 400,
