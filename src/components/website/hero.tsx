@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layouts/navbar";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
+import { cn } from "@/lib/utils";
 
 const HERO_IMAGES: string[] = [
   cloudinaryImages.hero[0],
@@ -182,16 +183,14 @@ export function Hero() {
               ease: "easeInOut",
               delay: 1.2,
             }}
-            className="
-              relative flex flex-col items-center justify-center text-center
-              w-[min(92vw,580px)] aspect-square
-              max-h-[min(92vw,72svh)]
-              rounded-full p-5 sm:p-10 lg:p-14
-              bg-linear-to-br from-white/10 via-[#991B1B]/6 to-transparent
-              shadow-[0_20px_60px_rgba(0,0,0,0.4)]
-              border-6 sm:border-10 border-white/10
-              backdrop-blur-[2px]
-            "
+            className={cn(
+              "relative flex flex-col items-center justify-center text-center",
+              "w-[min(92vw,580px)] aspect-square max-h-[min(92vw,72svh)]",
+              "rounded-full p-5 sm:p-10 lg:p-14",
+              "bg-linear-to-br from-white/10 via-[#991B1B]/6 to-transparent",
+              "shadow-[0_20px_60px_rgba(0,0,0,0.4)]",
+              "border-6 sm:border-10 border-white/10 backdrop-blur-[2px]",
+            )}
           >
             <motion.div
               custom={0}
