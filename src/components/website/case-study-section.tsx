@@ -60,7 +60,7 @@ export function CaseStudySection() {
               {METRICS.map((m) => (
                 <div
                   key={m.label}
-                  className="w-full rounded-[8px] max-w-[230px] bg-[#DE5943]/10 p-4 space-y-[4px]"
+                  className="w-full rounded-[8px] bg-[#DE5943]/10 p-4 space-y-[4px] sm:max-w-[230px]"
                 >
                   <p className="text-2xl sm:text-2xl font-extrabold text-[#EE9D2B]">
                     {m.value}
