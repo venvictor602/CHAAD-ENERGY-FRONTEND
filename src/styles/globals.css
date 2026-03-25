@@ -7,11 +7,12 @@
   --color-primary: #de5943;
   --color-primary-hover: #c94d39;
   --color-dark: #1a1a1a;
-  --color-blue-800: #28325f;
-  --color-blue-600: #42529d;
-  --color-blue-500: #485aac;
-  --color-blue-300: #8490c7;
-  --color-blue-50: #edeff7;
+  /* Legacy "blue" tokens mapped to the brand coral palette */
+  --color-blue-800: #c94d39;
+  --color-blue-600: #de5943;
+  --color-blue-500: #de5943;
+  --color-blue-300: #f2b3aa;
+  --color-blue-50: #fff1ef;
 
   --background: #ffffff;
   --foreground: #1a1a1a;
@@ -25,26 +26,26 @@
   --secondary: #edeff7;
   --secondary-foreground: #1a1a1a;
   --muted: #edeff7;
-  --muted-foreground: #42529d;
+  --muted-foreground: #7a2b1f;
   --accent: #edeff7;
   --accent-foreground: #1a1a1a;
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: #485aac;
-  --chart-1: #485aac;
-  --chart-2: #8490c7;
-  --chart-3: #42529d;
-  --chart-4: #28325f;
+  --ring: #de5943;
+  --chart-1: #de5943;
+  --chart-2: #f2b3aa;
+  --chart-3: #c94d39;
+  --chart-4: #7a2b1f;
   --chart-5: #edeff7;
   --sidebar: #edeff7;
   --sidebar-foreground: #1a1a1a;
   --sidebar-primary: #de5943;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #8490c7;
+  --sidebar-accent: #f2b3aa;
   --sidebar-accent-foreground: #1a1a1a;
-  --sidebar-border: #8490c7;
-  --sidebar-ring: #485aac;
+  --sidebar-border: #f2b3aa;
+  --sidebar-ring: #de5943;
   --font-montserrat: "Montserrat", sans-serif;
 }
 

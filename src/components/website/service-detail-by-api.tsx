@@ -49,7 +49,7 @@ export function ServiceDetailByApi({ id }: { id: number }) {
           <p className="text-[#64748B]">Service not found.</p>
           <Link
             href="/services"
-            className="text-[#485AAC] font-semibold hover:underline"
+            className="text-[#DE5943] font-semibold hover:underline"
           >
             Back to Services
           </Link>
@@ -176,7 +176,7 @@ export function ServiceDetailByApi({ id }: { id: number }) {
               </p>
               <Link
                 href={`/contact?service=${id}#consultation`}
-                className="inline-flex items-center gap-2 text-[#485AAC] font-semibold hover:underline"
+                className="inline-flex items-center gap-2 text-[#DE5943] font-semibold hover:underline"
               >
                 Get a quote
                 <ExternalLink className="h-4 w-4" aria-hidden />

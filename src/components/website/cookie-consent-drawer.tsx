@@ -110,8 +110,8 @@ export function CookieConsentDrawer() {
           >
             <div className="w-full bg-white rounded-t-2xl shadow-[0_-4px_24px_rgba(0,0,0,0.12)] border border-[#E8E8E8] border-b-0 overflow-hidden [font-family:var(--font-inter)]">
               <div className="max-w-7xl mx-auto p-5 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center">
-                <div className="shrink-0 w-10 h-10 rounded-full bg-[#485AAC]/10 flex items-center justify-center">
-                  <Cookie className="h-5 w-5 text-[#485AAC]" aria-hidden />
+                <div className="shrink-0 w-10 h-10 rounded-full bg-[#DE5943]/10 flex items-center justify-center">
+                  <Cookie className="h-5 w-5 text-[#DE5943]" aria-hidden />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base font-semibold text-[#1A1A1A] mb-1">
@@ -123,7 +123,7 @@ export function CookieConsentDrawer() {
                     experience. By continuing, you accept our use of cookies.{" "}
                     <Link
                       href="/cookies"
-                      className="text-[#485AAC] font-medium hover:underline underline-offset-2"
+                      className="text-[#DE5943] font-medium hover:underline underline-offset-2"
                     >
                       Cookie policy
                     </Link>
@@ -180,7 +180,7 @@ export function CookieConsentDrawer() {
               role="dialog"
               aria-labelledby="cookie-preferences-title"
               aria-modal="true"
-              className="relative w-full max-w-lg rounded-2xl bg-[#28325F] shadow-xl border border-[#485AAC]/30 overflow-hidden [font-family:var(--font-inter)]"
+              className="relative w-full max-w-lg rounded-2xl bg-[#1A1A1A] shadow-xl border border-white/10 overflow-hidden [font-family:var(--font-inter)]"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
@@ -197,7 +197,7 @@ export function CookieConsentDrawer() {
                   <button
                     type="button"
                     onClick={closeSettings}
-                    className="shrink-0 p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-[#485AAC]/30 transition-colors"
+                    className="shrink-0 p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/15 transition-colors"
                     aria-label="Close"
                   >
                     <X className="h-5 w-5" />
@@ -220,7 +220,7 @@ export function CookieConsentDrawer() {
                     <h3 className="text-base font-semibold text-white">
                       Necessary Cookies
                     </h3>
-                    <span className="shrink-0 px-2.5 py-0.5 rounded-md bg-[#485AAC] text-white text-xs font-medium">
+                    <span className="shrink-0 px-2.5 py-0.5 rounded-md bg-[#DE5943] text-white text-xs font-medium">
                       Always Active
                     </span>
                   </div>
@@ -232,7 +232,7 @@ export function CookieConsentDrawer() {
                   </p>
                   <div className="flex justify-end">
                     <div
-                      className="w-11 h-6 rounded-full bg-[#485AAC] flex items-center justify-end pr-1 cursor-not-allowed opacity-90"
+                      className="w-11 h-6 rounded-full bg-[#DE5943] flex items-center justify-end pr-1 cursor-not-allowed opacity-95"
                       aria-hidden
                     >
                       <span className="w-4 h-4 rounded-full bg-white shadow" />
@@ -253,7 +253,7 @@ export function CookieConsentDrawer() {
                       className={cn(
                         "shrink-0 w-11 h-6 rounded-full transition-colors flex items-center",
                         functionalEnabled
-                          ? "bg-[#485AAC] justify-end pr-1"
+                          ? "bg-[#DE5943] justify-end pr-1"
                           : "bg-white/20 justify-start pl-1",
                       )}
                     >

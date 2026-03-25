@@ -65,7 +65,7 @@ const t = { duration: 0.4 };
 
 export function CoreValuesSection() {
   return (
-    <section className="bg-[#42529D] py-16 md:py-24 [font-family:var(--font-inter)]">
+    <section className="bg-[#FFF1EF] py-16 md:py-24 [font-family:var(--font-inter)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
           className="text-center max-w-[544px] mx-auto"
@@ -78,14 +78,14 @@ export function CoreValuesSection() {
           }}
         >
           <motion.h2
-            className="text-3xl md:text-5xl font-bold text-[#F1F5F9] leading-relaxed"
+            className="text-3xl md:text-5xl font-bold text-[#1A1A1A] leading-relaxed"
             variants={fadeUp}
             transition={t}
           >
             Our Core Values
           </motion.h2>
           <motion.p
-            className="mt-3 text-sm md:text-base text-white/85"
+            className="mt-3 text-sm md:text-base text-[#64748B]"
             variants={fadeUp}
             transition={t}
           >
@@ -113,11 +113,11 @@ export function CoreValuesSection() {
               variants={fadeUp}
               transition={t}
             >
-              <div className="w-[56px] h-[56px] rounded-[8px] bg-[#EDEFF7B2] flex items-center justify-center">
-                <v.icon className="h-6 w-6 text-[#485AAC]" />
+              <div className="w-[56px] h-[56px] rounded-[8px] bg-[#DE5943]/15 flex items-center justify-center">
+                <v.icon className="h-6 w-6 text-[#DE5943]" />
               </div>
               <div className="space-y-[16px]">
-                <h3 className="text-lg md:text-xl font-bold text-[#485AAC]">
+                <h3 className="text-lg md:text-xl font-bold text-[#DE5943]">
                   {v.title}
                 </h3>
                 <p className=" text-sm leading-relaxed text-[#94A3B8] font-normal">

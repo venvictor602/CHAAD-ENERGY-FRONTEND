@@ -156,7 +156,7 @@ export function Footer() {
   const isSubmitDisabled = !isValid || isSubmitting;
 
   return (
-    <footer className="bg-[#28325F] text-white">
+    <footer className="bg-[#DE5943] text-white">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-8"
         initial="initial"
@@ -174,7 +174,7 @@ export function Footer() {
         >
           <div className="flex-1">
             <p className="text-sm font-semibold">Stay in the loop</p>
-            <p className="text-xs text-white mt-1">
+            <p className="text-xs text-white/90 mt-1">
               Get updates on new projects and industry insights
             </p>
           </div>
@@ -190,7 +190,7 @@ export function Footer() {
                   {...register("email")}
                   type="email"
                   placeholder="Your email address"
-                  className="w-full h-11 rounded-md bg-transparent border border-white/40 px-4 text-sm placeholder:text-white/55 outline-none focus:border-white/70 disabled:opacity-60 disabled:cursor-not-allowed aria-invalid:border-red-400"
+                  className="w-full h-11 rounded-md bg-white/10 border border-white/55 px-4 text-sm text-white placeholder:text-white/70 outline-none focus:border-white disabled:opacity-60 disabled:cursor-not-allowed aria-invalid:border-red-300"
                   aria-invalid={!!errors.email}
                   aria-describedby={
                     errors.email ? "footer-email-error" : undefined
@@ -205,9 +205,9 @@ export function Footer() {
               </div>
               <Button
                 type="submit"
-                variant="default"
+                variant="outline"
                 size="default"
-                className="h-11 min-w-[120px] cursor-pointer"
+                className="h-11 min-w-[120px] text-[#DE5943] cursor-pointer"
                 disabled={isSubmitDisabled}
               >
                 {isSubmitting ? (
@@ -220,7 +220,7 @@ export function Footer() {
                 )}
               </Button>
             </div>
-            <p className="text-[10px] sm:text-[12px] font-normal text-white mt-2 sm:text-right">
+            <p className="text-[10px] sm:text-[12px] font-normal text-white/90 mt-2 sm:text-right">
               By subscribing you agree to our{" "}
               <Link href="/privacy" className="underline underline-offset-2">
                 Privacy Policy
@@ -262,7 +262,7 @@ export function Footer() {
                     <li key={l.label}>
                       <Link
                         href={l.href}
-                        className="text-xs text-white/70 hover:text-white transition-colors"
+                        className="text-xs text-white/90 hover:text-white transition-colors"
                         {...("external" in l && l.external
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
@@ -288,8 +288,8 @@ export function Footer() {
           variants={fadeUp}
           transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/70">
-            <span className="text-white/60">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/90">
+            <span className="text-white/85">
               © 2025 CHAAD. All rights reserved.
             </span>
             <Link href="/terms" className="hover:text-white transition-colors">

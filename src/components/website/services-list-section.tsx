@@ -47,7 +47,7 @@ function ServiceCard({ service }: { service: ServiceItem }) {
       <div className="p-5 sm:p-6 flex flex-col flex-1">
         <Link
           href={detailHref}
-          className="text-lg font-bold text-[#333333] leading-tight mb-2 block hover:text-[#485AAC] transition-colors"
+          className="text-lg font-bold text-[#333333] leading-tight mb-2 block hover:text-[#DE5943] transition-colors"
         >
           {service.name}
         </Link>
@@ -57,14 +57,14 @@ function ServiceCard({ service }: { service: ServiceItem }) {
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <Link
             href={detailHref}
-            className="text-[#485AAC] font-semibold text-sm hover:text-[#3d4d94] transition-colors w-fit"
+            className="text-[#DE5943] font-semibold text-sm hover:text-[#c94d39] transition-colors w-fit"
           >
             View details
           </Link>
           <span className="text-[#94A3B8]">·</span>
           <Link
             href="/contact"
-            className="text-[#485AAC] font-semibold text-sm hover:text-[#3d4d94] transition-colors w-fit"
+            className="text-[#DE5943] font-semibold text-sm hover:text-[#c94d39] transition-colors w-fit"
           >
             Get in touch
           </Link>
@@ -195,7 +195,7 @@ export function ServicesListSection() {
             transition={t}
           >
             <div className="w-12 h-12 rounded-full border border-[#ABB3D9] flex items-center justify-center shrink-0">
-              <Plus className="h-6 w-6 text-[#485AAC]" strokeWidth={2.5} />
+              <Plus className="h-6 w-6 text-[#DE5943]" strokeWidth={2.5} />
             </div>
             <div className="space-y-2">
               <h3 className="text-lg md:text-xl font-bold text-[#333333] leading-tight">
@@ -210,7 +210,7 @@ export function ServicesListSection() {
               variant="outline"
               size="default"
               asChild
-              className="bg-transparent border max-w-[190px] w-full border-[#485AAC] text-[#485AAC]"
+              className="bg-transparent border max-w-[190px] w-full border-[#DE5943] text-[#DE5943]"
             >
               <Link href="/contact">Contact Us</Link>
             </Button>

@@ -39,15 +39,13 @@ function useSolidBackground(prop?: boolean): boolean {
 
 export function Navbar({
   className,
-  theme = "light",
   solidBackground,
 }: {
   className?: string;
-  theme?: "light" | "dark";
   solidBackground?: boolean;
 }) {
   const router = useRouter();
-  const solidBg = useSolidBackground(solidBackground);
+  useSolidBackground(solidBackground);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -100,9 +98,6 @@ export function Navbar({
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const isDark = theme === "dark" && !solidBg;
-  const showLightText = !solidBg && !scrolled;
-
   return (
     <nav
       className={cn(
@@ -130,7 +125,7 @@ export function Navbar({
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors pb-1 border-b-2 border-transparent",
-                  isActive && "border-[#485AAC] text-[#485AAC]",
+                  isActive && "border-[#DE5943] text-[#DE5943]",
                   !isActive && "text-[#28325F] hover:text-[#1A1A1A]",
                 )}
               >
@@ -210,8 +205,8 @@ export function Navbar({
                           className={cn(
                             "text-base font-medium transition-colors",
                             isActive
-                              ? "text-[#485AAC]"
-                              : "text-white hover:text-[#485AAC]",
+                              ? "text-[#DE5943]"
+                              : "text-white hover:text-[#DE5943]",
                           )}
                         >
                           {link.label}

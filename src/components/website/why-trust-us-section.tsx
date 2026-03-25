@@ -41,7 +41,7 @@ export function WhyTrustUsSection() {
   });
 
   return (
-    <section id="why-trust-us" className="bg-[#1A1A1A] py-16 md:py-24 lg:py-32">
+    <section id="why-trust-us" className="bg-[#DE5943] py-16 md:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
@@ -55,7 +55,7 @@ export function WhyTrustUsSection() {
             <h2 className="text-3xl md:text-4xl leading-[58px] lg:text-5xl font-bold text-white">
               Why Global Leaders Trust Us
             </h2>
-            <p className="text-[#E8E8E8] text-base font-normal leading-relaxed">
+            <p className="text-white/90 text-base font-normal leading-relaxed">
               We combine decades of technical expertise with a relentless
               commitment to safety and innovation, ensuring every project meets
               the highest international standards.
@@ -72,14 +72,14 @@ export function WhyTrustUsSection() {
                   variants={itemVariants}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <div className="shrink-0 w-12 h-12 rounded-full border-2 border-[#DE5943] flex items-center justify-center bg-[#1A1A1A]">
+                  <div className="shrink-0 w-12 h-12 rounded-full border-2 border-white/55 flex items-center justify-center bg-white/15">
                     <feature.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-bold text-base text-white">
                       {feature.title}
                     </h3>
-                    <p className="text-[#E8E8E8] font-normal text-sm">
+                    <p className="text-white/85 font-normal text-sm">
                       {feature.description}
                     </p>
                   </div>
@@ -106,12 +106,12 @@ export function WhyTrustUsSection() {
             />
             <div
               ref={badgeRef}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 flex items-center gap-4 rounded-[12px] bg-[#1A1A1A]/95 p-[16px] lg:p-[24px] max-w-[457px] w-full shadow-lg"
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 flex items-center gap-4 rounded-[12px] bg-white/12 backdrop-blur-md p-[16px] lg:p-[24px] max-w-[457px] w-full shadow-lg ring-1 ring-white/20"
             >
-              <p className="text-3xl md:text-4xl font-extrabold text-[#DE5943] shrink-0">
+              <p className="text-3xl md:text-4xl font-extrabold text-white shrink-0">
                 <CountUp value="7+" start={badgeInView} />
               </p>
-              <p className="text-[#E2E8F0] font-medium text-sm leading-snug">
+              <p className="text-white/90 font-medium text-sm leading-snug">
                 Years of delivering mission-critical infrastructure worldwide.
               </p>
             </div>

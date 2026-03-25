@@ -82,7 +82,7 @@ function NewsCard({ item }: { item: NewsItem }) {
         </p>
         <Link
           href={item.href}
-          className="inline-flex items-center gap-1.5 text-[#485AAC] font-bold text-sm hover:text-[#3d4d94] transition-colors w-fit"
+          className="inline-flex items-center gap-1.5 text-[#DE5943] font-bold text-sm hover:text-[#c94d39] transition-colors w-fit"
         >
           Read more
           <ArrowRight className="h-4 w-4 shrink-0" />

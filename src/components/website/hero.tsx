@@ -58,8 +58,8 @@ export function Hero() {
           />
         </AnimatePresence>
 
-        {/* Dark Overlays */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/25 via-black/5 to-black/60" />
+        {/* Brand overlay (coral-tinted) */}
+        <div className="absolute inset-0 bg-linear-to-b from-[#DE5943]/10 via-black/10 to-[#DE5943]/35" />
 
         {/* Unique animated pattern overlay (isometric grid + particles) */}
         <motion.svg
@@ -87,14 +87,14 @@ export function Hero() {
               <path
                 d="M18 21 L18 42 M54 21 L54 42"
                 fill="none"
-                stroke="rgba(72,90,172,0.10)"
+                stroke="rgba(222,89,67,0.18)"
                 strokeWidth="1"
               />
             </pattern>
             <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="rgba(72,90,172,0.16)" />
-              <stop offset="60%" stopColor="rgba(72,90,172,0.06)" />
-              <stop offset="100%" stopColor="rgba(222,89,67,0.10)" />
+              <stop offset="0%" stopColor="rgba(222,89,67,0.22)" />
+              <stop offset="60%" stopColor="rgba(222,89,67,0.10)" />
+              <stop offset="100%" stopColor="rgba(0,0,0,0.18)" />
             </linearGradient>
             <filter id="softGlow" x="-35%" y="-35%" width="170%" height="170%">
               <feGaussianBlur stdDeviation="12" result="blur" />
@@ -184,12 +184,13 @@ export function Hero() {
             }}
             className="
               relative flex flex-col items-center justify-center text-center
-              w-[92vw] max-w-[360px] sm:max-w-[500px] lg:max-w-[580px] aspect-square
-              rounded-full p-4 sm:p-12 lg:p-16
-              bg-linear-to-br from-[#DE5943]/40 to-[#DE5943]/10
+              w-[min(92vw,580px)] aspect-square
+              max-h-[min(92vw,72svh)]
+              rounded-full p-5 sm:p-10 lg:p-14
+              bg-linear-to-br from-white/10 via-[#DE5943]/6 to-transparent
               shadow-[0_20px_60px_rgba(0,0,0,0.4)]
-              border-6 sm:border-10 border-[#DE5943]/20
-              backdrop-blur-md
+              border-6 sm:border-10 border-white/10
+              backdrop-blur-[2px]
             "
           >
             <motion.div
@@ -197,7 +198,7 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.22em] text-white/80 uppercase mb-2 sm:mb-4 px-2"
+              className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.22em] text-white/85 uppercase mb-2 sm:mb-4 px-2 [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]"
             >
               CHAAD Energy Limited
             </motion.div>
@@ -207,10 +208,9 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="text-[26px] sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-white leading-[1.15] sm:leading-[1.1] max-w-[260px] sm:max-w-none mx-auto"
+              className="text-[clamp(1.25rem,4.6vw,3rem)] font-extrabold text-white leading-[1.12] mx-auto max-w-[22ch] [text-shadow:0_2px_18px_rgba(0,0,0,0.6)]"
             >
-              Powering Nigeria&apos;s <br className="hidden sm:block" /> Energy
-              Future
+              Excellence Redefined; Solution Assured
             </motion.h1>
 
             <motion.p
@@ -218,10 +218,10 @@ export function Hero() {
               variants={contentVariants}
               initial="hidden"
               animate="visible"
-              className="mt-3 sm:mt-6 text-[11px] sm:text-sm md:text-base text-white/90 max-w-[240px] sm:max-w-[85%] mx-auto leading-relaxed"
+              className="mt-3 sm:mt-6 text-[clamp(0.75rem,2.6vw,1rem)] text-white/92 mx-auto leading-relaxed max-w-[38ch] [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
             >
-              End-to-end oil & gas, energy and construction solutions —
-              delivered with safety, precision and measurable results.
+              Focused on Delivering Excellence and reliable technical solutions
+              across the energy value chain
             </motion.p>
 
             <motion.div

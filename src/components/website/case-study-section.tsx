@@ -60,7 +60,7 @@ export function CaseStudySection() {
               {METRICS.map((m) => (
                 <div
                   key={m.label}
-                  className="w-full rounded-[8px] max-w-[230px] bg-[#485AAC0D] p-4 space-y-[4px]"
+                  className="w-full rounded-[8px] max-w-[230px] bg-[#DE5943]/10 p-4 space-y-[4px]"
                 >
                   <p className="text-2xl sm:text-2xl font-extrabold text-[#EE9D2B]">
                     {m.value}
@@ -73,7 +73,7 @@ export function CaseStudySection() {
             </motion.div>
             <motion.div variants={fadeUp} transition={t}>
               <Button
-                className="w-full sm:w-auto font-bold text-lg p-8 rounded-[8px] bg-[#485AAC] hover:bg-[#1e2747] text-white"
+                className="w-full sm:w-auto font-bold text-lg p-8 rounded-[8px] bg-[#DE5943] hover:bg-[#c94d39] text-white"
                 size="default"
                 asChild
               >

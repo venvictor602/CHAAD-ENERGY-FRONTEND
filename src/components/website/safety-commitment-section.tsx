@@ -17,7 +17,7 @@ export function SafetyCommitmentSection({
   backgroundImage?: string;
 }) {
   return (
-    <section className="relative font-inter min-h-[420px] md:min-h-[520px] flex items-center overflow-hidden border-y-4 border-[#28325F] bg-[#111827]">
+    <section className="relative font-inter min-h-[420px] md:min-h-[520px] flex items-center overflow-hidden border-y-4 border-[#DE5943] bg-white">
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -30,7 +30,7 @@ export function SafetyCommitmentSection({
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.78) 45%, rgba(0,0,0,0.55) 70%, transparent 100%)",
+              "linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.82) 48%, rgba(255,255,255,0.35) 72%, transparent 100%)",
           }}
           aria-hidden
         />
@@ -50,7 +50,7 @@ export function SafetyCommitmentSection({
           }}
         >
           <motion.h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight"
             variants={{
               initial: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
@@ -59,10 +59,10 @@ export function SafetyCommitmentSection({
           >
             Our Commitment to
             <br />
-            <span className="text-white">Safety</span>
+            <span className="text-[#DE5943]">Safety</span>
           </motion.h2>
           <motion.p
-            className="mt-6 text-[#CBD5E1] font-normal text-base md:text-lg leading-relaxed"
+            className="mt-6 text-[#334155] font-normal text-base md:text-lg leading-relaxed"
             variants={{
               initial: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
@@ -83,9 +83,9 @@ export function SafetyCommitmentSection({
             transition={{ duration: 0.4 }}
           >
             {BULLETS.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-[#F1F5F9]">
+              <li key={item} className="flex items-center gap-3 text-[#1A1A1A]">
                 <CheckCircleIcon
-                  className="h-[20px] w-[20px] shrink-0 text-[#1DCC3A]"
+                  className="h-[20px] w-[20px] shrink-0 text-[#DE5943]"
                   strokeWidth={3}
                 />
                 <span className="text-sm md:text-base font-medium">{item}</span>

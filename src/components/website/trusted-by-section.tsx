@@ -71,7 +71,7 @@ export function TrustedBySection({
             </p>
             <h2 className="text-4xl italic md:text-5xl lg:text-[56px] font-semibold text-[#333333] leading-tight">
               We <span className=" ">are trusted by</span> over{" "}
-              <span className="  text-[#485AAC]">50 clients</span>{" "}
+              <span className="text-[#DE5943]">50 clients</span>{" "}
               <span className="  ">across the nation</span>
             </h2>
           </motion.div>
@@ -112,7 +112,7 @@ export function TrustedBySection({
                     }}
                   >
                     <motion.div
-                      className="h-12 w-24 sm:h-14 sm:w-28 md:h-16 md:w-32 bg-white rounded-md flex items-center justify-center"
+                      className="h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 bg-white rounded-md flex items-center justify-center"
                       animate={{ rotate: [10, -350] }}
                       transition={{
                         repeat: Infinity,
@@ -123,8 +123,8 @@ export function TrustedBySection({
                       <Image
                         src={logo.src}
                         alt={logo.alt}
-                        width={128}
-                        height={64}
+                        width={160}
+                        height={80}
                         className="w-full h-full object-contain opacity-90"
                         loading="lazy"
                       />

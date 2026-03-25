@@ -43,11 +43,11 @@ function ImageWithLogoOverlay({
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%)",
+            "linear-gradient(180deg, rgba(222,89,67,0.06) 0%, rgba(222,89,67,0.28) 100%)",
         }}
         aria-hidden
       />
-      <div className="absolute bottom-3 right-3 w-11 h-11 md:w-12 md:h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center p-2">
+      <div className="absolute bottom-3 right-3 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#DE5943]/30 backdrop-blur-sm flex items-center justify-center p-2 ring-1 ring-white/20">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/Logo.svg"
@@ -64,13 +64,13 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative bg-[#1A1A1A] py-16 md:py-24 lg:py-28 overflow-hidden"
+      className="relative bg-[#DE5943] py-16 md:py-24 lg:py-28 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-[0.25]"
         style={{
           background:
-            "radial-gradient(800px 400px at 15% 25%, rgba(72,90,172,0.22), transparent 60%), radial-gradient(700px 500px at 85% 65%, rgba(222,89,67,0.18), transparent 55%)",
+            "radial-gradient(800px 400px at 15% 25%, rgba(255,255,255,0.22), transparent 60%), radial-gradient(700px 500px at 85% 65%, rgba(0,0,0,0.18), transparent 55%)",
         }}
         aria-hidden
       />
@@ -84,15 +84,15 @@ export function AboutSection() {
             viewport={{ once: true, margin: "-80px" }}
             transition={t}
           >
-            <div className="rounded-2xl border border-white/10 bg-black/35 backdrop-blur-md p-7 md:p-9 lg:p-10 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-              <p className="text-xs md:text-sm tracking-[0.28em] uppercase text-white/70 font-semibold">
+            <div className="rounded-2xl border border-white/20 bg-white/12 backdrop-blur-md p-7 md:p-9 lg:p-10 shadow-[0_24px_80px_rgba(0,0,0,0.20)]">
+              <p className="text-xs md:text-sm tracking-[0.28em] uppercase text-white/85 font-semibold">
                 About CHAAD Energy
               </p>
               <h2 className="mt-4 text-2xl md:text-[34px] lg:text-[40px] font-bold text-white leading-tight">
                 Powering Energy & Infrastructure with Precision, Safety &
                 Reliability
               </h2>
-              <p className="mt-5 text-base md:text-lg text-white/85 leading-relaxed">
+              <p className="mt-5 text-base md:text-lg text-white/95 leading-relaxed">
                 CHAAD Energy is an engineering and energy services firm
                 specializing in EPC, commissioning, cathodic protection, tank
                 services, and turnkey solutions for the energy, oil & gas, and

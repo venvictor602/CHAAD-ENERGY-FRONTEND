@@ -96,7 +96,7 @@ export function ProjectDetailContent({
             transition={t}
           >
             <section className=" max-w-[620px] w-full space-y-[16px]">
-              <h2 className="font-bold text-[24px] border-l-4 border-[#485AAC] pl-[8px] text-[#333333] flex items-center gap-2">
+              <h2 className="font-bold text-[24px] border-l-4 border-[#DE5943] pl-[8px] text-[#333333] flex items-center gap-2">
                 Project Overview
               </h2>
               <p className="text-[#777777] font-normal text-[18px] leading-relaxed">
@@ -104,7 +104,7 @@ export function ProjectDetailContent({
               </p>
             </section>
             <section>
-              <h2 className="font-bold text-[24px] border-l-4 border-[#485AAC] pl-[8px] text-[#333333] flex items-center gap-2">
+              <h2 className="font-bold text-[24px] border-l-4 border-[#DE5943] pl-[8px] text-[#333333] flex items-center gap-2">
                 The Challenge
               </h2>
               <p className="text-[#777777] font-normal text-[18px] leading-relaxed">
@@ -112,7 +112,7 @@ export function ProjectDetailContent({
               </p>
             </section>
             <section>
-              <h2 className="font-bold text-[24px] border-l-4 border-[#485AAC] pl-[8px] text-[#333333] flex items-center gap-2">
+              <h2 className="font-bold text-[24px] border-l-4 border-[#DE5943] pl-[8px] text-[#333333] flex items-center gap-2">
                 The Solution
               </h2>
               <p className="text-[#777777] font-normal text-[18px] leading-relaxed">
@@ -194,7 +194,7 @@ export function ProjectDetailContent({
         </div>
       </div>
 
-      <section className="bg-[#485AAC] py-12 md:py-16">
+      <section className="bg-[#DE5943] py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
@@ -218,7 +218,7 @@ export function ProjectDetailContent({
                   transition={t}
                 >
                   {Icon && (
-                    <Icon className="size-[32px] text-[#485AAC] mx-auto" />
+                    <Icon className="size-[32px] text-[#DE5943] mx-auto" />
                   )}
                   <p className="text-[24px] lg:text-[32px] font-black text-[#333333]">
                     {m.value}
@@ -306,7 +306,7 @@ export function ProjectDetailContent({
             variants={fadeUp}
             transition={t}
           >
-            <h2 className="text-[20px] sm:text-[24px] md:text-[30px] font-extrabold text-[#485AAC]">
+            <h2 className="text-[20px] sm:text-[24px] md:text-[30px] font-extrabold text-[#DE5943]">
               Have a similar project in mind?
             </h2>
             <p className="text-sm font-normal sm:text-base text-[#7A90AE] max-w-xl">
@@ -315,7 +315,7 @@ export function ProjectDetailContent({
             </p>
             <Button
               size="default"
-              className="bg-[#485AAC] font-bold text-[16px] hover:bg-[#3d4d94] text-white rounded-[8px]"
+              className="bg-[#DE5943] font-bold text-[16px] hover:bg-[#c94d39] text-white rounded-[8px]"
               asChild
             >
               <Link href="/contact">Start a Consultation</Link>
