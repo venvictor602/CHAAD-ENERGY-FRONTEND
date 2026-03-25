@@ -51,14 +51,8 @@ export function TrustedBySection({
   logos?: LogoItem[];
 }) {
   const effectiveLogos = useMemo(() => {
-    if (logos.length === SLOTS.length) return logos;
-    if (logos.length > SLOTS.length) return logos.slice(0, SLOTS.length);
-
-    const filled: LogoItem[] = [];
-    for (let i = 0; i < SLOTS.length; i++) {
-      filled.push(logos[i % Math.max(1, logos.length)] ?? DEFAULT_LOGOS[i]);
-    }
-    return filled;
+    const base = logos.length > 0 ? logos : DEFAULT_LOGOS;
+    return base.slice(0, Math.min(base.length, SLOTS.length));
   }, [logos]);
 
   return (
