@@ -18,7 +18,7 @@ export function LearnMoreLink({
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-1.5 text-[#C44D4D] font-bold text-sm hover:text-[#A33A3A] transition-colors",
+        "inline-flex items-center gap-1.5 text-[#A82C3A] font-bold text-sm hover:text-[#7F222E] transition-colors",
         className,
       )}
     >

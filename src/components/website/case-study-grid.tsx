@@ -25,7 +25,7 @@ const t = { duration: 0.4 };
 function CaseStudyCard({ item }: { item: CaseStudyItem }) {
   return (
     <motion.article
-      className="group flex flex-col bg-[#C44D4D]/10 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow w-full"
+      className="group flex flex-col bg-[#A82C3A]/10 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow w-full"
       variants={fadeUp}
       transition={t}
     >
@@ -41,7 +41,7 @@ function CaseStudyCard({ item }: { item: CaseStudyItem }) {
       </div>
       <div className="p-5 sm:p-6 flex flex-col flex-1 text-left space-y-[20px]">
         <div className=" space-y-[12px]">
-          <span className="inline-block w-fit px-[8px] py-[2px] rounded bg-[#C44D4D]/10 text-[#C44D4D] text-[10px] font-bold tracking-wide">
+          <span className="inline-block w-fit px-[8px] py-[2px] rounded bg-[#A82C3A]/10 text-[#A82C3A] text-[10px] font-bold tracking-wide">
             {item.category}
           </span>
           <h3 className="text-lg sm:text-xl font-bold text-[#333333] leading-tight ">
@@ -53,7 +53,7 @@ function CaseStudyCard({ item }: { item: CaseStudyItem }) {
         </div>
         <Link
           href={item.href}
-          className="inline-flex items-center gap-1.5 text-[#C44D4D] font-bold text-sm hover:text-[#A33A3A] transition-colors w-fit"
+          className="inline-flex items-center gap-1.5 text-[#A82C3A] font-bold text-sm hover:text-[#7F222E] transition-colors w-fit"
         >
           View Case Study
           <ArrowRight className="h-4 w-4 shrink-0" />

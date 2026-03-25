@@ -156,7 +156,7 @@ export function Footer() {
   const isSubmitDisabled = !isValid || isSubmitting;
 
   return (
-    <footer className="bg-[#C44D4D] text-white">
+    <footer className="bg-[#A82C3A] text-white">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-8"
         initial="initial"
@@ -207,7 +207,7 @@ export function Footer() {
                 type="submit"
                 variant="outline"
                 size="default"
-                className="h-11 min-w-[120px] text-[#C44D4D] cursor-pointer"
+                className="h-11 min-w-[120px] text-[#A82C3A] cursor-pointer"
                 disabled={isSubmitDisabled}
               >
                 {isSubmitting ? (

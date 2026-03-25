@@ -31,7 +31,7 @@ export default function CareerDetailPage() {
           <p className="text-[#64748B]">Invalid job listing.</p>
           <a
             href="/careers"
-            className="text-[#C44D4D] font-semibold hover:underline"
+            className="text-[#A82C3A] font-semibold hover:underline"
           >
             Back to Careers
           </a>

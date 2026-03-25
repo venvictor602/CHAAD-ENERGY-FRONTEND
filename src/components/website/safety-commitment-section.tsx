@@ -17,7 +17,7 @@ export function SafetyCommitmentSection({
   backgroundImage?: string;
 }) {
   return (
-    <section className="relative font-inter min-h-[420px] md:min-h-[520px] flex items-center overflow-hidden border-y-4 border-[#C44D4D] bg-white">
+    <section className="relative font-inter min-h-[420px] md:min-h-[520px] flex items-center overflow-hidden border-y-4 border-[#A82C3A] bg-white">
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -59,7 +59,7 @@ export function SafetyCommitmentSection({
           >
             Our Commitment to
             <br />
-            <span className="text-[#C44D4D]">Safety</span>
+            <span className="text-[#A82C3A]">Safety</span>
           </motion.h2>
           <motion.p
             className="mt-6 text-[#334155] font-normal text-base md:text-lg leading-relaxed"
@@ -85,7 +85,7 @@ export function SafetyCommitmentSection({
             {BULLETS.map((item) => (
               <li key={item} className="flex items-center gap-3 text-[#1A1A1A]">
                 <CheckCircleIcon
-                  className="h-[20px] w-[20px] shrink-0 text-[#C44D4D]"
+                  className="h-[20px] w-[20px] shrink-0 text-[#A82C3A]"
                   strokeWidth={3}
                 />
                 <span className="text-sm md:text-base font-medium">{item}</span>
