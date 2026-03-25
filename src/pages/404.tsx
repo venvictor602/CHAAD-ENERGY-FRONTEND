@@ -93,25 +93,25 @@ export default function Custom404() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/services"
-                  className="text-[#DE5943] font-medium hover:underline"
+                  className="text-[#991B1B] font-medium hover:underline"
                 >
                   Services
                 </Link>
                 <Link
                   href="/projects"
-                  className="text-[#DE5943] font-medium hover:underline"
+                  className="text-[#991B1B] font-medium hover:underline"
                 >
                   Projects
                 </Link>
                 <Link
                   href="/about"
-                  className="text-[#DE5943] font-medium hover:underline"
+                  className="text-[#991B1B] font-medium hover:underline"
                 >
                   About
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-[#DE5943] font-medium hover:underline"
+                  className="text-[#991B1B] font-medium hover:underline"
                 >
                   Contact
                 </Link>

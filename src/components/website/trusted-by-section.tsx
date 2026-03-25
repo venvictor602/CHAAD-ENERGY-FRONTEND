@@ -71,7 +71,7 @@ export function TrustedBySection({
             </p>
             <h2 className="text-4xl italic md:text-5xl lg:text-[56px] font-semibold text-[#333333] leading-tight">
               We <span className=" ">are trusted by</span> over{" "}
-              <span className="text-[#DE5943]">50 clients</span>{" "}
+              <span className="text-[#991B1B]">50 clients</span>{" "}
               <span className="  ">across the nation</span>
             </h2>
           </motion.div>

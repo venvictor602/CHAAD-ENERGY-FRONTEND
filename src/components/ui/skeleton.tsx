@@ -44,7 +44,7 @@ export function SkeletonCardProject() {
 
 export function SkeletonCardCaseStudy() {
   return (
-    <article className="flex flex-col bg-[#DE5943]/10 rounded-xl overflow-hidden shadow-md w-full">
+    <article className="flex flex-col bg-[#991B1B]/10 rounded-xl overflow-hidden shadow-md w-full">
       <Skeleton className="w-full aspect-16/10 shrink-0 rounded-none" />
       <div className="p-5 sm:p-6 flex flex-col flex-1 space-y-3">
         <Skeleton className="h-4 w-20 rounded" />

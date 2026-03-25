@@ -74,7 +74,7 @@ export function PartnersSection() {
           }}
         >
           <motion.h2
-            className="text-3xl md:text-5xl font-bold text-[#DE5943] leading-relaxed"
+            className="text-3xl md:text-5xl font-bold text-[#991B1B] leading-relaxed"
             variants={fadeUp}
             transition={t}
           >
@@ -136,7 +136,7 @@ export function PartnersSection() {
                   )}
                 </div>
 
-                <h3 className="text-center text-sm md:text-base lg:text-2xl font-bold tracking-wide text-[#DE5943]">
+                <h3 className="text-center text-sm md:text-base lg:text-2xl font-bold tracking-wide text-[#991B1B]">
                   {p.name}
                 </h3>
                 <p className="mt-3 text-center text-xs md:text-sm leading-relaxed text-[#6D7BBD] font-normal decoration-[#6D7BBD]/60">
@@ -144,7 +144,7 @@ export function PartnersSection() {
                 </p>
 
                 <div
-                  className="absolute left-0 right-0 bottom-0 h-[9px] bg-[#DE5943]"
+                  className="absolute left-0 right-0 bottom-0 h-[9px] bg-[#991B1B]"
                   aria-hidden
                 />
               </motion.div>

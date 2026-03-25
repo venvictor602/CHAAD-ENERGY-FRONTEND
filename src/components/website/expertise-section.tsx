@@ -72,7 +72,7 @@ export function ExpertiseSection() {
           variants={itemVariants}
           transition={{ duration: 0.4 }}
         >
-          <p className="text-[#DE5943] font-bold text-sm uppercase tracking-wider">
+          <p className="text-[#991B1B] font-bold text-sm uppercase tracking-wider">
             Our Expertise
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] leading-[58px]">

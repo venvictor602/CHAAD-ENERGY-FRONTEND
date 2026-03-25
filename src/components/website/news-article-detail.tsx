@@ -155,7 +155,7 @@ export function NewsArticleDetail({
                     </p>
                     <Link
                       href={item.href}
-                      className="inline-flex items-center gap-1.5 text-[#DE5943] font-semibold text-sm hover:text-[#c94d39] transition-colors w-fit"
+                      className="inline-flex items-center gap-1.5 text-[#991B1B] font-semibold text-sm hover:text-[#7F1D1D] transition-colors w-fit"
                     >
                       Read more
                       <ArrowRight className="h-4 w-4 shrink-0" />

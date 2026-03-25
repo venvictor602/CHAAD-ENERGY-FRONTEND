@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/projects", label: "Projects" },
@@ -125,7 +126,7 @@ export function Navbar({
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors pb-1 border-b-2 border-transparent",
-                  isActive && "border-[#DE5943] text-[#DE5943]",
+                  isActive && "border-[#991B1B] text-[#991B1B]",
                   !isActive && "text-[#28325F] hover:text-[#1A1A1A]",
                 )}
               >
@@ -140,7 +141,7 @@ export function Navbar({
         <Button
           variant="default"
           size="default"
-          className="bg-[#DE5943] hover:bg-[#c44d39] text-white"
+          className="bg-[#991B1B] hover:bg-[#7F1D1D] text-white"
           asChild
         >
           <Link href="/contact">Contact Us</Link>
@@ -205,8 +206,8 @@ export function Navbar({
                           className={cn(
                             "text-base font-medium transition-colors",
                             isActive
-                              ? "text-[#DE5943]"
-                              : "text-white hover:text-[#DE5943]",
+                              ? "text-[#991B1B]"
+                              : "text-white hover:text-[#991B1B]",
                           )}
                         >
                           {link.label}

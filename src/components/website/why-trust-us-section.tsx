@@ -41,7 +41,7 @@ export function WhyTrustUsSection() {
   });
 
   return (
-    <section id="why-trust-us" className="bg-[#DE5943] py-16 md:py-24 lg:py-32">
+    <section id="why-trust-us" className="bg-[#991B1B] py-16 md:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div

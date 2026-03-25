@@ -45,7 +45,7 @@ export function PageHero({
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-[#DE5943]/25 md:bg-[#DE5943]/35"
+          className="absolute inset-0 bg-[#991B1B]/25 md:bg-[#991B1B]/35"
           aria-hidden
         />
       </div>
@@ -53,7 +53,7 @@ export function PageHero({
       <Navbar />
 
       <div className="relative flex-1 flex flex-col justify-center lg:justify-end mb-10">
-        <div className="px-6 lg:px-12 pt-10 pb-16 lg:pt-28 lg:pb-20 lg:bg-[#DE5943]/65">
+        <div className="px-6 lg:px-12 pt-10 pb-16 lg:pt-28 lg:pb-20 lg:bg-[#991B1B]/65">
           <div className="max-w-7xl mx-auto w-full">
             <motion.div
               className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center justify-items-center text-center lg:items-end lg:justify-items-start lg:text-left"
@@ -65,7 +65,7 @@ export function PageHero({
                 className="flex flex-col items-center justify-center space-y-4 w-full max-w-xl lg:max-w-none lg:items-start lg:justify-start"
                 variants={itemVariants}
               >
-                <p className="text-sm md:text-[24px] font-bold text-white/90 border-b-2 border-[#DE5943] pb-1 inline-block lg:w-fit">
+                <p className="text-sm md:text-[24px] font-bold text-white/90 border-b-2 border-[#991B1B] pb-1 inline-block lg:w-fit">
                   {subtitle}
                 </p>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[64px] font-bold text-white leading-tight min-h-[1.2em]">

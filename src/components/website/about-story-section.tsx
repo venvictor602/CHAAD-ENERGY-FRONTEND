@@ -37,7 +37,7 @@ export function AboutStorySection() {
                 Our Story
               </motion.h2>
               <motion.blockquote
-                className="border-l-4 border-[#DE5943] pl-5 py-1 my-6"
+                className="border-l-4 border-[#991B1B] pl-5 py-1 my-6"
                 variants={fadeUp}
                 transition={transition}
               >

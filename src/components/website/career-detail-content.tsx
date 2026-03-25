@@ -32,7 +32,7 @@ const applySchema = z.object({
 type ApplyFormData = z.infer<typeof applySchema>;
 
 const inputClass =
-  "w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#DE5943] focus:ring-2 focus:ring-[#DE5943]/20 disabled:opacity-60";
+  "w-full h-11 rounded-lg border border-black/10 bg-white px-4 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] outline-none focus:border-[#991B1B] focus:ring-2 focus:ring-[#991B1B]/20 disabled:opacity-60";
 const inputErrorClass =
   "border-red-500 focus:border-red-500 focus:ring-red-500/20";
 const labelClass =
@@ -131,7 +131,7 @@ export function CareerDetailContent({ jobId }: { jobId: number }) {
         <p className="text-[#64748B]">{error ?? "Job not found."}</p>
         <Link
           href="/careers"
-          className="text-[#DE5943] font-semibold hover:underline"
+          className="text-[#991B1B] font-semibold hover:underline"
         >
           Back to Careers
         </Link>
@@ -161,7 +161,7 @@ export function CareerDetailContent({ jobId }: { jobId: number }) {
         >
           <div className="lg:col-span-2 space-y-8">
             <div>
-              <span className="inline-block px-2 py-1 rounded bg-[#DE5943]/10 text-[#DE5943] text-xs font-semibold tracking-wide mb-3">
+              <span className="inline-block px-2 py-1 rounded bg-[#991B1B]/10 text-[#991B1B] text-xs font-semibold tracking-wide mb-3">
                 {job.department || "General"}
               </span>
               <h1 className="text-3xl md:text-4xl font-bold text-[#333333]">
@@ -315,7 +315,7 @@ export function CareerDetailContent({ jobId }: { jobId: number }) {
                   <input
                     type="file"
                     accept=".pdf,.doc,.docx"
-                    className={`${inputClass} py-2 file:mr-2 file:rounded file:border-0 file:bg-[#DE5943] file:px-3 file:py-1 file:text-white file:text-sm ${errors.resume ? inputErrorClass : ""}`}
+                    className={`${inputClass} py-2 file:mr-2 file:rounded file:border-0 file:bg-[#991B1B] file:px-3 file:py-1 file:text-white file:text-sm ${errors.resume ? inputErrorClass : ""}`}
                     {...register("resume")}
                     disabled={isSubmitting}
                   />
@@ -336,7 +336,7 @@ export function CareerDetailContent({ jobId }: { jobId: number }) {
                 </label>
                 <Button
                   type="submit"
-                  className="w-full bg-[#DE5943] hover:bg-[#c94d39] text-white"
+                  className="w-full bg-[#991B1B] hover:bg-[#7F1D1D] text-white"
                   disabled={!isValid || isSubmitting}
                 >
                   {isSubmitting ? (
