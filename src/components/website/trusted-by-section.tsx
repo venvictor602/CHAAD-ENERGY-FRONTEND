@@ -77,8 +77,8 @@ export function TrustedBySection({
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.45 }}
           >
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#A82C3A]">
-              Trusted Partners
+            <p className="inline-flex items-center rounded-full border border-[#A82C3A]/25 bg-[#A82C3A]/8 px-4 py-1.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.18em] text-[#A82C3A]">
+              Clients That Trust Us
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-[1.15]">
               Clients That Trust Us
