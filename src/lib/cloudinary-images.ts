@@ -21,7 +21,7 @@ function getUrl(index: number): string {
 
 /**
  * Returns a Cloudinary URL with size/quality transforms for faster loading.
- * f_auto=WebP/AVIF, q_auto=compression. Non-Cloudinary URLs returned unchanged.
+ * f_auto=WebP/AVIF; q_auto:good by default, override for heroes / large detail images.
  */
 export function getCloudinaryOptimizedUrl(
   url: string,
@@ -29,7 +29,7 @@ export function getCloudinaryOptimizedUrl(
 ): string {
   if (!url || !url.includes("res.cloudinary.com") || !url.includes("/upload/"))
     return url;
-  const { width, quality = "auto:best" } = options;
+  const { width, quality = "auto:good" } = options;
   const transforms = [
     width ? `c_limit,w_${width}` : "",
     `q_${quality}`,
@@ -41,9 +41,22 @@ export function getCloudinaryOptimizedUrl(
   return url.replace("/upload/", `/upload/${transforms}/`);
 }
 
+/** Hero / full-viewport backgrounds: higher cap + stronger auto quality. */
+function optHero(url: string, width = 2400): string {
+  return getCloudinaryOptimizedUrl(url, { width, quality: "auto:best" });
+}
+
 /** Optimized URL helper (used for all exported image URLs). */
 function opt(url: string, width?: number): string {
   return getCloudinaryOptimizedUrl(url, { width });
+}
+
+/** Client/partner logos: cap pixel dimensions for bandwidth. */
+export function getCloudinaryLogoUrl(url: string, maxWidth = 320): string {
+  return getCloudinaryOptimizedUrl(url, {
+    width: maxWidth,
+    quality: "auto:good",
+  });
 }
 
 /** Image indices by section – all URLs compressed (w_*, q_auto, f_auto) for fast load. */
@@ -52,13 +65,13 @@ export const cloudinaryImages = {
   about: [opt(getUrl(5), 700), opt(getUrl(6), 700)],
   /** About story section (Our Story / Our Mission): 3 image boxes */
   aboutStory: [opt(getUrl(7), 500), opt(getUrl(8), 500), opt(getUrl(9), 500)],
-  /** Full-bleed hero backgrounds (higher res to avoid pixelation) */
+  /** Full-bleed hero backgrounds (capped width + q_auto:best for clarity vs. file size) */
   hero: [
-    opt(getUrl(0)),
-    opt(getUrl(1)),
-    opt(getUrl(2)),
-    opt(getUrl(3)),
-    opt(getUrl(4)),
+    optHero(getUrl(0)),
+    optHero(getUrl(1)),
+    optHero(getUrl(2)),
+    optHero(getUrl(3)),
+    optHero(getUrl(4)),
   ],
   /** Case study section (Major Refinery): 2 image boxes */
   caseStudySection: [opt(getUrl(10), 800), opt(getUrl(11), 800)],
@@ -87,10 +100,22 @@ export const cloudinaryImages = {
   ],
   /** Project detail static galleries */
   projectGallery: (base: number) => [
-    opt(getUrl(base + 12), 1200),
-    opt(getUrl(base + 13), 1200),
-    opt(getUrl(base + 14), 1200),
-    opt(getUrl(base + 15), 1200),
+    getCloudinaryOptimizedUrl(getUrl(base + 12), {
+      width: 1200,
+      quality: "auto:best",
+    }),
+    getCloudinaryOptimizedUrl(getUrl(base + 13), {
+      width: 1200,
+      quality: "auto:best",
+    }),
+    getCloudinaryOptimizedUrl(getUrl(base + 14), {
+      width: 1200,
+      quality: "auto:best",
+    }),
+    getCloudinaryOptimizedUrl(getUrl(base + 15), {
+      width: 1200,
+      quality: "auto:best",
+    }),
   ],
   /** Default/fallback for API-driven content */
   default: opt(getUrl(58), 800),

@@ -247,7 +247,7 @@ export function Footer() {
               alt="CHAAD Energy"
               width={160}
               height={160}
-              quality={100}
+              quality={85}
               className="w-full h-auto object-contain"
             />
           </div>

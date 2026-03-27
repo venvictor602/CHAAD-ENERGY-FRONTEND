@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import { useEffect } from "react";
 import type { AppProps } from "next/app";
 import { Inter, Montserrat, Roboto } from "next/font/google";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 import { useRouter } from "next/router";
 import { Toaster as SonnerToaster } from "sonner";
 
@@ -84,18 +84,20 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <Toaster>
-      <SEO />
-      <main
-        className={`${montserrat.variable} ${roboto.variable} ${inter.variable} font-sans`}
-      >
-        <AnimatePresence mode="wait">
-          <Component {...pageProps} />
-        </AnimatePresence>
-        <ScrollToTopButton showAfterPx={500} />
-        <CookieConsentDrawer />
-      </main>
-      <SonnerToaster position="top-center" richColors closeButton />
-    </Toaster>
+    <MotionConfig reducedMotion="user">
+      <Toaster>
+        <SEO />
+        <main
+          className={`${montserrat.variable} ${roboto.variable} ${inter.variable} font-sans`}
+        >
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} />
+          </AnimatePresence>
+          <ScrollToTopButton showAfterPx={500} />
+          <CookieConsentDrawer />
+        </main>
+        <SonnerToaster position="top-center" richColors closeButton />
+      </Toaster>
+    </MotionConfig>
   );
 }

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import logosData from "@/lib/cloudinary-logos.json";
+import { getCloudinaryLogoUrl } from "@/lib/cloudinary-images";
 
 type Partner = {
   name: string;
@@ -29,7 +30,7 @@ const PARTNERS: Partner[] = cloudinaryLogos
   .map((l) => ({
     name: toName(String(l.filename || "Client")),
     description: "Description coming soon.",
-    logoSrc: String(l.url),
+    logoSrc: getCloudinaryLogoUrl(String(l.url), 400),
   }));
 
 const fadeUp = {

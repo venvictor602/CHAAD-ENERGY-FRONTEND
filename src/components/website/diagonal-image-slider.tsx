@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { cloudinaryImages } from "@/lib/cloudinary-images";
 
@@ -23,14 +23,17 @@ const IMAGES_PER_COLUMN = 14;
 export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
   const filled = images.length > 0 ? images : cloudinaryImages.diagonalSlider;
   const pool = [...filled, ...filled, ...filled];
+  const reduceMotion = useReducedMotion();
 
   return (
     <div className="relative w-full h-full overflow-hidden" aria-hidden>
       <div
         className="absolute inset-0 flex gap-3"
         style={{
-          transform: "rotate(-12deg) scale(1.3)",
+          transform: "rotate(-12deg) scale(1.3) translateZ(0)",
           transformOrigin: "center center",
+          WebkitBackfaceVisibility: "hidden",
+          backfaceVisibility: "hidden",
         }}
       >
         {COLUMN_CONFIG.map((col, colIdx) => {
@@ -50,18 +53,27 @@ export function DiagonalImageSlider({ images }: DiagonalImageSliderProps) {
               style={{ marginTop: col.offset }}
             >
               <motion.div
-                className="flex flex-col gap-3"
-                animate={{
-                  y: col.direction > 0 ? [0, -total / 2] : [-total / 2, 0],
-                }}
-                transition={{
-                  y: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: col.duration,
-                    ease: "linear",
-                  },
-                }}
+                className="flex flex-col gap-3 transform-gpu will-change-transform"
+                animate={
+                  reduceMotion
+                    ? false
+                    : {
+                        y:
+                          col.direction > 0 ? [0, -total / 2] : [-total / 2, 0],
+                      }
+                }
+                transition={
+                  reduceMotion
+                    ? undefined
+                    : {
+                        y: {
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          duration: col.duration,
+                          ease: "linear",
+                        },
+                      }
+                }
               >
                 {[...colImages, ...colImages].map((src, imgIdx) => (
                   <div

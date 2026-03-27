@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import logosData from "@/lib/cloudinary-logos.json";
+import { getCloudinaryLogoUrl } from "@/lib/cloudinary-images";
 
 type LogoItem = {
   src: string;
@@ -34,7 +35,7 @@ const cloudinaryLogos = (Array.isArray(logosData) ? logosData : []) as {
 const DEFAULT_LOGOS: LogoItem[] = cloudinaryLogos
   .filter((l) => l.group === "clients" && typeof l.url === "string")
   .map((l) => ({
-    src: String(l.url),
+    src: getCloudinaryLogoUrl(String(l.url), 320),
     alt: toAlt(String(l.filename || "Client logo")),
   }));
 
@@ -65,6 +66,8 @@ export function TrustedBySection({
     const base = logos.length > 0 ? logos : DEFAULT_LOGOS;
     return base.slice(0, Math.min(base.length, SLOTS.length));
   }, [logos]);
+
+  const reduceMotion = useReducedMotion();
 
   return (
     <section className="bg-white py-16 md:py-24 overflow-hidden [font-family:var(--font-inter)]">
@@ -98,56 +101,76 @@ export function TrustedBySection({
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <motion.div
-              className="absolute inset-0 rotate-[-10deg] will-change-transform"
-              animate={{ rotate: [-10, 350] }}
-              transition={{
-                repeat: Infinity,
-                duration: 40,
-                ease: "linear",
-              }}
-            >
-              {effectiveLogos.map((logo, i) => {
-                const slot = SLOTS[i % SLOTS.length];
-                return (
-                  <motion.div
+            {reduceMotion ? (
+              <div className="absolute inset-0 flex flex-wrap content-center justify-center gap-4 sm:gap-5 p-4 transform-[translateZ(0)]">
+                {effectiveLogos.map((logo, i) => (
+                  <div
                     key={`${logo.alt}-${i}`}
-                    className="absolute"
-                    style={{
-                      left: slot.left,
-                      top: slot.top,
-                      transform: `translate(-50%, -50%) scale(${slot.scale})`,
-                      opacity: slot.opacity,
-                    }}
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 3.6 + (i % 5) * 0.35,
-                      ease: "easeInOut",
-                    }}
+                    className="flex h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 items-center justify-center rounded-md bg-white/90 shadow-sm ring-1 ring-black/5"
                   >
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={160}
+                      height={80}
+                      className="max-h-full w-auto object-contain opacity-90"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <motion.div
+                className="absolute inset-0 rotate-[-10deg] will-change-transform transform-[translateZ(0)] [-webkit-backface-visibility:hidden] backface-hidden"
+                animate={{ rotate: [-10, 350] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 40,
+                  ease: "linear",
+                }}
+              >
+                {effectiveLogos.map((logo, i) => {
+                  const slot = SLOTS[i % SLOTS.length];
+                  return (
                     <motion.div
-                      className="h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 rounded-md flex items-center justify-center"
-                      animate={{ rotate: [10, -350] }}
+                      key={`${logo.alt}-${i}`}
+                      className="absolute"
+                      style={{
+                        left: slot.left,
+                        top: slot.top,
+                        transform: `translate(-50%, -50%) scale(${slot.scale})`,
+                        opacity: slot.opacity,
+                      }}
+                      animate={{ y: [0, -6, 0] }}
                       transition={{
                         repeat: Infinity,
-                        duration: 40,
-                        ease: "linear",
+                        duration: 3.6 + (i % 5) * 0.35,
+                        ease: "easeInOut",
                       }}
                     >
-                      <Image
-                        src={logo.src}
-                        alt={logo.alt}
-                        width={160}
-                        height={80}
-                        className="w-full h-full object-contain opacity-90"
-                        loading="lazy"
-                      />
+                      <motion.div
+                        className="h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 rounded-md flex items-center justify-center [-webkit-backface-visibility:hidden] backface-hidden"
+                        animate={{ rotate: [10, -350] }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 40,
+                          ease: "linear",
+                        }}
+                      >
+                        <Image
+                          src={logo.src}
+                          alt={logo.alt}
+                          width={160}
+                          height={80}
+                          className="w-full h-full object-contain opacity-90"
+                          loading="lazy"
+                        />
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </div>
