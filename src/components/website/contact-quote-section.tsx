@@ -10,6 +10,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { submitContact } from "@/services/contact";
 import { getServices } from "@/services/services";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const contactSchema = z.object({
   full_name: z.string().min(1, "Full name is required"),
@@ -41,7 +42,7 @@ const labelClass =
   "text-[10px] md:text-sm font-semibold tracking-widest text-[#1A1A1A]/70";
 
 export function ContactQuoteSection({
-  imageSrc = "/assets/Contact.png",
+  imageSrc = cloudinaryImages.about[0],
 }: {
   imageSrc?: string;
 }) {

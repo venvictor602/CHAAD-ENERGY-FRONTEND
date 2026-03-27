@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircleIcon } from "lucide-react";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const BULLETS = [
   "ISN® Certified Platinum Member",
@@ -9,7 +10,7 @@ const BULLETS = [
   "Annual Safety Leadership Training",
 ];
 
-const DEFAULT_BACKGROUND = "/assets/Commitment.png";
+const DEFAULT_BACKGROUND = cloudinaryImages.hero[1] || cloudinaryImages.default;
 
 export function SafetyCommitmentSection({
   backgroundImage = DEFAULT_BACKGROUND,

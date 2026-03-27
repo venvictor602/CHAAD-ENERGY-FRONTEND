@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import logosData from "@/lib/cloudinary-logos.json";
 
 type Partner = {
   name: string;
@@ -9,48 +10,27 @@ type Partner = {
   logoSrc?: string;
 };
 
-const PARTNERS: Partner[] = [
-  {
-    name: "Chevron",
+function toName(filename: string): string {
+  return filename
+    .replace(/\.[a-z0-9]+$/i, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const cloudinaryLogos = (Array.isArray(logosData) ? logosData : []) as {
+  group?: string;
+  url?: string;
+  filename?: string;
+}[];
+
+const PARTNERS: Partner[] = cloudinaryLogos
+  .filter((l) => l.group === "clients" && typeof l.url === "string")
+  .map((l) => ({
+    name: toName(String(l.filename || "Client")),
     description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/CHEVRON.svg",
-  },
-  {
-    name: "Seplat",
-    description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/SEPLAT.svg",
-  },
-  {
-    name: "Renaissance",
-    description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/RENAISSANCE.svg",
-  },
-  {
-    name: "Heirs",
-    description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/HEIRS.svg",
-  },
-  {
-    name: "Heritage",
-    description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/HERITAGE.svg",
-  },
-  {
-    name: "Newcross",
-    description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/NEWCROSS.svg",
-  },
-  {
-    name: "PNG Gas",
-    description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/PNG%20GAS.svg",
-  },
-  {
-    name: "Aradel",
-    description: "Description coming soon.",
-    logoSrc: "/CLIENT%20LOGO/ARADEL.svg",
-  },
-];
+    logoSrc: String(l.url),
+  }));
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },

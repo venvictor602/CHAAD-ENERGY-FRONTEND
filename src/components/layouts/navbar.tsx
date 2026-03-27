@@ -102,16 +102,16 @@ export function Navbar({
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-[9999] flex items-center justify-between px-6 lg:px-12 py-4 bg-white shadow-sm transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-9999 flex items-center justify-between px-6 lg:px-12 py-4 bg-white shadow-sm transition-all duration-300",
         className,
       )}
     >
       <Link href="/" className="flex items-center gap-2 shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/Logo.svg"
+          src="/CHAAD%20ENERGY.png"
           alt="CHAAD Energy"
-          className="h-12 w-12 md:h-16 md:w-16 object-contain"
+          className="h-14 w-14 md:h-24 md:w-24 object-contain"
         />
       </Link>
 

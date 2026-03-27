@@ -1,5 +1,6 @@
 import { SEO } from "@/components/seo";
 import { PageHero } from "@/components/website/page-hero";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 import { LatestNewsSection } from "@/components/website/latest-news-section";
 import { Footer } from "@/components/layouts/footer";
 
@@ -16,6 +17,7 @@ export default function NewsPage() {
           "Industry updates from CHAAD",
         ]}
         description="From precision structural analysis to sustainable energy systems, our expert engineering team is ready to bring your next vision to life."
+        backgroundImage={cloudinaryImages.news[0]}
       />
       <LatestNewsSection />
       <Footer />

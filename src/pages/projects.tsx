@@ -1,5 +1,6 @@
 import { SEO } from "@/components/seo";
 import { PageHero } from "@/components/website/page-hero";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 import { ProjectsListSection } from "@/components/website/projects-list-section";
 import { BuildWithUsBanner } from "@/components/website/build-with-us-banner";
 import { Footer } from "@/components/layouts/footer";
@@ -17,6 +18,7 @@ export default function ProjectsPage() {
           "Offshore to onshore delivery",
         ]}
         description="Exploring our specialized contributions to global energy infrastructure, from offshore North Sea assets to renewable grid integration."
+        backgroundImage={cloudinaryImages.caseStudySection[0]}
       />
       <ProjectsListSection />
       <BuildWithUsBanner />

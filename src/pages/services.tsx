@@ -1,5 +1,6 @@
 import { SEO } from "@/components/seo";
 import { PageHero } from "@/components/website/page-hero";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 import { ServicesListSection } from "@/components/website/services-list-section";
 import { CaseStudySection } from "@/components/website/case-study-section";
 import { CtaSection } from "@/components/website/cta-section";
@@ -18,6 +19,7 @@ export default function ServicesPage() {
           "EPC, Commissioning & more",
         ]}
         description="From concept to completion, we provide end-to-end technical expertise for complex industrial infrastructure. Our commitment to safety and innovation drives every project forward."
+        backgroundImage={cloudinaryImages.hero[2]}
       />
       <ServicesListSection />
       <CaseStudySection />

@@ -39,7 +39,7 @@ export function SEO({
     name: SITE.name,
     description: SITE.description,
     url: getAbsoluteUrl("/"),
-    logo: getAbsoluteUrl("/Logo.svg"),
+    logo: getAbsoluteUrl("/CHAAD%20ENERGY.png"),
   };
 
   return (

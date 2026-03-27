@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 import { Navbar } from "@/components/layouts/navbar";
 import { TypewriterTitle } from "@/components/website/typewriter-title";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
-const DEFAULT_BG =
-  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=80";
+const DEFAULT_BG = cloudinaryImages.hero[0] || "";
 
 const containerVariants = {
   hidden: {},

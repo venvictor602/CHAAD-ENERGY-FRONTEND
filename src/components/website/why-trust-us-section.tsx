@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Shield, Cog, ArrowRightLeft, Leaf } from "lucide-react";
 import Image from "next/image";
 import { CountUp, useInViewOnce } from "@/components/ui/count-up";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 
 const FEATURES = [
   {
@@ -96,7 +97,7 @@ export function WhyTrustUsSection() {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src="/assets/Global%20Leaders.jpg"
+              src={cloudinaryImages.hero[3] || cloudinaryImages.default}
               width={800}
               height={600}
               alt="Industrial team at work"

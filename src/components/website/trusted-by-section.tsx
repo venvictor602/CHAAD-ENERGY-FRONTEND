@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import logosData from "@/lib/cloudinary-logos.json";
 
 type LogoItem = {
   src: string;
@@ -16,16 +17,26 @@ type Slot = {
   opacity: number;
 };
 
-const DEFAULT_LOGOS: LogoItem[] = [
-  { src: "/CLIENT%20LOGO/CHEVRON.svg", alt: "Chevron" },
-  { src: "/CLIENT%20LOGO/SEPLAT.svg", alt: "Seplat" },
-  { src: "/CLIENT%20LOGO/RENAISSANCE.svg", alt: "Renaissance" },
-  { src: "/CLIENT%20LOGO/HEIRS.svg", alt: "Heirs" },
-  { src: "/CLIENT%20LOGO/HERITAGE.svg", alt: "Heritage" },
-  { src: "/CLIENT%20LOGO/NEWCROSS.svg", alt: "Newcross" },
-  { src: "/CLIENT%20LOGO/PNG%20GAS.svg", alt: "PNG Gas" },
-  { src: "/CLIENT%20LOGO/ARADEL.svg", alt: "Aradel" },
-];
+function toAlt(filename: string): string {
+  return filename
+    .replace(/\.[a-z0-9]+$/i, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const cloudinaryLogos = (Array.isArray(logosData) ? logosData : []) as {
+  group?: string;
+  url?: string;
+  filename?: string;
+}[];
+
+const DEFAULT_LOGOS: LogoItem[] = cloudinaryLogos
+  .filter((l) => l.group === "clients" && typeof l.url === "string")
+  .map((l) => ({
+    src: String(l.url),
+    alt: toAlt(String(l.filename || "Client logo")),
+  }));
 
 const SLOTS: Slot[] = [
   { left: "10%", top: "18%", scale: 0.9, opacity: 0.9 },
@@ -66,14 +77,18 @@ export function TrustedBySection({
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.45 }}
           >
-            <p className="text-xs md:text-[24px] font-bold  tracking-[0.24em] text-[#1A1A1A]">
-              TRUSTED BY
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#A82C3A]">
+              Trusted Partners
             </p>
-            <h2 className="text-4xl italic md:text-5xl lg:text-[56px] font-semibold text-[#333333] leading-tight">
-              We <span className=" ">are trusted by</span> over{" "}
-              <span className="text-[#A82C3A]">50 clients</span>{" "}
-              <span className="  ">across the nation</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-[1.15]">
+              Clients That Trust Us
             </h2>
+            <p className="text-[#4A4A4A] text-base md:text-lg leading-relaxed max-w-lg">
+              We take pride in our long-standing relationships with leading
+              organizations in the energy and industrial sectors. Their
+              continued trust is a testament to our commitment to excellence,
+              safety, and reliable project delivery.
+            </p>
           </motion.div>
 
           <motion.div
@@ -112,7 +127,7 @@ export function TrustedBySection({
                     }}
                   >
                     <motion.div
-                      className="h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 bg-white rounded-md flex items-center justify-center"
+                      className="h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 rounded-md flex items-center justify-center"
                       animate={{ rotate: [10, -350] }}
                       transition={{
                         repeat: Infinity,

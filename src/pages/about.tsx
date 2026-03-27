@@ -1,5 +1,6 @@
 import { SEO } from "@/components/seo";
 import { PageHero } from "@/components/website/page-hero";
+import { cloudinaryImages } from "@/lib/cloudinary-images";
 import { AboutStorySection } from "@/components/website/about-story-section";
 import { CoreValuesSection } from "@/components/website/core-values-section";
 import { PartnersSection } from "@/components/website/partners-section";
@@ -22,6 +23,7 @@ export default function AboutPage() {
           "Partner with CHAAD",
         ]}
         description="Delivering Engineering Excellence Across Energy & Industrial Landscapes. Partner with a solutions-driven team that values safety, precision, and measurable results."
+        backgroundImage={cloudinaryImages.hero[1]}
       />
       <AboutStorySection />
       <CoreValuesSection />

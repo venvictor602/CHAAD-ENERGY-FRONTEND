@@ -14,6 +14,7 @@ import {
   X,
   Youtube,
 } from "lucide-react";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { subscribeContact } from "@/services/contact";
@@ -240,15 +241,15 @@ export function Footer() {
           variants={fadeUp}
           transition={{ duration: 0.4 }}
         >
-          <div className="flex items-start">
-            <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/Logo.svg"
-                alt="CHAAD Energy"
-                className="w-11 h-11 object-contain"
-              />
-            </div>
+          <div className="w-[120px] sm:w-[140px] md:w-[160px]">
+            <Image
+              src="/CHAAD%20ENERGY%20WHITE.png"
+              alt="CHAAD Energy"
+              width={160}
+              height={160}
+              quality={100}
+              className="w-full h-auto object-contain"
+            />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">

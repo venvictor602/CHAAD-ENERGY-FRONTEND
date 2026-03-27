@@ -1,0 +1,170 @@
+[
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613556/chaad-engineering/logos/clients/ARADEL_fleuts.png",
+    "publicId": "chaad-engineering/logos/clients/ARADEL_fleuts",
+    "filename": "ARADEL.png",
+    "index": 0
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613558/chaad-engineering/logos/clients/CHEVRON_qjqdgt.png",
+    "publicId": "chaad-engineering/logos/clients/CHEVRON_qjqdgt",
+    "filename": "CHEVRON.png",
+    "index": 1
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613559/chaad-engineering/logos/clients/HEIRS_iyffcs.png",
+    "publicId": "chaad-engineering/logos/clients/HEIRS_iyffcs",
+    "filename": "HEIRS.png",
+    "index": 2
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613561/chaad-engineering/logos/clients/HERITAGE_wpfj65.png",
+    "publicId": "chaad-engineering/logos/clients/HERITAGE_wpfj65",
+    "filename": "HERITAGE.png",
+    "index": 3
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613562/chaad-engineering/logos/clients/ND_WESTERN_oauqzp.png",
+    "publicId": "chaad-engineering/logos/clients/ND_WESTERN_oauqzp",
+    "filename": "ND WESTERN.png",
+    "index": 4
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613564/chaad-engineering/logos/clients/NEWCROSS_ozj0qe.png",
+    "publicId": "chaad-engineering/logos/clients/NEWCROSS_ozj0qe",
+    "filename": "NEWCROSS.png",
+    "index": 5
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613565/chaad-engineering/logos/clients/NIVAFER_cowfr6.png",
+    "publicId": "chaad-engineering/logos/clients/NIVAFER_cowfr6",
+    "filename": "NIVAFER.png",
+    "index": 6
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613566/chaad-engineering/logos/clients/NNPC_hueucg.png",
+    "publicId": "chaad-engineering/logos/clients/NNPC_hueucg",
+    "filename": "NNPC.png",
+    "index": 7
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613569/chaad-engineering/logos/clients/PLATFORM_p9u23m.png",
+    "publicId": "chaad-engineering/logos/clients/PLATFORM_p9u23m",
+    "filename": "PLATFORM.png",
+    "index": 8
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613570/chaad-engineering/logos/clients/PNG_GAS_o60jkb.png",
+    "publicId": "chaad-engineering/logos/clients/PNG_GAS_o60jkb",
+    "filename": "PNG GAS.png",
+    "index": 9
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613571/chaad-engineering/logos/clients/RENAISSANCE_lxu5hv.png",
+    "publicId": "chaad-engineering/logos/clients/RENAISSANCE_lxu5hv",
+    "filename": "RENAISSANCE.png",
+    "index": 10
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613572/chaad-engineering/logos/clients/SAHARA_dafr0z.png",
+    "publicId": "chaad-engineering/logos/clients/SAHARA_dafr0z",
+    "filename": "SAHARA.png",
+    "index": 11
+  },
+  {
+    "group": "clients",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613573/chaad-engineering/logos/clients/SEPLAT_cvd2wb.png",
+    "publicId": "chaad-engineering/logos/clients/SEPLAT_cvd2wb",
+    "filename": "SEPLAT.png",
+    "index": 12
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613575/chaad-engineering/logos/partners/ARFLU_jdgsj5.png",
+    "publicId": "chaad-engineering/logos/partners/ARFLU_jdgsj5",
+    "filename": "ARFLU.png",
+    "index": 0
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613576/chaad-engineering/logos/partners/Boskel_jvjfml.png",
+    "publicId": "chaad-engineering/logos/partners/Boskel_jvjfml",
+    "filename": "Boskel.png",
+    "index": 1
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613577/chaad-engineering/logos/partners/ENELTEC_qqrhib.png",
+    "publicId": "chaad-engineering/logos/partners/ENELTEC_qqrhib",
+    "filename": "ENELTEC.png",
+    "index": 2
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613578/chaad-engineering/logos/partners/FEDEX_ucxdoe.png",
+    "publicId": "chaad-engineering/logos/partners/FEDEX_ucxdoe",
+    "filename": "FEDEX.png",
+    "index": 3
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613580/chaad-engineering/logos/partners/GUS_xqaxpn.png",
+    "publicId": "chaad-engineering/logos/partners/GUS_xqaxpn",
+    "filename": "GUS.png",
+    "index": 4
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613581/chaad-engineering/logos/partners/HONEYWELL_alkfhc.png",
+    "publicId": "chaad-engineering/logos/partners/HONEYWELL_alkfhc",
+    "filename": "HONEYWELL.png",
+    "index": 5
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613582/chaad-engineering/logos/partners/MOBILTEX_t2nnxd.png",
+    "publicId": "chaad-engineering/logos/partners/MOBILTEX_t2nnxd",
+    "filename": "MOBILTEX.png",
+    "index": 6
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613584/chaad-engineering/logos/partners/NAI_LOK_dp77gi.png",
+    "publicId": "chaad-engineering/logos/partners/NAI_LOK_dp77gi",
+    "filename": "NAI LOK.png",
+    "index": 7
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613585/chaad-engineering/logos/partners/NJM_oltid0.png",
+    "publicId": "chaad-engineering/logos/partners/NJM_oltid0",
+    "filename": "NJM.png",
+    "index": 8
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613586/chaad-engineering/logos/partners/Rockwell_Automation_i3bbh7.png",
+    "publicId": "chaad-engineering/logos/partners/Rockwell_Automation_i3bbh7",
+    "filename": "Rockwell Automation.png",
+    "index": 9
+  },
+  {
+    "group": "partners",
+    "url": "https://res.cloudinary.com/dazef2gbf/image/upload/v1774613588/chaad-engineering/logos/partners/SEA_AVIN_ahvzzf.png",
+    "publicId": "chaad-engineering/logos/partners/SEA_AVIN_ahvzzf",
+    "filename": "SEA AVIN.png",
+    "index": 10
+  }
+]

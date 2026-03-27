@@ -50,7 +50,7 @@ function ImageWithLogoOverlay({
       <div className="absolute bottom-3 right-3 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#A82C3A]/30 backdrop-blur-sm flex items-center justify-center p-2 ring-1 ring-white/20">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/Logo.svg"
+          src="/CHAAD%20ENERGY.png"
           alt=""
           aria-hidden
           className="w-full h-full object-contain"
