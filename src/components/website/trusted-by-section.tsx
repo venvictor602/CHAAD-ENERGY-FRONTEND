@@ -32,10 +32,27 @@ const cloudinaryLogos = (Array.isArray(logosData) ? logosData : []) as {
   filename?: string;
 }[];
 
+const CLIENT_LOGO_WIDTH_OVERRIDES: Record<string, number> = {
+  "ND WESTERN.png": 360,
+  "ARADEL.png": 600,
+  "CHEVRON.png": 600,
+  "HEIRS.png": 640,
+  "HERITAGE.png": 680,
+  "NEWCROSS.png": 680,
+  "PLATFORM.png": 720,
+  "PNG GAS.png": 680,
+  "RENAISSANCE.png": 680,
+  "SEPLAT.png": 680,
+  "SAHARA.png": 640,
+};
+
 const DEFAULT_LOGOS: LogoItem[] = cloudinaryLogos
   .filter((l) => l.group === "clients" && typeof l.url === "string")
   .map((l) => ({
-    src: getCloudinaryLogoUrl(String(l.url), 320),
+    src: getCloudinaryLogoUrl(
+      String(l.url),
+      CLIENT_LOGO_WIDTH_OVERRIDES[String(l.filename || "")] ?? 320,
+    ),
     alt: toAlt(String(l.filename || "Client logo")),
   }));
 
@@ -95,7 +112,7 @@ export function TrustedBySection({
           </motion.div>
 
           <motion.div
-            className="relative h-[260px] sm:h-[320px] md:h-[360px] lg:h-[380px]"
+            className="relative h-[230px] sm:h-[320px] md:h-[360px] lg:h-[380px]"
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -106,7 +123,7 @@ export function TrustedBySection({
                 {effectiveLogos.map((logo, i) => (
                   <div
                     key={`${logo.alt}-${i}`}
-                    className="flex h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 items-center justify-center rounded-md bg-white/90 shadow-sm ring-1 ring-black/5"
+                    className="flex h-12 w-24 sm:h-16 sm:w-32 md:h-20 md:w-40 items-center justify-center rounded-md bg-white/90 shadow-sm ring-1 ring-black/5"
                   >
                     <Image
                       src={logo.src}
@@ -121,7 +138,7 @@ export function TrustedBySection({
               </div>
             ) : (
               <motion.div
-                className="absolute inset-0 rotate-[-10deg] will-change-transform transform-[translateZ(0)] [-webkit-backface-visibility:hidden] backface-hidden"
+                className="absolute inset-0 rotate-[-10deg] will-change-transform transform-[translateZ(0)] [-webkit-backface-visibility:hidden] backface-hidden -translate-x-[6%] sm:translate-x-0"
                 animate={{ rotate: [-10, 350] }}
                 transition={{
                   repeat: Infinity,
@@ -149,7 +166,7 @@ export function TrustedBySection({
                       }}
                     >
                       <motion.div
-                        className="h-14 w-28 sm:h-16 sm:w-32 md:h-20 md:w-40 rounded-md flex items-center justify-center [-webkit-backface-visibility:hidden] backface-hidden"
+                        className="h-12 w-24 sm:h-16 sm:w-32 md:h-20 md:w-40 rounded-md flex items-center justify-center [-webkit-backface-visibility:hidden] backface-hidden"
                         animate={{ rotate: [10, -350] }}
                         transition={{
                           repeat: Infinity,

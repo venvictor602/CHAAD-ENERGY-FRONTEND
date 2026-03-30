@@ -111,7 +111,7 @@ export function Navbar({
         <img
           src="/CHAAD%20ENERGY.png"
           alt="CHAAD Energy"
-          className="h-14 w-14 md:h-24 md:w-24 object-contain"
+          className="h-auto w-auto max-h-[64px] sm:max-h-[78px] lg:max-h-[92px] object-contain"
         />
       </Link>
 
@@ -162,7 +162,7 @@ export function Navbar({
           <>
             <motion.div
               className={cn(
-                "fixed inset-0 z-[10001] md:hidden",
+                "fixed inset-0 z-10001 md:hidden",
                 scrolled ? "bg-[#1A1A1A]" : "bg-black/60",
               )}
               initial={{ opacity: 0 }}
@@ -173,7 +173,7 @@ export function Navbar({
               aria-hidden
             />
             <motion.div
-              className="fixed top-0 right-0 z-[10002] w-full max-w-sm h-screen shadow-2xl md:hidden"
+              className="fixed top-0 right-0 z-10002 w-full max-w-sm h-screen shadow-2xl md:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}

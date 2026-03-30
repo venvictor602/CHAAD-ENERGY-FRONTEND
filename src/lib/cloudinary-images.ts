@@ -53,10 +53,14 @@ function opt(url: string, width?: number): string {
 
 /** Client/partner logos: cap pixel dimensions for bandwidth. */
 export function getCloudinaryLogoUrl(url: string, maxWidth = 320): string {
-  return getCloudinaryOptimizedUrl(url, {
-    width: maxWidth,
-    quality: "auto:good",
-  });
+  if (!url || !url.includes("res.cloudinary.com") || !url.includes("/upload/"))
+    return url;
+
+  // Many vendor logos contain lots of transparent whitespace; trim makes them
+  // visually consistent and “bolder” inside same-size containers.
+  const height = Math.round(maxWidth / 2);
+  const transforms = `e_trim,c_fit,w_${maxWidth},h_${height},q_auto:good,f_auto`;
+  return url.replace("/upload/", `/upload/${transforms}/`);
 }
 
 /** Image indices by section – all URLs compressed (w_*, q_auto, f_auto) for fast load. */

@@ -25,12 +25,19 @@ const cloudinaryLogos = (Array.isArray(logosData) ? logosData : []) as {
   filename?: string;
 }[];
 
+const CLIENT_LOGO_WIDTH_OVERRIDES: Record<string, number> = {
+  "ND WESTERN.png": 520,
+};
+
 const PARTNERS: Partner[] = cloudinaryLogos
   .filter((l) => l.group === "clients" && typeof l.url === "string")
   .map((l) => ({
     name: toName(String(l.filename || "Client")),
     description: "Description coming soon.",
-    logoSrc: getCloudinaryLogoUrl(String(l.url), 400),
+    logoSrc: getCloudinaryLogoUrl(
+      String(l.url),
+      CLIENT_LOGO_WIDTH_OVERRIDES[String(l.filename || "")] ?? 400,
+    ),
   }));
 
 const fadeUp = {
