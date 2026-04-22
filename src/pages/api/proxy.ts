@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { APP_ENV } from "@/config/env";
 
 export const config = {
   api: {
@@ -8,7 +9,7 @@ export const config = {
 };
 
 const SERVICE_URLS = {
-  base: process.env.NEXT_PUBLIC_API_BASE_URL,
+  base: APP_ENV.API_BASE_URL,
 };
 
 function extractErrorMessage(err: unknown): string {
