@@ -41,7 +41,6 @@ export function ScrollToTopButton({
       },
       {
         threshold: 0,
-        // Switch a bit before the footer fully covers the corner
         rootMargin: "0px 0px 96px 0px",
       },
     );

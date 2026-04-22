@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { SEO } from "@/components/seo";
 import { Navbar } from "@/components/layouts/navbar";
 import { CareerDetailContent } from "@/components/website/career-detail-content";
@@ -29,12 +30,12 @@ export default function CareerDetailPage() {
         <Navbar solidBackground />
         <div className="pt-[80px] min-h-screen flex flex-col items-center justify-center gap-4 px-6">
           <p className="text-[#64748B]">Invalid job listing.</p>
-          <a
+          <Link
             href="/careers"
             className="text-[#A82C3A] font-semibold hover:underline"
           >
             Back to Careers
-          </a>
+          </Link>
         </div>
       </>
     );
